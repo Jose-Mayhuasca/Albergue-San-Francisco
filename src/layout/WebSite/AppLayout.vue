@@ -2,7 +2,7 @@
     <div class="viewpage">
         <AppNavbar />
         <router-view />
-        <AppFooter />
+        <AppFooter v-if="showFooter" />
     </div>
 </template>
 
