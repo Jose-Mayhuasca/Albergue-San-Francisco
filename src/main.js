@@ -8,6 +8,7 @@ import router from './router'
 // PrimeVue core
 import PrimeVue from 'primevue/config'
 import Aura from '@primeuix/themes/aura'
+import ToastService from 'primevue/toastservice'
 
 // PrimeVue components (registro modular)
 import Componentes from './primevue'
@@ -35,6 +36,7 @@ app.use(PrimeVue, {
 
 // Router
 app.use(router)
+app.use(ToastService)
 
 // Registro de componentes PrimeVue
 Object.entries(Componentes).forEach(([name, component]) => {
