@@ -1,10 +1,10 @@
+/*Font Alexandria*/
+@import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 html {
   font-size: 16px; /* Esto hace que 1rem = 16px */
   font-family: 'Alexandria', sans-serif;
 }
-
-/*Font Alexandria*/
-@import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 /* Breakpoints */
 //mobile → 0 - 480px
@@ -19,14 +19,15 @@ $bp-laptop: 1279px;
 //desktop → 1280 - 1920 o mas
 $bp-desktop: 1280px;
 
-// h1,
-// h2,
-// h3,
-// h4,
-// h5,
-// h6 {
-//   font-family: 'Alexandria', sans-serif;
-// }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  // font-family: 'Alexandria', sans-serif;
+  font-weight: normal;
+}
 
 h1 {
   font-size: 3.812rem;
