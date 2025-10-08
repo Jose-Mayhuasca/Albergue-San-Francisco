@@ -1,4 +1,4 @@
-{
+﻿{
   "name": "albergue-san-francisco",
   "version": "0.0.0",
   "private": true,
@@ -25,10 +25,7 @@
     "@vitejs/plugin-vue": "^6.0.1",
     "prettier": "3.6.2",
     "sass-embedded": "^1.93.2",
-<<<<<<< HEAD
-=======
     "tailwindcss": "^4.1.14",
->>>>>>> bb0637d (feat: navbar y login estructurados)
     "vite": "^7.0.6",
     "vite-plugin-vue-devtools": "^8.0.0"
   }
