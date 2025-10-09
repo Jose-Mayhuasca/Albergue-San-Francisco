@@ -1,8 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomePage from '@/pages/WebSite/HomePage.vue'
 import AppLayout from '@/layout/WebSite/AppLayout.vue'
-import LoginPage from '@/pages/WebSite/LoginPage.vue'
+import HomePage from '@/pages/WebSite/HomePage.vue'
 import CatalogPage from '@/pages/WebSite/CatalogPage.vue'
+import LoginPage from '@/pages/WebSite/LoginPage.vue'
+import AppLayout_s from '@/layout/System/AppLayout_s.vue'
+import HomePage_s from '@/pages/System/HomePage_s.vue'
+import Catalogpage_s from '@/pages/System/Catalogpage_s.vue'
+import ApplicantsPage_s from '@/pages/System/ApplicantsPage_s.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -16,12 +20,30 @@ const router = createRouter({
           component: HomePage,
         },
         {
-          path: '/catalogo',
+          path: 'catalogo',
           component: CatalogPage,
         },
         {
-          path: '/login',
+          path: 'login',
           component: LoginPage,
+        },
+      ],
+    },
+    {
+      path: '/admin',
+      component: AppLayout_s,
+      children: [
+        {
+          path: '',
+          component: HomePage_s,
+        },
+        {
+          path: 'catalogo',
+          component: Catalogpage_s,
+        },
+        {
+          path: 'solicitudes',
+          component: ApplicantsPage_s,
         },
       ],
     },

@@ -42,7 +42,7 @@ function onSubmit() {
 
     if (response) {
         setTimeout(() => {
-            router.push("/");
+            router.push("/admin");
         }, 2500); // Espera 1.5 segundos para que se vea el toast
         console.log("Usuario o contraseña correctos");
     }
