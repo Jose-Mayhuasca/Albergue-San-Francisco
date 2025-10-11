@@ -2,7 +2,6 @@
 import Button from 'primevue/button'
 import Dialog from 'primevue/dialog'
 import InputText from 'primevue/inputtext'
-import Dropdown from 'primevue/dropdown'
 import Card from 'primevue/card'
 import Toolbar from 'primevue/toolbar'
 import DataTable from 'primevue/datatable'
@@ -20,12 +19,12 @@ import Skeleton from 'primevue/skeleton'
 import Carousel from 'primevue/carousel'
 import FileUpload from 'primevue/fileupload'
 import Toast from 'primevue/toast'
+import Fluid from 'primevue/fluid'
 
 export default {
   Button,
   Dialog,
   InputText,
-  Dropdown,
   Card,
   Toolbar,
   DataTable,
@@ -43,4 +42,5 @@ export default {
   Carousel,
   FileUpload,
   Toast,
+  Fluid,
 }
