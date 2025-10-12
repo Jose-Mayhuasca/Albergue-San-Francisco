@@ -11,6 +11,9 @@
 </template>
 
 <script setup>
+import homeIcon from '@/assets/icons/home-icon-out.svg'
+import catalogIcon from '@/assets/icons/catalog-icon-out.svg'
+import applicantsIcon from '@/assets/icons/applicants-icon.svg'
 import { ref, onMounted, onUnmounted } from 'vue';
 import { useRouter } from 'vue-router'
 
@@ -36,17 +39,17 @@ onUnmounted(() => {
 const mobileOptions = ref([
     {
         id: 1, label: 'Inicio',
-        icon: '/icons/home-icon-out.svg',
+        icon: homeIcon,
         command: () => router.push('/admin')
     },
     {
         id: 2, label: 'Catalogo',
-        icon: '/icons/catalog-icon-out.svg',
+        icon: catalogIcon,
         command: () => router.push('/admin/catalogo')
     },
     {
         id: 3, label: 'Solicitudes',
-        icon: '/icons/applicants-icon.svg',
+        icon: applicantsIcon,
         command: () => router.push('/admin/solicitudes')
     }
 ])

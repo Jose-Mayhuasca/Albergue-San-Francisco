@@ -26,6 +26,9 @@
 </template>
 
 <script setup>
+import homeIcon from '@/assets/icons/home-icon.svg'
+import catalogIcon from '@/assets/icons/catalog-icon.svg'
+import loginIcon from '@/assets/icons/login-icon.svg'
 import { ref, onMounted, onUnmounted } from 'vue';
 import { useRouter } from 'vue-router'
 
@@ -51,17 +54,17 @@ onUnmounted(() => {
 const mobileOptions = ref([
     {
         id: 1, label: 'INICIO',
-        icon: '/icons/home-icon.svg',
+        icon: homeIcon,
         command: () => router.push('/')
     },
     {
         id: 2, label: 'CATALOGO',
-        icon: '/icons/catalog-icon.svg',
+        icon: catalogIcon,
         command: () => router.push('/catalogo')
     },
     {
         id: 3, label: 'LOGIN',
-        icon: '/icons/login-icon.svg',
+        icon: loginIcon,
         command: () => router.push('/login')
     }
 ])
