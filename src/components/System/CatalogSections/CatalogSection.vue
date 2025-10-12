@@ -71,7 +71,6 @@
                         <p class="regularSize title">Max</p>
                     </template>
                 </Card>
-
             </div>
         </div>
     </section>
