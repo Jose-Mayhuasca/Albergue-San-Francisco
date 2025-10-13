@@ -4,13 +4,21 @@
  * *Importante: Aqui tienes que importar las secciones que vas a crear en la carpeta con el mismo nombre que esta en la carpeta de componentes
  */
 
-import HeroSection from '@/components/WebSite/HomeSections/HeroSection.vue'
+import HeroSectionFive from '@/components/WebSite/HomeSections/HeroSectionFive.vue';
+import HeroSectionFour from '@/components/WebSite/HomeSections/HeroSectionFour.vue';
+import HeroSectionOne from '@/components/WebSite/HomeSections/HeroSectionOne.vue';
+import HeroSectionThree from '@/components/WebSite/HomeSections/HeroSectionThree.vue';
+import HeroSectionTwo from '@/components/WebSite/HomeSections/HeroSectionTwo.vue';
 
 </script>
 
 <template class="homePage">
     <div class="homepage">
-        <HeroSection />
+        <HeroSectionOne />
+        <HeroSectionTwo />
+        <HeroSectionThree />
+        <HeroSectionFour />
+        <HeroSectionFive />
     </div>
 </template>
 
