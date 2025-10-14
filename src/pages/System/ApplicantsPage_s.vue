@@ -1,3 +1,9 @@
+<script setup lang="ts">
+import ApplicantsSection from '@/components/System/ApplicantsSections/ApplicantsSection.vue'
+</script>
+
 <template>
-    <h1>xd2</h1>
+    <div class="page">
+        <ApplicantsSection />
+    </div>
 </template>
