@@ -17,7 +17,8 @@ import Componentes from './primevue'
 import 'primeicons/primeicons.css'
 
 // Estilos globales personalizados
-import '@/assets/styles.scss'
+import './assets/styles.scss';
+
 
 // Inicialización de la app
 const app = createApp(App)
