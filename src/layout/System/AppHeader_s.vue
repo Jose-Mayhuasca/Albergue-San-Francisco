@@ -1,7 +1,7 @@
 <template>
     <Section v-if="viewPhone" class="sectionHeaderPhoneSystem">
         <div class="containerHeaderPhone">
-            <i v-if="showBackButton" class="pi pi-arrow-left back-icon" @click="goToHome"></i>
+            <i v-if="showBackButton" class="pi pi-chevron-left back-icon" @click="goToHome"></i>
             <div v-else></div>
             <h5>{{ currentPageTitle }}</h5>
             <img src="/icons/exit-icon.svg" alt="menu" class="icon-image" @click="router.push('/login')" />

@@ -1,5 +1,5 @@
 <template>
-    <section class="sectionApplicants">
+    <section class="sectionApplicantsDashboard">
         <div class="container">
             <Button label="Solicitantes Pre - Aprobados" icon="pi pi-eye" icon-pos="right" class="thirty button-header"
                 fluid />
@@ -22,7 +22,7 @@
             <div class="containerCards">
                 <Card v-for="dog in dogs" :key="dog.id" class="cardCatalog" :style="{
                     backgroundImage: `url(${dog.imageUrl})`
-                }">
+                }" @click="router.push('solicitudes/id')">
                     <template #header>
                         <Badge :value="dog.badgeValue" size="xlarge" severity="danger" />
                     </template>
@@ -47,36 +47,49 @@ const dogs = ref([
         id: 1,
         name: 'Max',
         badgeValue: 6,
-        imageUrl: 'https://images.pexels.com/photos/551628/pexels-photo-551628.jpeg',
-        command: () => router.push('/admin')
+        imageUrl: 'https://images.pexels.com/photos/551628/pexels-photo-551628.jpeg'
     },
     {
         id: 2,
         name: 'Buddy',
         badgeValue: 5,
-        imageUrl: 'https://images.pexels.com/photos/2253275/pexels-photo-2253275.jpeg',
-        command: () => router.push('/admin/catalogo')
+        imageUrl: 'https://images.pexels.com/photos/2253275/pexels-photo-2253275.jpeg'
     },
     {
         id: 3,
         name: 'Lucy',
         badgeValue: 4,
-        imageUrl: 'https://images.pexels.com/photos/34284563/pexels-photo-34284563.jpeg',
-        command: () => router.push('/admin/solicitudes')
+        imageUrl: 'https://images.pexels.com/photos/34284563/pexels-photo-34284563.jpeg'
     },
     {
         id: 4,
         name: 'Bruce',
         badgeValue: 1,
-        imageUrl: 'https://images.pexels.com/photos/34265055/pexels-photo-34265055.jpeg',
-        command: () => router.push('/admin/solicitudes')
+        imageUrl: 'https://images.pexels.com/photos/34265055/pexels-photo-34265055.jpeg'
+    },
+    {
+        id: 4,
+        name: 'Bruce',
+        badgeValue: 1,
+        imageUrl: 'https://images.pexels.com/photos/34265055/pexels-photo-34265055.jpeg'
+    },
+    {
+        id: 4,
+        name: 'Bruce',
+        badgeValue: 1,
+        imageUrl: 'https://images.pexels.com/photos/34265055/pexels-photo-34265055.jpeg'
+    },
+    {
+        id: 4,
+        name: 'Bruce',
+        badgeValue: 1,
+        imageUrl: 'https://images.pexels.com/photos/34265055/pexels-photo-34265055.jpeg'
     },
     {
         id: 5,
         name: 'Rocky',
         badgeValue: 1,
-        imageUrl: 'https://images.pexels.com/photos/34265027/pexels-photo-34265027.jpeg',
-        command: () => router.push('/admin/solicitudes')
+        imageUrl: 'https://images.pexels.com/photos/34265027/pexels-photo-34265027.jpeg'
     }
 ])
 

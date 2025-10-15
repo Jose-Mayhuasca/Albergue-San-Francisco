@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import ApplicantsSection from '@/components/System/ApplicantsSections/ApplicantsSection.vue'
+import ApplicantsDashboard from '@/components/System/ApplicantsSections/ApplicantsDashboard.vue'
 </script>
 
 <template>
     <div class="page">
-        <ApplicantsSection />
+        <ApplicantsDashboard />
     </div>
 </template>
