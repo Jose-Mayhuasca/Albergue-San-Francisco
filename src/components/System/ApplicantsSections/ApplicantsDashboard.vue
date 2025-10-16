@@ -2,7 +2,7 @@
     <section class="sectionApplicantsDashboard">
         <div class="container">
             <Button label="Solicitantes Pre - Aprobados" icon="pi pi-eye" icon-pos="right" class="thirty button-header"
-                fluid />
+                fluid @click="router.push('solicitudes/pre-aprobadas')" />
             <Card class="cardStat primary">
                 <template #title>
                     <h1>17</h1>

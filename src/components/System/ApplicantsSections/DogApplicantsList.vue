@@ -9,100 +9,14 @@
                 <h5>Solicitantes</h5>
             </div>
             <div class="containerApplicants">
-                <Card class="cardApplicant">
+                <Card v-for="applicant in applicants" :key="applicant.id"
+                    :class="['cardApplicant', getStateClass(applicant.state)]"
+                    @click="router.push('id/detalle/detailId')">
                     <template #title>
-                        <span class="regularSize">José Mayhuasca</span>
+                        <span class="regularSize">{{ applicant.fullName }}</span>
                     </template>
                     <template #subtitle>
-                        <span class="smallSize">01/09/2025</span>
-                    </template>
-                    <template #content>
-                        <i class="pi pi-eye icon"></i>
-                    </template>
-                </Card>
-                <Card class="cardApplicant">
-                    <template #title>
-                        <span class="regularSize">Gian Mejia</span>
-                    </template>
-                    <template #subtitle>
-                        <span class="smallSize">05/09/2025</span>
-                    </template>
-                    <template #content>
-                        <i class="pi pi-eye icon"></i>
-                    </template>
-                </Card>
-                <Card class="cardApplicant">
-                    <template #title>
-                        <span class="regularSize">Leonardo Valenzuela</span>
-                    </template>
-                    <template #subtitle>
-                        <span class="smallSize">15/09/2025</span>
-                    </template>
-                    <template #content>
-                        <i class="pi pi-eye icon"></i>
-                    </template>
-                </Card>
-                <Card class="cardApplicant">
-                    <template #title>
-                        <span class="regularSize">José Mayhuasca</span>
-                    </template>
-                    <template #subtitle>
-                        <span class="smallSize">01/09/2025</span>
-                    </template>
-                    <template #content>
-                        <i class="pi pi-eye icon"></i>
-                    </template>
-                </Card>
-                <Card class="cardApplicant">
-                    <template #title>
-                        <span class="regularSize">Gian Mejia</span>
-                    </template>
-                    <template #subtitle>
-                        <span class="smallSize">05/09/2025</span>
-                    </template>
-                    <template #content>
-                        <i class="pi pi-eye icon"></i>
-                    </template>
-                </Card>
-                <Card class="cardApplicant">
-                    <template #title>
-                        <span class="regularSize">Leonardo Valenzuela</span>
-                    </template>
-                    <template #subtitle>
-                        <span class="smallSize">15/09/2025</span>
-                    </template>
-                    <template #content>
-                        <i class="pi pi-eye icon"></i>
-                    </template>
-                </Card>
-                <Card class="cardApplicant">
-                    <template #title>
-                        <span class="regularSize">José Mayhuasca</span>
-                    </template>
-                    <template #subtitle>
-                        <span class="smallSize">01/09/2025</span>
-                    </template>
-                    <template #content>
-                        <i class="pi pi-eye icon"></i>
-                    </template>
-                </Card>
-                <Card class="cardApplicant">
-                    <template #title>
-                        <span class="regularSize">Gian Mejia</span>
-                    </template>
-                    <template #subtitle>
-                        <span class="smallSize">05/09/2025</span>
-                    </template>
-                    <template #content>
-                        <i class="pi pi-eye icon"></i>
-                    </template>
-                </Card>
-                <Card class="cardApplicant">
-                    <template #title>
-                        <span class="regularSize">Leonardo Valenzuela</span>
-                    </template>
-                    <template #subtitle>
-                        <span class="smallSize">15/09/2025</span>
+                        <span class="smallSize">{{ applicant.dateApply }}</span>
                     </template>
                     <template #content>
                         <i class="pi pi-eye icon"></i>
@@ -114,45 +28,45 @@
 </template>
 
 <script setup>
-import { Image } from 'primevue';
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 
-// import { ref } from 'vue'
-// import { useRouter } from 'vue-router'
+const router = useRouter()
 
-// const router = useRouter()
+// Función para obtener la clase CSS según el estado
+const getStateClass = (state) => {
+    switch (state) {
+        case 1:
+            return 'state-pending'    // Pendiente - Amarillo
+        case 2:
+            return 'state-approved'   // Aprobado - Verde
+        case 3:
+            return 'state-rejected'   // Rechazado - Rojo
+        default:
+            return 'state-pending'
+    }
+}
 
-// // items para las cards
-// const dogs = ref([
-//     {
-//         id: 1,
-//         name: 'Max',
-//         badgeValue: 6,
-//         imageUrl: 'https://images.pexels.com/photos/551628/pexels-photo-551628.jpeg'
-//     },
-//     {
-//         id: 2,
-//         name: 'Buddy',
-//         badgeValue: 5,
-//         imageUrl: 'https://images.pexels.com/photos/2253275/pexels-photo-2253275.jpeg'
-//     },
-//     {
-//         id: 3,
-//         name: 'Lucy',
-//         badgeValue: 4,
-//         imageUrl: 'https://images.pexels.com/photos/34284563/pexels-photo-34284563.jpeg'
-//     },
-//     {
-//         id: 4,
-//         name: 'Bruce',
-//         badgeValue: 1,
-//         imageUrl: 'https://images.pexels.com/photos/34265055/pexels-photo-34265055.jpeg'
-//     },
-//     {
-//         id: 5,
-//         name: 'Rocky',
-//         badgeValue: 1,
-//         imageUrl: 'https://images.pexels.com/photos/34265027/pexels-photo-34265027.jpeg'
-//     }
-// ])
+// items para las cards
+const applicants = ref([
+    {
+        id: 1,
+        fullName: 'José Mayhuasca',
+        dateApply: '01/09/2025',
+        state: 1
+    },
+    {
+        id: 2,
+        fullName: 'Gian Mejia',
+        dateApply: '02/09/2025',
+        state: 2
+    },
+    {
+        id: 3,
+        fullName: 'Leonardo Valenzuela',
+        dateApply: '03/09/2025',
+        state: 3
+    }
+])
 
 </script>
