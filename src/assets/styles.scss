@@ -13,6 +13,10 @@ html {
   font-size: 16px;
 }
 
+body {
+  margin: 0;
+}
+
 /* Breakpoints */
 //mobile → 0 - 480px
 $bp-mobile: 480px;
@@ -85,6 +89,10 @@ h6 {
   margin: 0;
 }
 
+.bold {
+  font-weight: 700;
+}
+
 :root {
   --color-primary: #ffb319;
 }
@@ -113,6 +121,10 @@ h6 {
 }
 
 .p-inputtext:focus {
+  border-color: var(--color-primary) !important; /* color del borde al enfocar */
+}
+
+.p-textarea:focus {
   border-color: var(--color-primary) !important; /* color del borde al enfocar */
 }
 
@@ -150,11 +162,24 @@ h6 {
 .secondary {
   background-color: white !important;
   color: black !important;
+  border-color: black !important;
 }
 
 .thirty {
   background-color: black !important;
   color: white !important;
+}
+
+.success {
+  background-color: #22c55e !important;
+  color: white !important;
+  border-color: rgb(0, 255, 0) !important;
+}
+
+.danger {
+  background-color: #ef4444 !important;
+  color: white !important;
+  border-color: rgb(255, 0, 0) !important;
 }
 
 .viewpage {
@@ -237,7 +262,7 @@ h6 {
 }
 
 .sectionNavbarPhoneSystem {
-  width: calc(100% - 3rem);
+  width: calc(100% - 2rem);
   height: auto;
   display: flex;
   justify-content: center;
@@ -371,6 +396,30 @@ h6 {
       width: 2rem;
       height: 2rem;
       cursor: pointer;
+      transition: all 0.3s ease;
+
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+
+    .back-icon {
+      font-size: 1.5rem;
+      color: black;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &:hover {
+        color: #d4951f;
+        transform: translateX(-2px);
+      }
+
+      &:active {
+        transform: translateX(-1px);
+      }
     }
   }
 }
@@ -380,7 +429,7 @@ h6 {
   height: auto;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   gap: 4rem;
 }
@@ -435,10 +484,11 @@ h6 {
 
 .sectionDashboard {
   width: 100%;
-  height: calc(100vh + 5rem);
-  display: flex;
+  height: 100%;
   justify-content: center;
   align-items: center;
+  margin-top: 6rem;
+  margin-bottom: 5rem;
 
   .container {
     width: 100%;
@@ -491,10 +541,11 @@ h6 {
 .sectionCatalog {
   width: 100%;
   height: 100%;
-  margin-top: 6rem;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 6rem;
+  margin-bottom: 5rem;
 
   .container {
     width: 100%;
@@ -530,7 +581,6 @@ h6 {
     .containerCards {
       width: 100%;
       height: auto;
-      margin-bottom: 5rem;
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 0.75rem;
@@ -568,6 +618,447 @@ h6 {
           }
         }
       }
+    }
+  }
+}
+
+.sectionApplicantsDashboard {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 6rem;
+  margin-bottom: 5rem;
+
+  .container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    gap: 1.5rem;
+
+    .button-header {
+      border-color: #000 !important;
+      padding: 0.75rem 1rem !important;
+      .p-button-label {
+        width: 100% !important;
+        text-align: start;
+      }
+    }
+
+    .cardStat {
+      width: 100%;
+      height: auto;
+    }
+
+    .containerNavigation {
+      width: 100%;
+      height: auto;
+      display: flex;
+      gap: 0.5rem;
+
+      .p-inputtext {
+        width: 100%;
+        height: 100%;
+      }
+
+      .p-button {
+        width: 2.5rem;
+        height: 2.5rem;
+        padding: 0.5rem !important;
+
+        .p-button-icon {
+          font-size: 1.5rem;
+        }
+      }
+    }
+
+    .containerCards {
+      width: 100%;
+      height: auto;
+      // margin-bottom: 5rem;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+
+      .cardCatalog {
+        width: 100%;
+        height: 7.9375rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        background-size: cover;
+        background-position: center;
+        padding: 0.5rem 0.5rem 1rem 1rem;
+        cursor: pointer;
+        position: relative;
+
+        &::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(180deg, #0000 50%, #000 100%);
+          z-index: 1;
+          border-radius: 12px;
+        }
+
+        .image {
+          width: 100%;
+          height: 100%;
+          border-radius: 0.5rem;
+        }
+
+        .p-card-header {
+          width: 100%;
+          display: flex;
+          justify-content: end;
+        }
+
+        .p-card-body {
+          width: 100%;
+          padding: 0 !important;
+          gap: 0 !important;
+
+          .title {
+            position: relative;
+            color: white;
+            z-index: 2;
+          }
+        }
+      }
+    }
+  }
+}
+
+.sectionDogApplicantsList {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  margin-top: 6rem;
+  margin-bottom: 5rem;
+
+  .container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+
+    .image {
+      width: 100%;
+      height: 14rem;
+      background-image: url('https://images.pexels.com/photos/551628/pexels-photo-551628.jpeg');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .subtitle {
+      width: 100%;
+    }
+
+    .containerApplicants {
+      width: 100%;
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      margin-bottom: 5rem;
+
+      .cardApplicant {
+        width: 100%;
+        height: auto;
+        border-left: solid 0.75rem var(--color-primary);
+        padding: 0.5rem 0.75rem;
+
+        .p-card-body {
+          width: 100%;
+          height: auto;
+          padding: 0 !important;
+          gap: 0 !important;
+          position: relative;
+
+          .p-card-content {
+            width: auto;
+            height: 100%;
+            align-content: center;
+            position: absolute;
+            top: 0;
+            right: 0;
+          }
+        }
+      }
+
+      // Estados de las solicitudes - colores del border-left
+
+      // .state-pending {
+      //   border-left-color: var(--color-principal); // Amarillo - Pendiente
+      // }
+
+      .state-approved {
+        border-left-color: #03b453; // Verde - Aprobado
+      }
+
+      .state-rejected {
+        border-left-color: #ed0000; // Rojo - Rechazado
+      }
+    }
+  }
+}
+
+.sectionApplicantDetail {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  margin-top: 6rem;
+  margin-bottom: 5rem;
+
+  .container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.75rem;
+
+    .title {
+      width: 100%;
+      height: auto;
+      text-align: center;
+    }
+
+    .dataApplicant {
+      width: 100%;
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+
+      .line {
+        width: 100%;
+        height: 1px;
+        background-color: black;
+      }
+
+      .gridStyle {
+        width: 100%;
+        height: auto;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem;
+      }
+
+      .grey {
+        color: grey;
+      }
+    }
+
+    .evidence {
+      width: 100%;
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: start;
+      gap: 0.5rem;
+
+      .image {
+        width: 100%;
+        height: 14rem;
+      }
+    }
+
+    .reminder {
+      width: 100%;
+      height: auto;
+
+      .p-card-footer {
+        width: 100%;
+        display: flex;
+        gap: 0.75rem;
+
+        .p-button {
+          width: 100%;
+        }
+      }
+    }
+
+    .actions {
+      width: 100%;
+      height: auto;
+      margin-bottom: 5rem;
+      display: flex;
+      gap: 0.75rem;
+      .p-button {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.sectionPreselectedApplicants {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  margin-top: 6rem;
+  margin-bottom: 5rem;
+
+  .container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+
+    .title {
+      width: 100%;
+    }
+
+    .containerApplicants {
+      width: 100%;
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-bottom: 5rem;
+
+      .cardApplicant {
+        width: 100%;
+        height: auto;
+        border-left: solid 0.75rem var(--color-primary);
+        padding: 0.5rem 0.75rem;
+
+        .p-card-body {
+          width: 100%;
+          height: auto;
+          padding: 0 !important;
+          gap: 0 !important;
+          position: relative;
+
+          .p-card-caption {
+            gap: 0rem;
+          }
+
+          .p-card-content {
+            width: auto;
+            height: 100%;
+            align-content: center;
+            position: absolute;
+            top: 0;
+            right: 0;
+          }
+        }
+      }
+
+      // Estados de las solicitudes - colores del border-left
+
+      // .state-pending {
+      //   border-left-color: var(--color-principal); // Amarillo - Pendiente
+      // }
+
+      .state-approved {
+        border-left-color: #03b453; // Verde - Aprobado
+      }
+
+      .state-rejected {
+        border-left-color: #ed0000; // Rojo - Rechazado
+      }
+    }
+  }
+}
+
+.sectionPreselectedApplicantDetail {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  margin-top: 6rem;
+  margin-bottom: 5rem;
+
+  .container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.75rem;
+
+    .title {
+      width: 100%;
+      height: auto;
+      text-align: center;
+    }
+
+    .dataApplicant {
+      width: 100%;
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+
+      .line {
+        width: 100%;
+        height: 1px;
+        background-color: black;
+      }
+
+      .gridStyle {
+        width: 100%;
+        height: auto;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem;
+      }
+
+      .grey {
+        color: grey;
+      }
+    }
+
+    .evidence {
+      width: 100%;
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: start;
+      gap: 0.5rem;
+
+      .image {
+        width: 100%;
+        height: 14rem;
+      }
+    }
+
+    .reminder {
+      width: 100%;
+      height: auto;
+      margin-bottom: 5rem;
     }
   }
 }
