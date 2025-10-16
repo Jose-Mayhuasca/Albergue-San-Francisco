@@ -5,8 +5,12 @@ import CatalogPage from '@/pages/WebSite/CatalogPage.vue'
 import LoginPage from '@/pages/WebSite/LoginPage.vue'
 import AppLayout_s from '@/layout/System/AppLayout_s.vue'
 import HomePage_s from '@/pages/System/HomePage_s.vue'
-import Catalogpage_s from '@/pages/System/Catalogpage_s.vue'
+import CatalogPage_s from '@/pages/System/CatalogPage_s.vue'
 import ApplicantsPage_s from '@/pages/System/ApplicantsPage_s.vue'
+import DogApplicantsList from '@/components/System/ApplicantsSections/DogApplicantsList.vue'
+import ApplicantDetail from '@/components/System/ApplicantsSections/ApplicantDetail.vue'
+import PreselectedApplicants from '@/components/System/ApplicantsSections/PreselectedApplicants.vue'
+import PreselectedApplicantDetail from '@/components/System/ApplicantsSections/PreselectedApplicantDetail.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -39,11 +43,27 @@ const router = createRouter({
         },
         {
           path: 'catalogo',
-          component: Catalogpage_s,
+          component: CatalogPage_s,
         },
         {
           path: 'solicitudes',
           component: ApplicantsPage_s,
+        },
+        {
+          path: 'solicitudes/id',
+          component: DogApplicantsList,
+        },
+        {
+          path: 'solicitudes/id/detalle/detailId',
+          component: ApplicantDetail,
+        },
+        {
+          path: 'solicitudes/pre-aprobadas',
+          component: PreselectedApplicants,
+        },
+        {
+          path: 'solicitudes/pre-aprobadas/detalle/id',
+          component: PreselectedApplicantDetail,
         },
       ],
     },

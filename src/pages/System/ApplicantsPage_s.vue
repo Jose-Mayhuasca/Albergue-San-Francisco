@@ -1,3 +1,9 @@
+<script setup lang="ts">
+import ApplicantsDashboard from '@/components/System/ApplicantsSections/ApplicantsDashboard.vue'
+</script>
+
 <template>
-    <h1>xd2</h1>
+    <div class="page">
+        <ApplicantsDashboard />
+    </div>
 </template>

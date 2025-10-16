@@ -20,6 +20,8 @@ import Carousel from 'primevue/carousel'
 import FileUpload from 'primevue/fileupload'
 import Toast from 'primevue/toast'
 import Fluid from 'primevue/fluid'
+import Badge from 'primevue/badge'
+import OverlayBadge from 'primevue/overlaybadge'
 
 export default {
   Button,
@@ -43,4 +45,6 @@ export default {
   FileUpload,
   Toast,
   Fluid,
+  Badge,
+  OverlayBadge,
 }
