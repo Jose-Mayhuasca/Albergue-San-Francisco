@@ -5,7 +5,7 @@ import CatalogPage from '@/pages/WebSite/CatalogPage.vue'
 import LoginPage from '@/pages/WebSite/LoginPage.vue'
 import AppLayout_s from '@/layout/System/AppLayout_s.vue'
 import HomePage_s from '@/pages/System/HomePage_s.vue'
-import Catalogpage_s from '@/pages/System/Catalogpage_s.vue'
+import Catalogpage_s from '@/pages/System/CatalogPage_s.vue'
 import ApplicantsPage_s from '@/pages/System/ApplicantsPage_s.vue'
 
 const router = createRouter({
