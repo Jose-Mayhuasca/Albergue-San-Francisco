@@ -143,6 +143,9 @@ h6 {
   display: flex;
   justify-content: space-between;
   border: none !important;
+  background: #ffffff !important;
+  border-radius: 1.5rem !important;
+  padding: 0.65rem 4rem !important;
 
   .p-menubar-end {
     margin: 0;
@@ -346,6 +349,7 @@ h6 {
   justify-content: center;
   align-items: center;
   position: fixed;
+  margin: 0.5rem 0;
   top: 0;
   z-index: 4;
 

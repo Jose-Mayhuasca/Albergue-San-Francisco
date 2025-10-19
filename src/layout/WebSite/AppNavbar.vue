@@ -8,11 +8,14 @@
             </div>
         </div>
     </Section>
-    <Section v-else class="sectionNavbar">
-        <div class="containerNavbar">
+    <Section v-else class="sectionNavbar ">
+        <div class="containerNavbar ">
             <Menubar :model="desktopOptions">
-                <template #start>
-                    <h6>San Francisco Logo</h6>
+                <template #start >
+                    <div class="h-10 flex items-center">
+                        <img src="@/assets/icons/logo.png" alt="Logo" class="logoNavbar h-10" />
+                    </div>
+                    
                 </template>
                 <template #end>
                     <div class="containerLogin" @click="router.push('/login')">
@@ -72,12 +75,12 @@ const mobileOptions = ref([
 // Items para desktop
 const desktopOptions = ref([
     {
-        label: 'INICIO',
+        label: 'Inicio',
         icon: 'pi pi-home',
         command: () => router.push('/')
     },
     {
-        label: 'CATÁLOGO',
+        label: 'Fichas de adopción',
         icon: 'pi pi-book',
         command: () => router.push('/catalogo')
     }
