@@ -22,8 +22,12 @@ import Toast from 'primevue/toast'
 import Fluid from 'primevue/fluid'
 import Badge from 'primevue/badge'
 import OverlayBadge from 'primevue/overlaybadge'
+import Select from 'primevue/select'
+import RadioButton from 'primevue/radiobutton'
+import InputNumber from 'primevue/inputnumber';
 
 export default {
+
   Button,
   Dialog,
   InputText,
@@ -47,4 +51,7 @@ export default {
   Fluid,
   Badge,
   OverlayBadge,
+  Select,      
+  RadioButton,
+  InputNumber,
 }

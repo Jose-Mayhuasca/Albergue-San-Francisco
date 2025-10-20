@@ -11,6 +11,9 @@ import DogApplicantsList from '@/components/System/ApplicantsSections/DogApplica
 import ApplicantDetail from '@/components/System/ApplicantsSections/ApplicantDetail.vue'
 import PreselectedApplicants from '@/components/System/ApplicantsSections/PreselectedApplicants.vue'
 import PreselectedApplicantDetail from '@/components/System/ApplicantsSections/PreselectedApplicantDetail.vue'
+import Form from '@/components/System/CatalogSections/Form.vue'
+
+const FormAdminCatalog = () => import('@/components/System/CatalogSections/Form.vue')
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -44,6 +47,10 @@ const router = createRouter({
         {
           path: 'catalogo',
           component: CatalogPage_s,
+        },
+        {
+          path: 'catalogo/nuevo',
+          component: FormAdminCatalog,
         },
         {
           path: 'solicitudes',

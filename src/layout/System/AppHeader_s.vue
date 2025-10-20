@@ -30,6 +30,7 @@ const pageTitles = {
 
 // Computed property para obtener el título actual basado en la ruta
 const currentPageTitle = computed(() => {
+    if (route.path.includes('/admin/catalogo/nuevo')) return 'Nuevo Registro'
     return pageTitles[route.path] || 'Dashboard'
 })
 
