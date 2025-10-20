@@ -8,8 +8,8 @@
             </div>
         </div>
     </Section>
-    <Section v-else class="sectionNavbar ">
-        <div class="containerNavbar ">
+    <Section v-else class="sectionNavbar">
+        <div class="containerNavbar">
             <Menubar :model="desktopOptions">
                 <template #start >
                     <div class="h-10 flex items-center">
@@ -19,7 +19,7 @@
                 </template>
                 <template #end>
                     <div class="containerLogin" @click="router.push('/login')">
-                        <i class="pi pi-circle-fill"></i>
+                        <i class="ri-bard-fill text-white"></i>
                     </div>
                 </template>
             </Menubar>
@@ -75,13 +75,14 @@ const mobileOptions = ref([
 const desktopOptions = ref([
     {
         label: 'Inicio',
-        icon: 'pi pi-home',
+        // use Remix Icon class instead of Prime Icons
+        icon: 'ri ri-home-fill',
         command: () => router.push('/')
     },
     { separator: true },
     {
         label: 'Fichas de adopción',
-        icon: 'pi pi-microsoft',
+        icon: 'ri-baidu-line',
         command: () => router.push('/catalogo')
     }
 ])
