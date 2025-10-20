@@ -19,8 +19,7 @@
                 </template>
                 <template #end>
                     <div class="containerLogin" @click="router.push('/login')">
-                        <i class="pi pi-user"></i>
-                        <label>LOGIN</label>
+                        <i class="pi pi-circle-fill"></i>
                     </div>
                 </template>
             </Menubar>
@@ -79,9 +78,10 @@ const desktopOptions = ref([
         icon: 'pi pi-home',
         command: () => router.push('/')
     },
+    { separator: true },
     {
         label: 'Fichas de adopción',
-        icon: 'pi pi-book',
+        icon: 'pi pi-microsoft',
         command: () => router.push('/catalogo')
     }
 ])
