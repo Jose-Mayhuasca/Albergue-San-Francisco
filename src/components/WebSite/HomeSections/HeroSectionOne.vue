@@ -1,13 +1,6 @@
 <template>
-  <div class="relative h-screen overflow-hidden flex items-center justify-between p-12">
-    <!-- Imagen de fondo -->
-    <div class="absolute inset-0 h-full w-full z-0">
-      <img 
-        src="@/assets/img/fondo_dog.png" 
-        alt="Fondo" 
-        class="w-full h-full object-cover " 
-      />
-    </div>
+  <!-- Usamos background CSS en la sección para que el fondo pertenezca a la sección y se mueva con el scroll -->
+  <div class="hero relative h-screen overflow-hidden flex items-center justify-between p-12">
 
     <!-- Contenido de texto -->
     <div class="relative z-10 text-black w-1/2 ml-40 pr-40">
@@ -24,7 +17,7 @@
       <img 
         src="@/assets/img/happy_dog.png" 
         alt="Perro" 
-        class="w-auto h-[600px] object-contain mt-10 mr-60" 
+        class="hero-dog-img w-auto object-contain mt-10 mr-60" 
       />
     </div>
   </div>
@@ -35,5 +28,52 @@
 .container {
   max-width: 1200px;
   margin: 0 auto;
+}
+
+/* Background confined to the section; moves with page scroll. No fixed attachment for better mobile behavior. */
+.hero {
+  position: relative; /* establish stacking context for pseudo-element */
+  overflow: visible; /* allow the pseudo-element to escape container bounds */
+}
+
+/* Full-bleed background: use pseudo-element so content stays within the container while background spans viewport */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw; /* span full viewport width */
+  height: 100%;
+  background-image: url('@/assets/img/fondo_dog.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -1;
+}
+
+/* Dog image sizing and mobile adjustments */
+.hero-dog-img {
+  height: 600px;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    background-position: center top;
+    padding: 2rem;
+  }
+
+  .hero-dog-img {
+    height: 320px;
+    margin-right: 0 !important;
+    margin-top: 1rem !important;
+  }
+
+  /* Make text area full width on small screens */
+  .hero > .relative.z-10.text-black.w-1\/2.ml-40.pr-40 {
+    width: 100%;
+    margin-left: 0;
+    padding-right: 0;
+  }
 }
 </style>
