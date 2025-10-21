@@ -22,6 +22,7 @@ import Toast from 'primevue/toast'
 import Fluid from 'primevue/fluid'
 import Badge from 'primevue/badge'
 import OverlayBadge from 'primevue/overlaybadge'
+import Drawer from 'primevue/drawer'
 
 export default {
   Button,
@@ -47,4 +48,5 @@ export default {
   Fluid,
   Badge,
   OverlayBadge,
+  Drawer,
 }

@@ -1,26 +1,28 @@
 <template>
-    <section class="sectionPreselectedApplicants">
-        <div class="container">
-            <div class="title">
-                <h5>Solicitantes Pre-Aprobados</h5>
+    <div class="page">
+        <section class="sectionPreselectedApplicants">
+            <div class="container">
+                <div class="title">
+                    <h5>Solicitantes Pre-Aprobados</h5>
+                </div>
+                <div class="containerApplicants">
+                    <Card v-for="applicant in applicants" :key="applicant.id"
+                        :class="['cardApplicant', getStateClass(applicant.state)]"
+                        @click="router.push('pre-aprobadas/detalle/id')">
+                        <template #title>
+                            <span class="regularSize">{{ applicant.fullName }}</span>
+                        </template>
+                        <template #subtitle>
+                            <span class="smallSize">{{ applicant.dateApply }}</span>
+                        </template>
+                        <template #content>
+                            <i class="pi pi-eye icon"></i>
+                        </template>
+                    </Card>
+                </div>
             </div>
-            <div class="containerApplicants">
-                <Card v-for="applicant in applicants" :key="applicant.id"
-                    :class="['cardApplicant', getStateClass(applicant.state)]"
-                    @click="router.push('pre-aprobadas/detalle/id')">
-                    <template #title>
-                        <span class="regularSize">{{ applicant.fullName }}</span>
-                    </template>
-                    <template #subtitle>
-                        <span class="smallSize">{{ applicant.dateApply }}</span>
-                    </template>
-                    <template #content>
-                        <i class="pi pi-eye icon"></i>
-                    </template>
-                </Card>
-            </div>
-        </div>
-    </section>
+        </section>
+    </div>
 </template>
 
 <script setup>

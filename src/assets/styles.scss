@@ -1,5 +1,3 @@
-
-
 /* === Tailwind directivas === */
 @tailwind base;
 @tailwind components;
@@ -183,9 +181,19 @@ h6 {
 }
 
 .viewpage {
-  height: 100vh;
+  height: auto;
   margin: 0 1rem;
   position: relative;
+
+  @media (min-width: $bp-tablet) {
+    height: 100vh;
+    margin: 0 1rem 0 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    gap: 2rem;
+    position: relative;
+  }
 }
 
 .sectionNavbarPhone {
@@ -339,6 +347,96 @@ h6 {
   }
 }
 
+.sectionSideBarSystem {
+  width: 10%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  background-color: #000;
+  position: fixed;
+  z-index: 2;
+  left: 0;
+
+  .containerSideBar {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    margin: 0;
+    gap: 0.5rem;
+    border-radius: 1rem;
+    gap: 1rem;
+
+    .logo {
+      width: 100%;
+      height: auto;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .options {
+      width: 100%;
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: start;
+      align-items: center;
+      margin: 0;
+      gap: 1rem;
+      padding: 1rem 0;
+
+      .containerIconSidebar {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--color-white);
+        padding: 0.5rem;
+        cursor: pointer;
+        gap: 0.5rem;
+
+        .icon-image {
+          width: 2rem;
+          height: 2rem;
+          filter: brightness(0) saturate(100%) invert(100%) saturate(1855%) hue-rotate(8deg)
+            brightness(101%) contrast(96%);
+        }
+
+        label {
+          color: white;
+        }
+      }
+
+      .containerIconSidebar.active {
+        display: flex;
+        justify-items: center;
+        align-items: center;
+        border-left: solid 0.25rem var(--color-primary);
+        padding-left: 0.25rem;
+        transition: all 0.1s ease-in-out;
+
+        label {
+          color: var(--color-primary);
+        }
+
+        .icon-image {
+          width: 2rem;
+          height: 2rem;
+          filter: brightness(0) saturate(100%) invert(68%) sepia(76%) saturate(1855%)
+            hue-rotate(8deg) brightness(101%) contrast(96%);
+        }
+      }
+    }
+  }
+}
+
 .sectionNavbar {
   width: calc(100% - 2rem);
   height: auto;
@@ -424,6 +522,61 @@ h6 {
   }
 }
 
+.sectionHeaderDesktopSystem {
+  width: calc(90% - 3rem);
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 4;
+  padding: 1.5rem 0;
+  margin-right: 1rem;
+  background: white;
+  border-bottom: solid 1px black;
+
+  .containerHeaderDesktop {
+    width: auto;
+    height: auto;
+    display: grid;
+    grid-template-columns: 2rem auto 2rem;
+    gap: 1.5rem;
+    align-items: center;
+
+    .icon-image {
+      width: 2rem;
+      height: 2rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+
+    .back-icon {
+      font-size: 1.5rem;
+      color: black;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &:hover {
+        color: #d4951f;
+        transform: translateX(-2px);
+      }
+
+      &:active {
+        transform: translateX(-1px);
+      }
+    }
+  }
+}
+
 .page {
   width: 100%;
   height: auto;
@@ -432,6 +585,12 @@ h6 {
   justify-content: start;
   align-items: center;
   gap: 4rem;
+
+  @media (min-width: $bp-tablet) {
+    width: calc(90% - 2rem);
+    // height: 100vh;
+    right: 0;
+  }
 }
 
 .sectionLogin {
@@ -631,6 +790,12 @@ h6 {
   margin-top: 6rem;
   margin-bottom: 5rem;
 
+  @media (min-width: $bp-tablet) {
+    height: auto;
+    align-items: start;
+    margin-bottom: 0;
+  }
+
   .container {
     width: 100%;
     height: auto;
@@ -639,6 +804,10 @@ h6 {
     justify-content: start;
     align-items: start;
     gap: 1.5rem;
+
+    @media (min-width: $bp-tablet) {
+      margin-bottom: 1.5rem;
+    }
 
     .button-header {
       border-color: #000 !important;
@@ -660,6 +829,12 @@ h6 {
       display: flex;
       gap: 0.5rem;
 
+      @media (min-width: $bp-tablet) {
+        .p-iconfield {
+          width: 100%;
+        }
+      }
+
       .p-inputtext {
         width: 100%;
         height: 100%;
@@ -679,14 +854,22 @@ h6 {
     .containerCards {
       width: 100%;
       height: auto;
-      // margin-bottom: 5rem;
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 0.75rem;
 
+      @media (min-width: $bp-mobile) and (max-width: $bp-tablet) {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      @media (min-width: $bp-tablet) {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
       .cardCatalog {
         width: 100%;
-        height: 7.9375rem;
+        height: auto;
+        aspect-ratio: 1/1;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -746,6 +929,12 @@ h6 {
   margin-top: 6rem;
   margin-bottom: 5rem;
 
+  @media (min-width: $bp-tablet) {
+    height: calc(100% - 7rem);
+    margin-bottom: 1rem;
+    // overflow: hidden;
+  }
+
   .container {
     width: 100%;
     height: auto;
@@ -755,62 +944,122 @@ h6 {
     align-items: center;
     gap: 1.5rem;
 
-    .image {
-      width: 100%;
-      height: 14rem;
-      background-image: url('https://images.pexels.com/photos/551628/pexels-photo-551628.jpeg');
-      background-size: cover;
-      background-position: center;
+    @media (min-width: $bp-tablet) {
+      height: 100%;
+      justify-content: start;
     }
 
-    .subtitle {
-      width: 100%;
-    }
-
-    .containerApplicants {
+    .content {
       width: 100%;
       height: auto;
       display: flex;
       flex-direction: column;
-      gap: 1.25rem;
-      margin-bottom: 5rem;
+      justify-content: center;
+      align-items: center;
+      gap: 1.5rem;
 
-      .cardApplicant {
+      @media (min-width: $bp-tablet) {
+        height: calc(100% - 5rem);
+        flex-direction: row;
+        align-items: start;
+        // overflow-y: hidden;
+      }
+
+      .image {
         width: 100%;
-        height: auto;
-        border-left: solid 0.75rem var(--color-primary);
-        padding: 0.5rem 0.75rem;
+        height: 14rem;
+        background-image: url('https://images.pexels.com/photos/551628/pexels-photo-551628.jpeg');
+        background-size: cover;
+        background-position: center;
 
-        .p-card-body {
-          width: 100%;
-          height: auto;
-          padding: 0 !important;
-          gap: 0 !important;
-          position: relative;
-
-          .p-card-content {
-            width: auto;
-            height: 100%;
-            align-content: center;
-            position: absolute;
-            top: 0;
-            right: 0;
-          }
+        @media (min-width: $bp-tablet) {
+          height: 100%;
         }
       }
 
-      // Estados de las solicitudes - colores del border-left
+      .containerListApplicants {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 1.5rem;
 
-      // .state-pending {
-      //   border-left-color: var(--color-principal); // Amarillo - Pendiente
-      // }
+        @media (min-width: $bp-tablet) {
+          height: 100%;
+          justify-content: start !important;
+          justify-items: start !important;
+          align-items: start !important;
+          align-content: start !important;
+        }
 
-      .state-approved {
-        border-left-color: #03b453; // Verde - Aprobado
-      }
+        .subtitle {
+          width: 100%;
+          height: 100%;
+          // overflow: hidden;
 
-      .state-rejected {
-        border-left-color: #ed0000; // Rojo - Rechazado
+          @media (min-width: $bp-tablet) {
+            height: auto;
+          }
+        }
+
+        .containerApplicants {
+          width: 100%;
+          height: auto;
+          display: flex;
+          flex-direction: column;
+          gap: 1.25rem;
+          margin-bottom: 5rem;
+
+          @media (min-width: $bp-tablet) {
+            height: 100%;
+            margin-bottom: 0;
+            justify-content: start;
+            align-items: start;
+            align-content: start;
+            overflow: scroll;
+            overflow-x: hidden;
+          }
+
+          .cardApplicant {
+            width: 100%;
+            height: auto;
+            border-left: solid 0.75rem var(--color-primary);
+            padding: 0.5rem 0.75rem;
+
+            .p-card-body {
+              width: 100%;
+              height: auto;
+              padding: 0 !important;
+              gap: 0 !important;
+              position: relative;
+
+              .p-card-content {
+                width: auto;
+                height: 100%;
+                align-content: center;
+                position: absolute;
+                top: 0;
+                right: 0;
+              }
+            }
+          }
+
+          // Estados de las solicitudes - colores del border-left
+
+          // .state-pending {
+          //   border-left-color: var(--color-principal); // Amarillo - Pendiente
+          // }
+
+          .state-approved {
+            border-left-color: #03b453; // Verde - Aprobado
+          }
+
+          .state-rejected {
+            border-left-color: #ed0000; // Rojo - Rechazado
+          }
+        }
       }
     }
   }
@@ -824,7 +1073,12 @@ h6 {
   justify-content: start;
   align-items: center;
   margin-top: 6rem;
-  margin-bottom: 5rem;
+  margin-bottom: 6rem;
+
+  @media (min-width: $bp-tablet) {
+    height: auto;
+    margin-bottom: 0;
+  }
 
   .container {
     width: 100%;
@@ -878,9 +1132,22 @@ h6 {
       align-items: start;
       gap: 0.5rem;
 
-      .image {
+      .images {
         width: 100%;
-        height: 14rem;
+
+        @media (min-width: $bp-tablet) {
+          display: flex;
+          flex-direction: row;
+          gap: 0.5rem;
+        }
+
+        .image {
+          width: 100%;
+          height: 14rem;
+          @media (min-width: $bp-tablet) {
+            background-color: #000;
+          }
+        }
       }
     }
 
@@ -902,9 +1169,14 @@ h6 {
     .actions {
       width: 100%;
       height: auto;
-      margin-bottom: 5rem;
+      // margin-bottom: 5rem;
       display: flex;
       gap: 0.75rem;
+
+      @media (min-width: $bp-tablet) {
+        margin-bottom: 1.5rem;
+      }
+
       .p-button {
         width: 100%;
       }
@@ -1049,16 +1321,28 @@ h6 {
       align-items: start;
       gap: 0.5rem;
 
-      .image {
+      .images {
         width: 100%;
-        height: 14rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        @media (min-width: $bp-tablet) {
+          flex-direction: row;
+        }
+
+        .image {
+          width: 100%;
+          height: 14rem;
+          background-color: #000;
+        }
       }
     }
 
     .reminder {
       width: 100%;
       height: auto;
-      margin-bottom: 5rem;
+      margin-bottom: 2rem;
     }
   }
 }

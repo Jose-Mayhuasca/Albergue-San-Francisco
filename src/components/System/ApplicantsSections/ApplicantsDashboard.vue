@@ -68,24 +68,6 @@ const dogs = ref([
         imageUrl: 'https://images.pexels.com/photos/34265055/pexels-photo-34265055.jpeg'
     },
     {
-        id: 4,
-        name: 'Bruce',
-        badgeValue: 1,
-        imageUrl: 'https://images.pexels.com/photos/34265055/pexels-photo-34265055.jpeg'
-    },
-    {
-        id: 4,
-        name: 'Bruce',
-        badgeValue: 1,
-        imageUrl: 'https://images.pexels.com/photos/34265055/pexels-photo-34265055.jpeg'
-    },
-    {
-        id: 4,
-        name: 'Bruce',
-        badgeValue: 1,
-        imageUrl: 'https://images.pexels.com/photos/34265055/pexels-photo-34265055.jpeg'
-    },
-    {
         id: 5,
         name: 'Rocky',
         badgeValue: 1,

@@ -1,30 +1,36 @@
 <template>
-    <section class="sectionDogApplicantsList">
-        <div class="container">
-            <div class="title">
-                <h3 class="bold">Max</h3>
+    <div class="page">
+        <section class="sectionDogApplicantsList">
+            <div class="container">
+                <div class="title">
+                    <h3 class="bold">Max</h3>
+                </div>
+                <div class="content">
+                    <Card class="image" />
+                    <div class="containerListApplicants">
+                        <div class="subtitle">
+                            <h5>Solicitantes</h5>
+                        </div>
+                        <div class="containerApplicants">
+                            <Card v-for="applicant in applicants" :key="applicant.id"
+                                :class="['cardApplicant', getStateClass(applicant.state)]"
+                                @click="router.push('id/detalle/detailId')">
+                                <template #title>
+                                    <span class="regularSize">{{ applicant.fullName }}</span>
+                                </template>
+                                <template #subtitle>
+                                    <span class="smallSize">{{ applicant.dateApply }}</span>
+                                </template>
+                                <template #content>
+                                    <i class="pi pi-eye icon"></i>
+                                </template>
+                            </Card>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <Card class="image" />
-            <div class="subtitle">
-                <h5>Solicitantes</h5>
-            </div>
-            <div class="containerApplicants">
-                <Card v-for="applicant in applicants" :key="applicant.id"
-                    :class="['cardApplicant', getStateClass(applicant.state)]"
-                    @click="router.push('id/detalle/detailId')">
-                    <template #title>
-                        <span class="regularSize">{{ applicant.fullName }}</span>
-                    </template>
-                    <template #subtitle>
-                        <span class="smallSize">{{ applicant.dateApply }}</span>
-                    </template>
-                    <template #content>
-                        <i class="pi pi-eye icon"></i>
-                    </template>
-                </Card>
-            </div>
-        </div>
-    </section>
+        </section>
+    </div>
 </template>
 
 <script setup>

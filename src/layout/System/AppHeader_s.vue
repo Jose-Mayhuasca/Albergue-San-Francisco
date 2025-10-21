@@ -7,6 +7,14 @@
             <img src="/icons/exit-icon.svg" alt="menu" class="icon-image" @click="router.push('/login')" />
         </div>
     </Section>
+    <Section v-else class="sectionHeaderDesktopSystem">
+        <div class="containerHeaderDesktop">
+            <i v-if="showBackButton" class="pi pi-chevron-left back-icon" @click="goToHome"></i>
+            <div v-else></div>
+            <h5>{{ currentPageTitle }}</h5>
+            <img src="/icons/exit-icon.svg" alt="menu" class="icon-image" @click="router.push('/login')" />
+        </div>
+    </Section>
 </template>
 
 <script setup>

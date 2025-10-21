@@ -1,10 +1,25 @@
 <template>
     <Section v-if="viewPhone" class="sectionNavbarPhoneSystem">
         <div class="containerNavbarPhone">
-            <div v-for="option in mobileOptions" :key="option.id" class="containerIcon" @click="setActive(option.id)"
+            <div v-for="option in optionsNavbar" :key="option.id" class="containerIcon" @click="setActive(option.id)"
                 :class="{ active: active === option.id }">
                 <img :src="option.icon" :alt="option.label" class="icon-image" />
                 <label>{{ option.label }}</label>
+            </div>
+        </div>
+    </Section>
+    <Section v-else class="sectionSideBarSystem">
+        <div class="containerSideBar">
+            <div class="logo">
+                <h5>San Francisco Logo</h5>
+            </div>
+            <div class="options">
+                <div v-for="option in optionsNavbar" :key="option.id" class="containerIconSidebar"
+                    @click="setActive(option.id)" :class="{ active: active === option.id }">
+                    <img :src="option.icon" :alt="option.label" class="icon-image" />
+                    <!-- <label v-show="active === option.id">{{ option.label }}</label> -->
+                    <label>{{ option.label }}</label>
+                </div>
             </div>
         </div>
     </Section>
@@ -35,8 +50,8 @@ onUnmounted(() => {
     window.removeEventListener('resize', checkScreenSize);
 })
 
-// Items para móvil
-const mobileOptions = ref([
+// Items para el navbar
+const optionsNavbar = ref([
     {
         id: 1, label: 'Inicio',
         icon: homeIcon,
@@ -58,7 +73,7 @@ const active = ref(null);
 
 const setActive = (id) => {
     active.value = id
-    const selectedOption = mobileOptions.value.find(option => option.id === id)
+    const selectedOption = optionsNavbar.value.find(option => option.id === id)
     if (selectedOption && selectedOption.command) {
         selectedOption.command()
     }
