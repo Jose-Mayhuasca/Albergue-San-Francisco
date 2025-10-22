@@ -5,7 +5,7 @@
       <div class="grid grid-cols-1 md:grid-cols-3 md:grid-rows-2 gap-6">
         <!-- Izquierda arriba -->
         <article
-          class="relative rounded-3xl overflow-hidden md:col-span-2 md:row-span-1 aspect-[16/9] 
+          class="relative rounded-3xl overflow-hidden md:col-span-2 md:row-span-1 aspect-[18/9] 
                  shadow-[0_20px_40px_-20px_rgba(0,0,0,0.25)]"
         >
           <img
@@ -47,7 +47,7 @@
 
         <!-- Izquierda abajo -->
         <article
-          class="relative rounded-3xl overflow-hidden md:col-span-2 md:row-span-1 aspect-[16/9]
+          class="relative rounded-3xl overflow-hidden md:col-span-2 md:row-span-1 aspect-[18/9]
                  shadow-[0_20px_40px_-20px_rgba(0,0,0,0.25)]"
         >
           <img
