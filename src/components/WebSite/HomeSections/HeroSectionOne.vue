@@ -3,7 +3,7 @@
   <div class="hero relative h-screen overflow-hidden flex items-center justify-between p-12">
 
     <!-- Contenido de texto -->
-    <div class="relative z-10 text-black w-1/2 ml-40 pr-40">
+    <div class="relative text-black w-1/2 ml-40 pr-40">
       <h1 class="text-xl ">ADOPTAR CAMBIA VIDAS</h1>
       <h2 class="text-6xl font-semibold mt-2">HAZ FELIZ A UN NUEVO AMIGO</h2>
       <p class="mt-4 text-2xl">Tú puedes ser su héroe y llenar tu vida de amor incondicional.</p>
@@ -13,7 +13,7 @@
     </div>
 
     <!-- Imagen del perro -->
-    <div class="relative z-10 w-1/2 flex justify-center ">
+    <div class="relative w-1/2 flex justify-center ">
       <img 
         src="@/assets/img/happy_dog.png" 
         alt="Perro" 
