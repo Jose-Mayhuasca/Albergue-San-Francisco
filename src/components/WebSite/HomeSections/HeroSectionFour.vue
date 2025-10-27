@@ -3,10 +3,10 @@
     <div class="max-w-6xl mx-auto px-6 text-center">
       <!-- Título -->
       <h1 class="text-md leading-[0.9] font-extrabold tracking-tight text-gray-900 md:text-3xl lg:text-4xl">
-        formatos de contenido
+        programa de
       </h1>
       <h2 class="text-md leading-[0.9] font-extrabold tracking-tight text-gray-500 md:text-3xl lg:text-4xl -mt-2">
-       para el albergue 🐾
+       apadrinamiento
       </h2>
 
       <!-- Tarjeta principal -->
