@@ -1,5 +1,5 @@
 <template>
-  <section class="py-24 md:py-32 font-sans">
+  <section class="py-16 md:py-18 font-sans">
     <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch h-[500px] md:h-[600px]">
       <!-- IZQUIERDA -->
       <div class="flex flex-col justify-center px-6 md:px-8">
