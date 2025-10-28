@@ -1,139 +1,78 @@
 <template>
   <section class="font-montpellier">
-    <div class="max-w-6xl mx-auto">
-      <!-- Grid principal -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 min-h-0">
-
-        <!-- Columna izquierda superior -->
-        <article
-          class="relative rounded-3xl overflow-hidden md:col-span-3 lg:col-span-2 aspect-[18/11] shadow-lg"
-        >
+    <div class="max-w-8xl mx-auto">
+      <!-- GRID -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <!-- HERO: ocupa todo el ancho -->
+        <article class="relative rounded-3xl overflow-hidden md:col-span-4 aspect-[21/5] shadow-lg">
           <img
-            src="@/assets/img/albergue1.jpg"
-            alt="Personas jugando con perros del albergue"
+            src="@/assets/img/albergue1.png"
+            alt="Ciudad en escala de grises"
             class="absolute inset-0 w-full h-full object-cover"
           />
           <div class="absolute inset-0 bg-black/25"></div>
-          <div class="absolute inset-0 flex items-center justify-center">
-            <h3
-              class="px-6 md:px-10 text-white font-bold text-2xl md:text-3xl lg:text-4xl leading-snug text-center"
-            >
-              Typography System
+
+          <div class="absolute inset-0 flex flex-col items-center justify-center text-center">
+            <h1 class="font-ariela text-white font-extrabold text-4xl md:text-6xl leading-none">
+              Adopta amor,
+            </h1>
+            <span class="mt-2 text-white/90 text-3xl md:text-5xl font-bold tracking-wide">
+               adopta esperanza
+            </span>
+          </div>
+        </article>
+
+        <!-- IZQUIERDA (2 columnas) -->
+        <article class="relative rounded-3xl overflow-hidden md:col-span-2 shadow-lg h-72 md:h-80 bg-[#B4C5FF]">
+          <div class="absolute inset-0 p-6 md:p-8 flex items-end">
+            <div>
+              <p class="uppercase tracking-[.35em] text-sm text-white/80 mb-2">Donde falta un hogar,</p>
+              <h3 class="font-ariela text-white font-black text-5xl md:text-7xl leading-none">
+               sobra ternura.
+              </h3>
+            </div>
+          </div>
+        </article>
+
+        <!-- CENTRO (1 columna) -->
+        <article class="relative rounded-3xl overflow-hidden shadow-lg h-72 md:h-80 bg-neutral-100">
+          <div class="absolute inset-0 p-6 md:p-8 flex flex-col justify-between">
+            <p class="uppercase tracking-[.35em] text-sm text-neutral-500">Donde otros pasaron</p>
+            <h3 class="text-neutral-900 font-bold text-2xl md:text-2xl leading-none">
+              tú puedes detenerte y cambiarlo todo.
             </h3>
           </div>
         </article>
 
-        <!-- Columna derecha inferior -->
-        <article
-          class="relative rounded-3xl overflow-hidden md:col-span-2 lg:col-span-1 aspect-[18/9] shadow-lg"
-        >
-          <img
+        <!-- DERECHA (1 columna) -->
+        <article class="relative rounded-3xl overflow-hidden shadow-lg h-72 md:h-80">
+                    <img
             src="@/assets/img/albergue3.jpg"
-            alt="Ciudad o zona con espacio negativo"
+            alt="Ciudad en escala de grises"
             class="absolute inset-0 w-full h-full object-cover"
           />
-          <div class="absolute inset-0 bg-black/30"></div>
-          <div class="relative flex flex-1 items-center justify-center p-8">
-            <p
-              class="text-center text-white font-bold text-2xl md:text-3xl leading-snug"
-            >
-              Heading font: Ariella Sans <br class="hidden md:block" />
-              Body font: Montpellier.
+          <div class="absolute inset-0 p-6 md:p-8 flex flex-col justify-between">
+            <p class="uppercase tracking-[.35em] text-sm text-white">Su mirada no pide…</p>
+            <p class="text-white font-bold text-5xl leading-relaxed">
+              solo espera.
             </p>
           </div>
         </article>
-
-        <!-- Columna izquierda inferior -->
-        <article
-          class="relative rounded-3xl overflow-hidden md:col-span-3 lg:col-span-2 aspect-[18/6] shadow-lg"
-        >
-          <img
-            src="@/assets/img/albergue2.jpg"
-            alt="Cielo azul sobre parque del albergue"
-            class="absolute inset-0 w-full h-full object-cover"
-          />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent"></div>
-          <div class="absolute inset-0 flex items-center justify-center">
-            <h3
-              class="text-white font-bold text-2xl md:text-3xl lg:text-4xl text-center px-6 leading-tight"
-            >
-              Use bold serif only for H1 and H2. All caps for emphasis only.
-            </h3>
-          </div>
-        </article>
-
-        <!-- Columna derecha superior -->
-        <article
-          class="relative rounded-3xl overflow-hidden md:col-span-3 lg:col-span-1 shadow-lg"
-        >
-          <img
-            src="@/assets/img/albergue1.jpg"
-            alt="Typographic Layout"
-            class="absolute inset-0 w-full h-full object-cover"
-          />
-          <div class="absolute inset-0 bg-black/50"></div>
-          <div class="absolute inset-0 flex items-center justify-center p-8">
-            <h3
-              class="text-white font-bold text-2xl md:text-3xl lg:text-4xl text-center px-6 leading-tight"
-            >
-              Hierarchy Tips
-            </h3>
-          </div>
-        </article>
-
-        <!-- Columna medio inferior -->
-        <article
-          class="relative rounded-3xl overflow-hidden md:col-span-2 lg:col-span-2 shadow-lg"
-        >
-          <img
-            src="@/assets/img/albergue3.jpg"
-            alt="Typography Visual"
-            class="absolute inset-0 w-full h-full object-cover"
-          />
-          <div class="absolute inset-0 bg-black/30"></div>
-          <div class="relative flex flex-1 items-center justify-center p-8">
-            <p
-              class="text-center text-white font-bold text-2xl md:text-3xl leading-snug"
-            >
-              Font system breakdown: <br class="hidden md:block" />
-              Ariella Sans for headings, Montpellier for body text.
-            </p>
-          </div>
-        </article>
-
       </div>
     </div>
   </section>
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      // Add any necessary data properties here
-    };
-  },
-};
+export default {};
 </script>
 
 <style scoped>
-/* Importing the typography system for the font styles */
-@import url('https://fonts.googleapis.com/css2?family=Ariella+Sans:wght@400;700&family=Montpellier:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ariella+Sans:wght@700;900&family=Montpellier:wght@400;700&display=swap');
 
-.font-montpellier {
-  font-family: 'Montpellier', sans-serif;
-}
+.font-montpellier { font-family: 'Montpellier', ui-sans-serif, system-ui, sans-serif; }
+.font-ariela { font-family: 'Ariella Sans', ui-sans-serif, system-ui, sans-serif; }
 
-.font-ariela {
-  font-family: 'Ariella Sans', sans-serif;
-}
-
-h3 {
-  font-weight: 700; /* Bold font for headings */
-  text-transform: uppercase; /* All caps for emphasis */
-}
-
-p {
-  font-weight: 700; /* Body font for emphasized text */
-}
+/* Títulos en mayúsculas según la guía */
+h3 { text-transform: none; } /* solo el hero usa mayúsculas/parcial */
 </style>

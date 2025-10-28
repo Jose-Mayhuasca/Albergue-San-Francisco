@@ -1,57 +1,83 @@
 <template>
-  <section class="hero-four py-16 md:py-24">
-    <div class="max-w-6xl mx-auto px-6 text-center">
-      <!-- Título -->
-      <h1 class="text-md leading-[0.9] font-extrabold tracking-tight text-gray-900 md:text-3xl lg:text-4xl">
-        programa de
-      </h1>
-      <h2 class="text-md leading-[0.9] font-extrabold tracking-tight text-gray-500 md:text-3xl lg:text-4xl -mt-2">
-       apadrinamiento
-      </h2>
+  <section class="py-24 md:py-32 font-sans">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch h-[500px] md:h-[600px]">
+      <!-- IZQUIERDA -->
+      <div class="flex flex-col justify-center px-6 md:px-8">
+        <h1 class="text-5xl md:text-6xl font-extrabold leading-none text-neutral-900">
+          Historias
+        </h1>
+        <h2 class="text-5xl md:text-6xl font-extrabold leading-none text-neutral-500 mt-1">
+          de éxito
+        </h2>
+      </div>
 
-      <!-- Tarjeta principal -->
-      <div
-        class="relative mt-12 md:mt-16 rounded-3xl bg-[#CFA9E3] p-8 md:p-12 lg:p-16 shadow-[0_20px_40px_-20px_rgba(0,0,0,0.25)] overflow-hidden"
-      >
-        <!-- Adorno de huellas -->
-        <div class="pointer-events-none absolute inset-0 opacity-15 [mask-image:radial-gradient(white,transparent_70%)]">
-          <div class="absolute -left-10 -top-8 text-7xl">🐾</div>
-          <div class="absolute right-6 top-10 text-6xl rotate-12">🐾</div>
-          <div class="absolute left-10 bottom-6 text-8xl -rotate-6">🐾</div>
+      <!-- TARJETA VERDE -->
+      <div class="relative rounded-3xl overflow-hidden shadow-lg flex flex-col justify-between text-white">
+        <!-- Imagen de fondo -->
+        <img
+          :src="img1"
+          alt="Ciudad en escala de grises"
+          class="absolute inset-0 w-full h-full object-cover"
+        />
+        <!-- Overlay -->
+        <div class="absolute inset-0 "></div>
+
+        <!-- Contenido -->
+        <div class="relative p-8 md:p-12 flex flex-col justify-between h-full">
+          <p class="text-3xl md:text-4xl font-bold leading-tight tracking-tight">
+            Keep overlays<br />
+            subtle,<br />
+            use branded<br />
+            highlight<br />
+            covers.
+          </p>
+
         </div>
+      </div>
 
-        <div
-          class="relative grid grid-cols-1 md:grid-cols-3 items-start text-white gap-10 md:gap-0
-                 divide-y md:divide-y-0 md:divide-x divide-white/40"
-        >
-          <!-- Col 1 -->
-          <div class="text-center px-4 md:px-10">
-            <p class="text-2xl md:text-3xl font-extrabold">Infografías</p>
-            <p class="mt-4 text-lg md:text-xl leading-relaxed">
-              “Adopta y cuida”: tasas de guardado<br class="hidden md:block" />
-              65% más altas que los reels.
-            </p>
-          </div>
+      <!-- TARJETA GRIS -->
+      <div class="relative rounded-3xl overflow-hidden shadow-lg flex flex-col justify-end text-white">
+        <!-- Imagen de fondo -->
+        <img
+          :src="img2"
+          alt="Fondo suave"
+          class="absolute inset-0 w-full h-full object-cover"
+        />
+        <!-- Overlay -->
+        <div class="absolute inset-0 "></div>
 
-          <!-- Col 2 -->
-          <div class="text-center px-4 md:px-10">
-            <p class="text-3xl md:text-4xl font-extrabold">Posts</p>
-            <p class="mt-4 text-lg md:text-xl leading-relaxed">
-              El formato más compartido, sobre todo<br class="hidden md:block" />
-              con tips de cuidado y entrenamiento.
-            </p>
-          </div>
-
-          <!-- Col 3 -->
-          <div class="text-center px-4 md:px-10">
-            <p class="text-3xl md:text-4xl font-extrabold">Video</p>
-            <p class="mt-4 text-lg md:text-xl leading-relaxed">
-              Ideal para alcance (tours del albergue,<br class="hidden md:block" />
-              presentaciones de mascotas)
-            </p>
-          </div>
+        <!-- Contenido -->
+        <div class="relative p-8 md:p-12">
+          <p class="text-3xl md:text-4xl font-semibold leading-tight tracking-tight">
+            Mix serif and<br />
+            script fonts.<br />
+            Avoid bright<br />
+            backgrounds.
+          </p>
         </div>
       </div>
     </div>
   </section>
 </template>
+
+<script>
+import img1 from '@/assets/img/albergue4.jpg';
+import img2 from '@/assets/img/albergue5.jpg';
+
+export default {
+  data() {
+    return {
+      img1,
+      img2,
+    };
+  },
+};
+</script>
+
+<style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+
+.font-sans {
+  font-family: 'Inter', sans-serif;
+}
+</style>

@@ -18,11 +18,11 @@
         <p class="mt-4 text-lg text-gray-700">Cada paquete de comida que dones ayuda a un animal a tener una segunda oportunidad. Rápido, seguro y directo al refugio.</p>
 
         <div class="mt-6 flex flex-col sm:flex-row gap-3">
-          <button class="inline-flex items-center justify-center px-6 py-3 rounded-full font-semibold text-white bg-amber-500 hover:bg-amber-600" aria-label="Dona ahora">
+          <button class="inline-flex items-center justify-center px-6 py-3 rounded-full font-semibold text-white bg-gradient-to-r from-amber-500/90 to-amber-500 hover:bg-gradient-to-r hover:from-amber-500/90 hover:to-amber-500/90" aria-label="Dona ahora">
             Dona ahora
           </button>
 
-          <a :href="whatsappLink" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-6 py-3 rounded-full font-medium text-green-700 bg-sky-50 hover:bg-blue-100 transition" aria-label="Contacto">
+          <a :href="whatsappLink" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-6 py-3 rounded-full font-medium text-green-700 bg-emerald-50 hover:bg-emerald-100 transition" aria-label="Contacto">
             Contacto
           </a>
         </div>
