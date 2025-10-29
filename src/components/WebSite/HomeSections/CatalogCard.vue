@@ -22,7 +22,7 @@ const resolveImage = (img) => {
   try {
     return new URL(img, import.meta.url).href
   } catch {
-    return new URL('@/assets/img/doc-cat.jpg', import.meta.url).href
+    return new URL('@/assets/img/dog_card.jpg', import.meta.url).href
   }
 }
 </script>

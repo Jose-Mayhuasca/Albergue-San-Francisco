@@ -35,12 +35,12 @@ import { ref, computed } from 'vue'
 import CatalogFilter from '../../components/WebSite/HomeSections/CatalogFilter.vue'
 import CatalogGrid from '../../components/WebSite/HomeSections/CatalogGrid.vue'
 
-// 🐾 Datos de ejemplo (doc-cat como imagen temporal)
+// 🐾 Datos de ejemplo (dog_card como imagen temporal)
 const pets = ref([
-  { id: 1, nombre: 'Luna', genero: 'Hembra', edad: 0.5, tamaño: 'Pequeño', imagen: '@/assets/img/doc-cat.jpg' },
-  { id: 2, nombre: 'Rocky', genero: 'Macho', edad: 2, tamaño: 'Mediano', imagen: '@/assets/img/doc-cat.jpg' },
-  { id: 3, nombre: 'Max', genero: 'Macho', edad: 4, tamaño: 'Grande', imagen: '@/assets/img/doc-cat.jpg' },
-  { id: 4, nombre: 'Nina', genero: 'Hembra', edad: 1.5, tamaño: 'Mediano', imagen: '@/assets/img/doc-cat.jpg' },
+  { id: 1, nombre: 'Luna', genero: 'Hembra', edad: 0.5, tamaño: 'Pequeño', imagen: '../assets/img/dog_card.jpg' },
+  { id: 2, nombre: 'Rocky', genero: 'Macho', edad: 2, tamaño: 'Mediano', imagen: '../assets/img/dog_card.jpg' },
+  { id: 3, nombre: 'Max', genero: 'Macho', edad: 4, tamaño: 'Grande', imagen: '../assets/img/dog_card.jpg' },
+  { id: 4, nombre: 'Nina', genero: 'Hembra', edad: 1.5, tamaño: 'Mediano', imagen: '../assets/img/dog_card.jpg' },
 ])
 
 // 🎛️ Estado de filtros

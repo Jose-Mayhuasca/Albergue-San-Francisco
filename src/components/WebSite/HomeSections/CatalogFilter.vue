@@ -10,8 +10,8 @@
           :class="[
             'px-3 py-2 rounded-lg border font-medium transition',
             localFilters.tamaño === option
-              ? 'bg-indigo-600 text-white border-indigo-600'
-              : 'bg-white text-gray-700 border-gray-300 hover:border-indigo-400'
+              ? 'bg-amber-500 text-white border-amber-400'
+              : 'bg-white text-gray-700 border-gray-300 hover:border-amber-400'
           ]"
           @click="setFilter('tamaño', option)"
         >
@@ -30,8 +30,8 @@
           :class="[
             'px-3 py-2 rounded-lg border font-medium transition',
             localFilters.edad === option.value
-              ? 'bg-indigo-600 text-white border-indigo-600'
-              : 'bg-white text-gray-700 border-gray-300 hover:border-indigo-400'
+              ? 'bg-amber-500 text-white border-amber-400'
+              : 'bg-white text-gray-700 border-gray-300 hover:border-amber-400'
           ]"
           @click="setFilter('edad', option.value)"
         >
@@ -50,8 +50,8 @@
           :class="[
             'px-3 py-2 rounded-lg border font-medium transition',
             localFilters.genero === option
-              ? 'bg-indigo-600 text-white border-indigo-600'
-              : 'bg-white text-gray-700 border-gray-300 hover:border-indigo-400'
+              ? 'bg-amber-500 text-white border-amber-400'
+              : 'bg-white text-gray-700 border-gray-300 hover:border-amber-400'
           ]"
           @click="setFilter('genero', option)"
         >
