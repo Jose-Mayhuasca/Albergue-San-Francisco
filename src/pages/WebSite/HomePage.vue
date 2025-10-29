@@ -9,6 +9,7 @@ import HeroSectionFour from '@/components/WebSite/HomeSections/HeroSectionFour.v
 import HeroSectionOne from '@/components/WebSite/HomeSections/HeroSectionOne.vue';
 import HeroSectionThree from '@/components/WebSite/HomeSections/HeroSectionThree.vue';
 import HeroSectionTwo from '@/components/WebSite/HomeSections/HeroSectionTwo.vue';
+import HeroSectionSix from '@/components/WebSite/HomeSections/HeroSectionSix.vue';
 import AppFooter from '@/layout/WebSite/AppFooter.vue';
 
 </script>
@@ -20,6 +21,7 @@ import AppFooter from '@/layout/WebSite/AppFooter.vue';
         <HeroSectionThree />
         <HeroSectionFour />
         <HeroSectionFive />
+        <HeroSectionSix />
         <AppFooter />
     </div>
 </template>

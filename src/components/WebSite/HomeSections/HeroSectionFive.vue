@@ -1,57 +1,55 @@
 <template>
-  <section class="hero-four py-16 md:py-24">
-    <div class="max-w-6xl mx-auto px-6 text-center">
-      <!-- Título -->
-      <h1 class="text-md leading-[0.9] font-extrabold tracking-tight text-gray-900 md:text-3xl lg:text-4xl">
-        programa de
-      </h1>
-      <h2 class="text-md leading-[0.9] font-extrabold tracking-tight text-gray-500 md:text-3xl lg:text-4xl -mt-2">
-       apadrinamiento
-      </h2>
+  <section class="py-14 md:py-20 font-sans">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 items-start px-6">
+      <!-- LEFT: hero image with big title -->
+      <figure class="relative rounded-[30px] overflow-hidden lg:col-span-7 h-[300px] md:h-[400px] lg:h-[500px] shadow-md">
+        <img
+          src="@/assets/img/albergue1.png"
+          alt="City skyline"
+          class="absolute inset-0 w-full h-full object-cover"
+        />
+        <!-- subtle fog/overlay to match reference -->
+        <div class="absolute inset-0 "></div>
 
-      <!-- Tarjeta principal -->
-      <div
-        class="relative mt-12 md:mt-16 rounded-3xl bg-[#CFA9E3] p-8 md:p-12 lg:p-16 shadow-[0_20px_40px_-20px_rgba(0,0,0,0.25)] overflow-hidden"
-      >
-        <!-- Adorno de huellas -->
-        <div class="pointer-events-none absolute inset-0 opacity-15 [mask-image:radial-gradient(white,transparent_70%)]">
-          <div class="absolute -left-10 -top-8 text-7xl">🐾</div>
-          <div class="absolute right-6 top-10 text-6xl rotate-12">🐾</div>
-          <div class="absolute left-10 bottom-6 text-8xl -rotate-6">🐾</div>
-        </div>
-
-        <div
-          class="relative grid grid-cols-1 md:grid-cols-3 items-start text-white gap-10 md:gap-0
-                 divide-y md:divide-y-0 md:divide-x divide-white/40"
+        <!-- Big headline centered -->
+        <figcaption
+          class="absolute inset-0 flex items-center justify-center text-center px-6"
         >
-          <!-- Col 1 -->
-          <div class="text-center px-4 md:px-10">
-            <p class="text-2xl md:text-3xl font-extrabold">Infografías</p>
-            <p class="mt-4 text-lg md:text-xl leading-relaxed">
-              “Adopta y cuida”: tasas de guardado<br class="hidden md:block" />
-              65% más altas que los reels.
-            </p>
-          </div>
+          <h1
+            class="font-extrabold leading-[0.85] tracking-[-0.02em] text-white drop-shadow-sm
+                   text-4xl md:text-5xl lg:text-6xl"
+          >
+            ¿Quieres<br class="hidden md:block" /> apoyar?
+          </h1>
+        </figcaption>
+      </figure>
 
-          <!-- Col 2 -->
-          <div class="text-center px-4 md:px-10">
-            <p class="text-3xl md:text-4xl font-extrabold">Posts</p>
-            <p class="mt-4 text-lg md:text-xl leading-relaxed">
-              El formato más compartido, sobre todo<br class="hidden md:block" />
-              con tips de cuidado y entrenamiento.
-            </p>
-          </div>
+      <!-- RIGHT: copy -->
+      <aside class="lg:col-span-5">
+        <h2 class="leading-[0.9] tracking-tight">
+          <span class="block font-extrabold text-neutral-900 text-4xl md:text-5xl">
+            brand that embodies
+          </span>
+          <span class="block font-extrabold text-neutral-500 text-4xl md:text-5xl mt-1">
+            understated elegance
+          </span>
+        </h2>
 
-          <!-- Col 3 -->
-          <div class="text-center px-4 md:px-10">
-            <p class="text-3xl md:text-4xl font-extrabold">Video</p>
-            <p class="mt-4 text-lg md:text-xl leading-relaxed">
-              Ideal para alcance (tours del albergue,<br class="hidden md:block" />
-              presentaciones de mascotas)
-            </p>
-          </div>
-        </div>
-      </div>
+        <p class="mt-6 text-neutral-600 text-lg md:text-xl leading-8">
+          Borcelle is a brand that embodies understated elegance. Our philosophy
+          combines timeless minimalism with subtle confidence, empowering
+          wearers to feel sophisticated in every situation.
+        </p>
+      </aside>
     </div>
   </section>
 </template>
+
+<script>
+export default {};
+</script>
+
+<style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+.font-sans { font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
+</style>
