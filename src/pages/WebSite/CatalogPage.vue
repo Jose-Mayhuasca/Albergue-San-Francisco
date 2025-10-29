@@ -7,9 +7,9 @@
         alt="Albergue San Francisco"
         class="w-full h-full object-cover rounded-b-2xl shadow-md"
       />
-      <div class="absolute inset-0 bg-black/30 flex items-center justify-center">
+      <div class="absolute inset-0 bg-black/10 flex items-center justify-center">
         <h1 class="text-white text-3xl md:text-4xl font-bold drop-shadow-lg">
-          🐾 Adopta un Amigo
+          Adopta un Amigo
         </h1>
       </div>
     </div>
