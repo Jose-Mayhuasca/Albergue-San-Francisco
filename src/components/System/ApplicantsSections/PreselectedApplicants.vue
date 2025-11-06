@@ -6,14 +6,16 @@
                     <h5>Solicitantes Pre-Aprobados</h5>
                 </div>
                 <div class="containerApplicants">
-                    <Card v-for="applicant in applicants" :key="applicant.id"
-                        :class="['cardApplicant', getStateClass(applicant.state)]"
-                        @click="router.push('pre-aprobadas/detalle/id')">
+                    <Skeleton v-show="bcargando" v-for="n in 5" :key="n" fluid height="70px" border-radius="12px"
+                        class="mb-1.5" />
+                    <Card v-for="applicant in oListApplicantsPreApproved" :key="applicant.idUserApp"
+                        :class="['cardApplicant', getStateClass(applicant.idStatusApp)]"
+                        @click="GoApplicantDetail(applicant.idUserApp)">
                         <template #title>
-                            <span class="regularSize">{{ applicant.fullName }}</span>
+                            <span class="regularSize">{{ applicant.userName + ' ' + applicant.userLastName }}</span>
                         </template>
                         <template #subtitle>
-                            <span class="smallSize">{{ applicant.dateApply }}</span>
+                            <span class="smallSize">{{ formatDate(applicant.creationDay) }}</span>
                         </template>
                         <template #content>
                             <i class="pi pi-eye icon"></i>
@@ -26,10 +28,15 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
+import ApplicantPreApprovedService from '@/services/ApplicantServices/ApplicantPreApprovedService.js'
 
 const router = useRouter()
+const bcargando = ref(false)
+const applicantPreApprovedService = new ApplicantPreApprovedService()
+const oListApplicantsPreApproved = ref([])
+const id = ref();
 
 // Función para obtener la clase CSS según el estado
 const getStateClass = (state) => {
@@ -39,6 +46,8 @@ const getStateClass = (state) => {
         case 2:
             return 'state-approved'   // Aprobado - Verde
         case 3:
+            return 'state-pre-approved'   // Pre-Aprobado - Verde
+        case 4:
             return 'state-rejected'   // Rechazado - Rojo
         default:
             return 'state-pending'
@@ -78,5 +87,37 @@ const applicants = ref([
         state: 2
     }
 ])
+
+onMounted(async () => {
+    Initialize();
+})
+
+const Initialize = async () => {
+    await LoadApplicantsPreApproved();
+}
+
+const LoadApplicantsPreApproved = async () => {
+    bcargando.value = true;
+    const response = await applicantPreApprovedService.GetApplicantPreApprovedService();
+    if (response.status === 200) {
+        oListApplicantsPreApproved.value = response.data;
+        bcargando.value = false;
+    } else {
+        console.error('Error al cargar los solicitantes pre-aprobados');
+    }
+};
+
+const formatDate = (originalDate) => {
+    const formatedDate = new Date(originalDate).toLocaleString('es-PE', {
+        dateStyle: 'medium',
+        timeStyle: 'short'
+    });
+    return formatedDate;
+};
+
+const GoApplicantDetail = (idUserApp) => {
+    localStorage.setItem('idApplicantPreApproved', idUserApp);
+    router.push({ path: `pre-aprobadas/detalle/${idUserApp}` });
+};
 
 </script>

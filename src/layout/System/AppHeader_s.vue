@@ -12,7 +12,9 @@
             <i v-if="showBackButton" class="pi pi-chevron-left back-icon" @click="goToHome"></i>
             <div v-else></div>
             <h5>{{ currentPageTitle }}</h5>
-            <img src="/icons/exit-icon.svg" alt="menu" class="icon-image" @click="router.push('/login')" />
+            <!-- <div class="container icon">
+                <img src="/icons/exit-icon.svg" alt="menu" class="icon-image" @click="router.push('/login')" />
+            </div> -->
         </div>
     </Section>
 </template>

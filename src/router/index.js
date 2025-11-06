@@ -50,11 +50,11 @@ const router = createRouter({
           component: ApplicantsPage_s,
         },
         {
-          path: 'solicitudes/id',
+          path: 'solicitudes/:id',
           component: DogApplicantsList,
         },
         {
-          path: 'solicitudes/id/detalle/detailId',
+          path: 'solicitudes/:id/detalle/:idApplicant',
           component: ApplicantDetail,
         },
         {
@@ -62,7 +62,7 @@ const router = createRouter({
           component: PreselectedApplicants,
         },
         {
-          path: 'solicitudes/pre-aprobadas/detalle/id',
+          path: 'solicitudes/pre-aprobadas/detalle/:id',
           component: PreselectedApplicantDetail,
         },
       ],

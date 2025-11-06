@@ -10,7 +10,8 @@
                         <h6>Perros en el Albergue</h6>
                     </template>
                     <template #content>
-                        <h1>65</h1>
+                        <i v-show="bCargando" class="pi pi-spin pi-spinner" style="font-size: 5rem" />
+                        <h1>{{ oListCountAnimal.countAnimalsGeneral }}</h1>
                     </template>
                 </Card>
                 <Card class="double primary">
@@ -18,12 +19,14 @@
                         <h6>Perros Adoptados</h6>
                     </template>
                     <template #content>
-                        <h1>20</h1>
+                        <i v-show="bCargando" class="pi pi-spin pi-spinner" style="font-size: 5rem" />
+                        <h1>{{ oListCountAnimal.countAnimalAdopted }}</h1>
                     </template>
                 </Card>
                 <Card>
                     <template #title>
-                        <h1>10</h1>
+                        <i v-show="bCargando" class="pi pi-spin pi-spinner" style="font-size: 5rem" />
+                        <h1>{{ oListCountAnimal.countAnimalsPerYear }}</h1>
                     </template>
                     <template #content>
                         <h6>este año</h6>
@@ -31,7 +34,8 @@
                 </Card>
                 <Card class="thirty">
                     <template #title>
-                        <h1>5</h1>
+                        <i v-show="bCargando" class="pi pi-spin pi-spinner" style="font-size: 5rem" />
+                        <h1>{{ oListCountAnimal.countAnimalsPerMonth }}</h1>
                     </template>
                     <template #content>
                         <h6>este mes</h6>
@@ -50,3 +54,30 @@
         </div>
     </section>
 </template>
+
+<script setup>
+import { onMounted, ref } from 'vue'
+import CommonService from '@/services/CommonService';
+
+const commonService = new CommonService()
+const bCargando = ref(false)
+const oListCountAnimal = ref({})
+
+onMounted(() => {
+    Initialize();
+});
+
+const Initialize = () => {
+    LoadDashboardData();
+}
+
+const LoadDashboardData = async () => {
+    bCargando.value = true;
+    const response = await commonService.GetGeneralDataService();
+    if (response.status === 200) {
+        oListCountAnimal.value = response.data;
+        bCargando.value = false;
+    }
+}
+
+</script>

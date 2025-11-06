@@ -21,6 +21,16 @@
                     <label>{{ option.label }}</label>
                 </div>
             </div>
+            <div class="bottomSide">
+                <div class="containerExit">
+                    <img :src="exitIcon" class="icon-image" @click="router.push('/login')" />
+                    <label>Salir</label>
+                </div>
+                <div class="line"></div>
+                <div class="messageWelcome">
+                    <p>Bienvenida Stephanie</p>
+                </div>
+            </div>
         </div>
     </Section>
 </template>
@@ -29,6 +39,7 @@
 import homeIcon from '@/assets/icons/home-icon-out.svg'
 import catalogIcon from '@/assets/icons/catalog-icon-out.svg'
 import applicantsIcon from '@/assets/icons/applicants-icon.svg'
+import exitIcon from '@/assets/icons/exit-icon-out.svg'
 import { ref, onMounted, onUnmounted } from 'vue';
 import { useRouter } from 'vue-router'
 
