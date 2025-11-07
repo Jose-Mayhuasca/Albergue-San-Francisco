@@ -5,7 +5,8 @@ import CatalogPage from '@/pages/WebSite/CatalogPage.vue'
 import LoginPage from '@/pages/WebSite/LoginPage.vue'
 import AppLayout_s from '@/layout/System/AppLayout_s.vue'
 import HomePage_s from '@/pages/System/HomePage_s.vue'
-import CatalogPage_s from '@/pages/System/Catalogpage_s.vue'
+import CatalogPage_s from '@/pages/System/CatalogPage_s.vue'
+import DogNew from '@/components/System/CatalogSections/DogNew.vue'
 import ApplicantsPage_s from '@/pages/System/ApplicantsPage_s.vue'
 import DogApplicantsList from '@/components/System/ApplicantsSections/DogApplicantsList.vue'
 import ApplicantDetail from '@/components/System/ApplicantsSections/ApplicantDetail.vue'
@@ -44,6 +45,14 @@ const router = createRouter({
         {
           path: 'catalogo',
           component: CatalogPage_s,
+        },
+        {
+          path: 'catalogo/nuevo',
+          component: DogNew,
+        },
+        {
+          path: 'catalogo/editar/:id',
+          component: DogNew,
         },
         {
           path: 'solicitudes',

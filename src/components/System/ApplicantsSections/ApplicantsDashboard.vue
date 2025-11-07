@@ -15,23 +15,17 @@
             <div class="containerNavigation">
                 <IconField>
                     <InputIcon class="pi pi-search" />
-                    <InputText placeholder="Buscar por nombre" class="searchInput" />
+                    <InputText v-model="searchQuery" placeholder="Buscar por nombre" class="searchInput" />
                 </IconField>
                 <Button class="sortButton" icon="pi pi-sort-alpha-down" />
                 <Button class="filterButton" icon="pi pi-sliders-h" />
             </div>
             <div class="containerCards" v-show="bCargando">
-                <Skeleton width="100%" height="auto" border-radius="12px" :style="{ aspectRatio: '1/1' }" />
-                <Skeleton width="100%" height="auto" border-radius="12px" :style="{ aspectRatio: '1/1' }" />
-                <Skeleton width="100%" height="auto" border-radius="12px" :style="{ aspectRatio: '1/1' }" />
-                <Skeleton width="100%" height="auto" border-radius="12px" :style="{ aspectRatio: '1/1' }" />
-                <Skeleton width="100%" height="auto" border-radius="12px" :style="{ aspectRatio: '1/1' }" />
-                <Skeleton width="100%" height="auto" border-radius="12px" :style="{ aspectRatio: '1/1' }" />
-                <Skeleton width="100%" height="auto" border-radius="12px" :style="{ aspectRatio: '1/1' }" />
-                <Skeleton width="100%" height="auto" border-radius="12px" :style="{ aspectRatio: '1/1' }" />
+                <Skeleton v-for="index in 8" :key="index" width="100%" height="auto" border-radius="12px"
+                    :style="{ aspectRatio: '1/1' }" />
             </div>
             <div class="containerCards" v-show="!bCargando">
-                <Card v-for="dog in oListDogCatalog" :key="dog.idRefAnimals" class="cardCatalog" :style="{
+                <Card v-for="dog in filteredDogs" :key="dog.idRefAnimals" class="cardCatalog" :style="{
                     backgroundImage: `url(${dog.animalImage})`
                 }" @click="GoListApplicants(dog.idRefAnimals)">
                     <template #header>
@@ -47,7 +41,7 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import CommonService from '@/services/CommonService'
 import DogCatalogService from '@/services/ApplicantServices/DogCatalogService'
@@ -58,6 +52,18 @@ const router = useRouter()
 const bCargando = ref(false)
 const oPendingCount = ref()
 const oListDogCatalog = ref([])
+const searchQuery = ref('')
+
+// Computed property para filtrar perros por nombre
+const filteredDogs = computed(() => {
+    if (!searchQuery.value) {
+        return oListDogCatalog.value
+    }
+
+    return oListDogCatalog.value.filter(dog =>
+        dog.animalName.toLowerCase().includes(searchQuery.value.toLowerCase())
+    )
+})
 
 onMounted(async () => {
     await Initialize();
@@ -128,10 +134,3 @@ const GoListApplicants = (idRefAnimals) => {
 // ])
 
 </script>
-
-
-//* TODO:
-6. - Revisar la re dirección del header.
-7. - Habilitar la barra de búsqueda, método de ordenamiento y filtros.
-
-*/

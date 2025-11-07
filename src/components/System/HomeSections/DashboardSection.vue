@@ -47,8 +47,8 @@
                     <h4>Acciones Rápidas</h4>
                 </div>
                 <div class="actions">
-                    <Button label="Añadir Perro" icon="pi pi-plus" />
-                    <Button label="Ver Solicitudes" icon="pi pi-eye" />
+                    <Button label="Añadir Perro" icon="pi pi-plus" @click="goCatalog()" />
+                    <Button label="Ver Solicitudes" icon="pi pi-eye" @click="goApplicants()" />
                 </div>
             </div>
         </div>
@@ -58,7 +58,9 @@
 <script setup>
 import { onMounted, ref } from 'vue'
 import CommonService from '@/services/CommonService';
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
 const commonService = new CommonService()
 const bCargando = ref(false)
 const oListCountAnimal = ref({})
@@ -78,6 +80,14 @@ const LoadDashboardData = async () => {
         oListCountAnimal.value = response.data;
         bCargando.value = false;
     }
+}
+
+const goCatalog = () => {
+    router.push({ path: `admin/catalogo` });
+}
+
+const goApplicants = () => {
+    router.push({ path: `admin/solicitudes` });
 }
 
 </script>

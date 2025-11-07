@@ -23,7 +23,7 @@
             </div>
             <div class="bottomSide">
                 <div class="containerExit">
-                    <img :src="exitIcon" class="icon-image" @click="router.push('/login')" />
+                    <img :src="exitIcon" class="icon-image" @click="logOut()" />
                     <label>Salir</label>
                 </div>
                 <div class="line"></div>
@@ -33,6 +33,7 @@
             </div>
         </div>
     </Section>
+    <Toast />
 </template>
 
 <script setup>
@@ -42,12 +43,26 @@ import applicantsIcon from '@/assets/icons/applicants-icon.svg'
 import exitIcon from '@/assets/icons/exit-icon-out.svg'
 import { ref, onMounted, onUnmounted } from 'vue';
 import { useRouter } from 'vue-router'
+import { useToast } from 'primevue/usetoast';
 
 const router = useRouter()
+const toast = useToast();
 const viewPhone = ref(false);
 
 const checkScreenSize = () => {
     viewPhone.value = window.innerWidth < 1024;
+}
+
+const logOut = () => {
+    toast.add({
+        severity: 'success',
+        summary: 'Operación Exitosa',
+        detail: 'Cerrando sesión...',
+        life: 2000
+    });
+    setTimeout(() => {
+        router.push('/login');
+    }, 2000);
 }
 
 // Escuchar cambios en el tamaño de la ventana

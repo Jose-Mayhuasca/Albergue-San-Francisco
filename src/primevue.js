@@ -23,6 +23,10 @@ import Fluid from 'primevue/fluid'
 import Badge from 'primevue/badge'
 import OverlayBadge from 'primevue/overlaybadge'
 import Drawer from 'primevue/drawer'
+import ToggleSwitch from 'primevue/toggleswitch'
+import Checkbox from 'primevue/checkbox'
+import Select from 'primevue/select'
+import InputNumber from 'primevue/inputnumber'
 
 export default {
   Button,
@@ -49,4 +53,8 @@ export default {
   Badge,
   OverlayBadge,
   Drawer,
+  ToggleSwitch,
+  Checkbox,
+  Select,
+  InputNumber,
 }
