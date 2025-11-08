@@ -12,16 +12,17 @@ export default class CatalogService {
     return { status: response.status, data }
   }
 
-  // * Get para los detalles de un perro del catalogo por su id
+  // * Put para eliminar un perro del catálogo (soft delete)
 
-  async GetDogService(id) {
+  async UpdateDeleteDogCatalogService(request) {
     const response = await fetch(
-      import.meta.env.VITE_API_URL + `/refugeAnimal/refugeAnimalForId?idRefAnimals=${id}`,
+      import.meta.env.VITE_API_URL + `/refugeAnimal/updateStatusAnimal`,
       {
-        method: 'GET',
+        method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
+        body: JSON.stringify(request),
       },
     )
     const data = await response.json()

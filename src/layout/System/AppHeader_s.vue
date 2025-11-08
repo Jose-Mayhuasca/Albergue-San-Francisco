@@ -35,7 +35,12 @@ const checkScreenSize = () => {
 const pageTitles = {
     '/admin': 'Dashboard',
     '/admin/catalogo': 'Catálogo',
-    '/admin/solicitudes': 'Solicitudes'
+    '/admin/catalogo/nuevo': 'Agregar Perro',
+    '/admin/catalogo/editar/:id': 'Editar Perro',
+    '/admin/solicitudes': 'Solicitudes',
+    '/admin/solicitudes/7': 'Perro Solicitado',
+    '/admin/solicitudes/7/detalle/4': 'Solicitante',
+    '/admin/solicitudes/pre-aprobadas': 'Solicitudes',
 }
 
 // Computed property para obtener el título actual basado en la ruta

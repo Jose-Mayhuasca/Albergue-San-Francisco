@@ -170,9 +170,9 @@ const updateReminder = async () => {
             detail: 'El recordatorio se ha actualizado correctamente',
             life: 2000
         });
-        setTimeout(() => {
-            LoadApplicant();
-        }, 2000);
+        // setTimeout(() => {
+        LoadApplicant();
+        // }, 2000);
     } else {
         toast.add({
             severity: 'error',

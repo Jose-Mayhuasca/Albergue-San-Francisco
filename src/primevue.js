@@ -27,6 +27,9 @@ import ToggleSwitch from 'primevue/toggleswitch'
 import Checkbox from 'primevue/checkbox'
 import Select from 'primevue/select'
 import InputNumber from 'primevue/inputnumber'
+import RadioButton from 'primevue/radiobutton'
+import RadioButtonGroup from 'primevue/radiobuttongroup'
+import ConfirmPopup from 'primevue/confirmpopup'
 
 export default {
   Button,
@@ -57,4 +60,7 @@ export default {
   Checkbox,
   Select,
   InputNumber,
+  RadioButton,
+  RadioButtonGroup,
+  ConfirmPopup,
 }

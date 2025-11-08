@@ -2,9 +2,9 @@
     <div class="page">
         <section class="sectionDogNew">
             <div class="container">
-                <div class="title">
+                <!-- <div class="title">
                     <h3 class="bold">Agregar Perro</h3>
-                </div>
+                </div> -->
                 <div class="content">
                     <div class="form">
                         <div class="name double">
@@ -14,30 +14,30 @@
                         <div class="gender">
                             <label>Género</label>
                             <Select fluid :options="oListGenders" optionLabel="animalGenderDesc"
-                                placeholder="Seleccionar" />
+                                placeholder="Seleccionar" v-model="oDog.idAnimalGender" optionValue="idAnimalGender" />
                         </div>
                         <div class="age">
                             <label>Edad</label>
-                            <InputNumber fluid v-model="oDog.animalAge" />
+                            <InputNumber fluid v-model="oDog.animalAge" :maxFractionDigits="1" :min="0" :max="50" />
                         </div>
                         <div class="size">
                             <label>Tamaño</label>
-                            <Select fluid :options="oListSizes" optionLabel="animalSizeDesc"
-                                placeholder="Seleccionar" />
+                            <Select fluid :options="oListSizes" optionLabel="animalSizeDesc" optionValue="idAnimalSize"
+                                placeholder="Seleccionar" v-model="oDog.idAnimalSize" />
                         </div>
                         <div class="weight">
                             <label>Peso</label>
-                            <InputNumber fluid v-model="oDog.animalWeight" />
+                            <InputNumber fluid v-model="oDog.animalWeight" :maxFractionDigits="2" :min="0" :max="100" />
                         </div>
                         <div class="isVaccinate containerOptions">
                             <label>¿Está vacunado?</label>
                             <div class="options">
                                 <div class="checkboxes">
-                                    <Checkbox v-model="vaccinateYes" size="large" binary />
+                                    <RadioButton v-model="oDog.isVaccinated" size="large" :value="true" />
                                     <label>Si</label>
                                 </div>
                                 <div class="checkboxes">
-                                    <Checkbox v-model="vaccinateNo" size="large" binary />
+                                    <RadioButton v-model="oDog.isVaccinated" size="large" :value="false" />
                                     <label>No</label>
                                 </div>
                             </div>
@@ -46,11 +46,11 @@
                             <label>¿Está esterilizado?</label>
                             <div class="options">
                                 <div class="checkboxes">
-                                    <Checkbox v-model="sterilizeYes" size="large" binary />
+                                    <RadioButton v-model="oDog.isSterilized" size="large" :value="true" />
                                     <label>Si</label>
                                 </div>
                                 <div class="checkboxes">
-                                    <Checkbox v-model="sterilizeNo" size="large" binary />
+                                    <RadioButton v-model="oDog.isSterilized" size="large" :value="false" />
                                     <label>No</label>
                                 </div>
                             </div>
@@ -58,9 +58,10 @@
                     </div>
                     <div class="containerPhoto space">
                         <label>Adjuntar foto</label>
-                        <FileUpload>
+                        <FileUpload mode="advanced" :auto="false" :multiple="false" :maxFileCount="1" accept="image/*"
+                            maxFileSize="5242880" @select="enArchivoSeleccionado" @clear="clearImage">
                             <template #empty>
-                                <span>Drag and drop files to here to upload.</span>
+                                <span>Selecciona o arrastra una foto aquí.</span>
                             </template>
                         </FileUpload>
                     </div>
@@ -87,27 +88,25 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
+import { useToast } from 'primevue';
 import CommonService from '@/services/CommonService';
-import CatalogService from '@/services/CatalogServices/CatalogService';
+import DogDetailService from '@/services/CatalogServices/DogDetailService';
 
 const router = useRouter();
+const toast = useToast();
 const commonService = new CommonService();
-const catalogService = new CatalogService();
+const dogDetailService = new DogDetailService();
+
 const oListGenders = ref([]);
 const oListSizes = ref([]);
-const vaccinateYes = ref(false);
-const vaccinateNo = ref(false);
-const sterilizeYes = ref(false);
-const sterilizeNo = ref(false);
-
-const oDog = ref({});
-
-// const oDog = {
-//     animalName: '',
-//     animalGenderId: null,
-//     isVaccinate: false,
-//     isSterilized: false
-// }
+const id = localStorage.getItem('idDog');
+const oDog = ref({
+    animalName: '',
+    isVaccinate: null,
+    isSterilized: null,
+    animalImageFile: null
+});
+const previewImage = ref(null);
 
 onMounted(async () => {
     Initialize();
@@ -123,7 +122,6 @@ const LoadGenders = async () => {
     const response = await commonService.GetGendersService();
     if (response.status === 200) {
         oListGenders.value = response.data;
-        // debugger;
     }
 
 };
@@ -137,22 +135,121 @@ const LoadSizes = async () => {
 };
 
 const LoadDog = async () => {
-    const id = localStorage.getItem('idDog');
-
-    const response = await catalogService.GetDogService(id);
-    if (response.status === 200) {
-        oDog.value = response.data;
-        // debugger;
+    if (id != null) {
+        const response = await dogDetailService.GetDogDetailService(id);
+        if (response.status === 200) {
+            oDog.value = response.data;
+            console.log("Cargando perro:", oDog.value);
+        }
     }
 };
 
-const createUpdateDog = async () => {
-    // Lógica para crear o actualizar el perro
+const enArchivoSeleccionado = (event) => {
+    if (event.files && event.files.length > 0) {
+        const file = event.files[0];
+
+        const maxSize = 5 * 1024 * 1024;
+        if (file.size > maxSize) {
+            alert(`El archivo es demasiado grande. Tamaño máximo permitido: 5MB. Tu archivo: ${(file.size / 1024 / 1024).toFixed(2)}MB`);
+            oDog.value.animalImageFile = null;
+            if (previewImage.value) {
+                URL.revokeObjectURL(previewImage.value);
+                previewImage.value = null;
+            }
+            return;
+        }
+
+        if (!file.type.startsWith('image/')) {
+            alert('Por favor, selecciona solo archivos de imagen');
+            oDog.value.animalImageFile = null;
+            if (previewImage.value) {
+                URL.revokeObjectURL(previewImage.value);
+                previewImage.value = null;
+            }
+            return;
+        }
+
+        if (previewImage.value) {
+            URL.revokeObjectURL(previewImage.value);
+        }
+
+        oDog.value.animalImageFile = file;
+        previewImage.value = URL.createObjectURL(file);
+    } else {
+        clearImage();
+    }
+};
+
+const clearImage = () => {
+    if (previewImage.value) {
+        URL.revokeObjectURL(previewImage.value);
+        previewImage.value = null;
+    }
+    oDog.value.animalImageFile = null;
 
 };
 
+const createUpdateDog = async () => {
+    // * Antes debe ir una function para validar los campos
+
+    const formData = new FormData();
+
+    if (id != null) {
+        formData.append('idRefAnimals', id);
+        formData.append('newAnimalImageFile', oDog.value.animalImageFile);
+    } else {
+        formData.append('animalImageFile', oDog.value.animalImageFile);
+    }
+    formData.append('animalName', oDog.value.animalName.trim());
+    formData.append('idAnimalGender', oDog.value.idAnimalGender);
+    formData.append('animalAge', oDog.value.animalAge ?? 0);
+    formData.append('idAnimalSize', oDog.value.idAnimalSize);
+    formData.append('animalWeight', oDog.value.animalWeight ?? 0);
+    formData.append('isVaccinated', oDog.value.isVaccinated);
+    formData.append('isSterilized', oDog.value.isSterilized);
+    formData.append('animalDesc', oDog.value.animalDesc.trim());
+    formData.append('animalHistory', oDog.value.animalHistory.trim());
+    if (oDog.value.animalImage && oDog.value.idAnimalImage) {
+        formData.append('idAnimalImage', oDog.value.idAnimalImage);
+        formData.append('animalImage', oDog.value.animalImage);
+    }
+
+    console.log([...formData.entries()]);
+
+    try {
+        const isNew = !id;
+        const serviceMethod = isNew
+            ? dogDetailService.CreateDogService
+            : dogDetailService.UpdateDogService;
+
+        const response = await serviceMethod(formData);
+        debugger;
+
+        if ([200, 201].includes(response.status)) {
+            toast.add({
+                severity: 'success',
+                summary: 'Operación exitosa',
+                detail: `El perro ha sido ${isNew ? 'registrado' : 'actualizado'} correctamente`,
+                life: 2000,
+            });
+
+            setTimeout(goBack, 2000);
+
+        } else {
+            throw new Error(`Error en la operación: ${response.status}`);
+        }
+    } catch (error) {
+        toast.add({
+            severity: 'error',
+            summary: 'Operación Fallida',
+            detail: 'Ha ocurrido un error al guardar el perro',
+            life: 2000,
+        });
+    }
+};
+
 const goBack = () => {
-    localStorage.removeItem('idDog');
+    localStorage.clear();
     router.push({ path: '/admin/catalogo' });
 };
 

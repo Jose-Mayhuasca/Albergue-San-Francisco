@@ -28,7 +28,7 @@ export default class ApplicantPreApprovedService {
     return { status: response.status, data }
   }
 
-  // * Update para cambiar de estado al solicitante pre-aprobado a rechazado, eliminándolo de la lista
+  // * Put para cambiar de estado al solicitante pre-aprobado a rechazado, eliminándolo de la lista
 
   async UpdateDeleteApplicantPreApprovedService(request) {
     const response = await fetch(import.meta.env.VITE_API_URL + `/userApp/updateStatusUserApp`, {
