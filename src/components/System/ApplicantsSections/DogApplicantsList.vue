@@ -140,26 +140,4 @@ const GoApplicantDetail = (idUserApp) => {
     router.push({ path: `${id}/detalle/${idUserApp}` });
 };
 
-// items para las cards
-// const applicants = ref([
-//     {
-//         id: 1,
-//         fullName: 'José Mayhuasca',
-//         dateApply: '01/09/2025',
-//         state: 1
-//     },
-//     {
-//         id: 2,
-//         fullName: 'Gian Mejia',
-//         dateApply: '02/09/2025',
-//         state: 2
-//     },
-//     {
-//         id: 3,
-//         fullName: 'Leonardo Valenzuela',
-//         dateApply: '03/09/2025',
-//         state: 3
-//     }
-// ])
-
 </script>

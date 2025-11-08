@@ -248,38 +248,4 @@ const GoListApplicants = (idRefAnimals) => {
     router.push({ path: `solicitudes/${idRefAnimals}` });
 };
 
-// items para las cards
-// const dogs = ref([
-//     {
-//         id: 1,
-//         name: 'Max',
-//         badgeValue: 6,
-//         imageUrl: 'https://images.pexels.com/photos/551628/pexels-photo-551628.jpeg'
-//     },
-//     {
-//         id: 2,
-//         name: 'Buddy',
-//         badgeValue: 5,
-//         imageUrl: 'https://images.pexels.com/photos/2253275/pexels-photo-2253275.jpeg'
-//     },
-//     {
-//         id: 3,
-//         name: 'Lucy',
-//         badgeValue: 4,
-//         imageUrl: 'https://images.pexels.com/photos/34284563/pexels-photo-34284563.jpeg'
-//     },
-//     {
-//         id: 4,
-//         name: 'Bruce',
-//         badgeValue: 1,
-//         imageUrl: 'https://images.pexels.com/photos/34265055/pexels-photo-34265055.jpeg'
-//     },
-//     {
-//         id: 5,
-//         name: 'Rocky',
-//         badgeValue: 1,
-//         imageUrl: 'https://images.pexels.com/photos/34265027/pexels-photo-34265027.jpeg'
-//     }
-// ])
-
 </script>
