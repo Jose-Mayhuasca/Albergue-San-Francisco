@@ -3,8 +3,8 @@ name: Deploy Vue App to GitHub Pages
 on:
   push:
     branches:
-      - develop       # 👈 Se ejecuta cuando haces push a la rama develop
-  workflow_dispatch:  # 👈 También puedes ejecutarlo manualmente desde Actions
+      - main # 👈 Se ejecuta cuando haces push a la rama main
+  workflow_dispatch: # 👈 También puedes ejecutarlo manualmente desde Actions
 
 jobs:
   build-and-deploy:
@@ -17,7 +17,7 @@ jobs:
       - name: Setup Node.js 🧩
         uses: actions/setup-node@v4
         with:
-          node-version: 22   # 👈 Usa la misma versión que tienes localmente
+          node-version: 22 # 👈 Usa la misma versión que tienes localmente
 
       - name: Install dependencies 📦
         run: npm install
