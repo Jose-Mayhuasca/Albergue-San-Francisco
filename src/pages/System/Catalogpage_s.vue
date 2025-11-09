@@ -7,3 +7,7 @@ import CatalogDashboard from '@/components/System/CatalogSections/CatalogDashboa
         <CatalogDashboard />
     </div>
 </template>
+
+
+// * Se corrigio el nombre del archivo de Catalogpage_s.vue a CatalogPage_s.vue para seguir la convención de mayúsculas
+y minúsculas.
