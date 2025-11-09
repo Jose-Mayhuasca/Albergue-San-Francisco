@@ -92,7 +92,7 @@ h6 {
 }
 
 :root {
-  --color-primary: #F9B42F;
+  --color-primary: #f9b42f;
 }
 
 .p-button {
@@ -298,6 +298,7 @@ h6 {
 }
 
 .viewpage {
+  width: auto;
   height: auto;
   margin: 0 1rem;
   position: relative;
@@ -750,6 +751,7 @@ h6 {
   justify-content: start;
   align-items: center;
   gap: 4rem;
+  overflow: hidden;
 
   @media (min-width: $bp-tablet) {
     width: calc(90% - 2rem);
