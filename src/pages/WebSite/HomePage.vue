@@ -15,7 +15,7 @@ import AppFooter from '@/layout/WebSite/AppFooter.vue';
 </script>
 
 <template>
-    <div class="page">
+    <div class="page dark:bg-gray-700 dark:text-white">
         <HeroSectionOne />
         <HeroSectionTwo />
         <HeroSectionThree />
