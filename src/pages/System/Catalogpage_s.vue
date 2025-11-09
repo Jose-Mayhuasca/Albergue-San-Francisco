@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import CatalogSection from '@/components/System/CatalogSections/CatalogSection.vue'
+import CatalogDashboard from '@/components/System/CatalogSections/CatalogDashboard.vue'
 </script>
 
 <template>
     <div class="page">
-        <CatalogSection />
+        <CatalogDashboard />
     </div>
 </template>

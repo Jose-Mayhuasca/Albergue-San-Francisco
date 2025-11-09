@@ -1,37 +1,88 @@
 <template>
-    <section class="sectionDogApplicantsList">
-        <div class="container">
-            <div class="title">
-                <h3 class="bold">Max</h3>
+    <div class="page">
+        <section class="sectionDogApplicantsList">
+            <div class="container" v-show="bCargando">
+                <div class="title">
+                    <Skeleton width="50%" height="58.52px" />
+                    <!-- <h3 class="bold">{{ oDog.animalName }}</h3> -->
+                </div>
+                <div class="content">
+                    <!-- <Card class="image" :style="{
+                        backgroundImage: `url(${oDog.animalImage})`
+                    }" /> -->
+                    <Skeleton class="image" fluid height="auto" border-radius="12px" />
+                    <div class="containerListApplicants">
+                        <div class="subtitle">
+                            <h5>Solicitantes</h5>
+                        </div>
+                        <div class="containerApplicants" v-for="cards in 8" :key="cards">
+                            <Skeleton fluid height="78px" border-radius="12px" />
+                            <!-- <Card v-for="applicant in oListApplicants" :key="applicant.idUserApp"
+                                :class="['cardApplicant', getStateClass(applicant.idStatusApp)]"
+                                @click="GoApplicantDetail(applicant.idUserApp)">
+                                <template #title>
+                                    <span class="regularSize">{{ applicant.userName + " " +
+                                        applicant.userLastName }}</span>
+                                </template>
+<template #subtitle>
+                                    <span class="smallSize">{{ formatDate(applicant.creationDay) }}</span>
+                                </template>
+<template #content>
+                                    <i class="pi pi-eye icon"></i>
+                                </template>
+</Card> -->
+                        </div>
+                    </div>
+                </div>
             </div>
-            <Card class="image" />
-            <div class="subtitle">
-                <h5>Solicitantes</h5>
+            <div class="container" v-show="!bCargando">
+                <div class="title">
+                    <h3 class="bold">{{ oDog.animalName }}</h3>
+                </div>
+                <div class="content">
+                    <Card class="image" :style="{
+                        backgroundImage: `url(${oDog.animalImage})`
+                    }" />
+                    <div class="containerListApplicants">
+                        <div class="subtitle">
+                            <h5>Solicitantes</h5>
+                        </div>
+                        <div class="containerApplicants">
+                            <Card v-for="applicant in oListApplicants" :key="applicant.idUserApp"
+                                :class="['cardApplicant', getStateClass(applicant.idStatusApp)]"
+                                @click="GoApplicantDetail(applicant.idUserApp)">
+                                <template #title>
+                                    <span class="regularSize">{{ applicant.userName + " " +
+                                        applicant.userLastName }}</span>
+                                </template>
+                                <template #subtitle>
+                                    <span class="smallSize">{{ formatDate(applicant.creationDay) }}</span>
+                                </template>
+                                <template #content>
+                                    <i class="pi pi-eye icon"></i>
+                                </template>
+                            </Card>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="containerApplicants">
-                <Card v-for="applicant in applicants" :key="applicant.id"
-                    :class="['cardApplicant', getStateClass(applicant.state)]"
-                    @click="router.push('id/detalle/detailId')">
-                    <template #title>
-                        <span class="regularSize">{{ applicant.fullName }}</span>
-                    </template>
-                    <template #subtitle>
-                        <span class="smallSize">{{ applicant.dateApply }}</span>
-                    </template>
-                    <template #content>
-                        <i class="pi pi-eye icon"></i>
-                    </template>
-                </Card>
-            </div>
-        </div>
-    </section>
+        </section>
+    </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
+import GetDogService from '@/services/ApplicantServices/DogCatalogService'
+import ApplicantService from '@/services/ApplicantServices/ApplicantService'
 
 const router = useRouter()
+const getDogService = new GetDogService()
+const applicantService = new ApplicantService()
+const id = localStorage.getItem('idDog')
+const oDog = ref({})
+const oListApplicants = ref([])
+const bCargando = ref(false)
 
 // Función para obtener la clase CSS según el estado
 const getStateClass = (state) => {
@@ -41,32 +92,52 @@ const getStateClass = (state) => {
         case 2:
             return 'state-approved'   // Aprobado - Verde
         case 3:
+            return 'state-pre-approved'   // Pre-Aprobado - Verde
+        case 4:
             return 'state-rejected'   // Rechazado - Rojo
         default:
             return 'state-pending'
     }
 }
 
-// items para las cards
-const applicants = ref([
-    {
-        id: 1,
-        fullName: 'José Mayhuasca',
-        dateApply: '01/09/2025',
-        state: 1
-    },
-    {
-        id: 2,
-        fullName: 'Gian Mejia',
-        dateApply: '02/09/2025',
-        state: 2
-    },
-    {
-        id: 3,
-        fullName: 'Leonardo Valenzuela',
-        dateApply: '03/09/2025',
-        state: 3
+onMounted(async () => {
+    Initialize();
+});
+
+const Initialize = async () => {
+    bCargando.value = true;
+    await LoadDogData();
+    await LoadListApplicants();
+    bCargando.value = false;
+}
+
+const LoadDogData = async () => {
+    const response = await getDogService.GetDogService(id);
+    // debugger;
+    if (response.status === 200) {
+        oDog.value = response.data;
     }
-])
+}
+
+const LoadListApplicants = async () => {
+    const response = await applicantService.GetListApplicantsService(id);
+    // debugger;
+    if (response.status === 200) {
+        oListApplicants.value = response.data;
+    }
+}
+
+const formatDate = (originalDate) => {
+    const formatedDate = new Date(originalDate).toLocaleString('es-PE', {
+        dateStyle: 'medium',
+        timeStyle: 'short'
+    });
+    return formatedDate;
+};
+
+const GoApplicantDetail = (idUserApp) => {
+    localStorage.setItem('idApplicant', idUserApp);
+    router.push({ path: `${id}/detalle/${idUserApp}` });
+};
 
 </script>

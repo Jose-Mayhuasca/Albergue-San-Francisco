@@ -1,25 +1,7 @@
 <template>
-    <section class="sectionApplicantsDashboard">
+    <section class="sectionCatalog">
         <div class="container">
-            <Button label="Solicitantes Pre - Aprobados" icon="pi pi-eye" icon-pos="right" class="thirty button-header"
-                fluid @click="router.push('solicitudes/pre-aprobadas')" />
-            <Card class="cardStat primary">
-                <template #title>
-                    <i v-show="bCargando" class="pi pi-spin pi-spinner" style="font-size: 5rem" />
-                    <h1>{{ oPendingCount }}</h1>
-                </template>
-                <template #content>
-                    <h6>Solicitudes Pendientes</h6>
-                </template>
-            </Card>
-            <!-- <div class="containerNavigation">
-                <IconField>
-                    <InputIcon class="pi pi-search" />
-                    <InputText v-model="searchQuery" placeholder="Buscar por nombre" class="searchInput" />
-                </IconField>
-                <Button class="sortButton" icon="pi pi-sort-alpha-down" />
-                <Button class="filterButton" icon="pi pi-sliders-h" />
-            </div> -->
+            <Button label="Nuevo" icon="pi pi-plus" class="" fluid @click="openNewDog()" />
             <div class="containerNavigation">
                 <IconField>
                     <InputIcon class="pi pi-search" />
@@ -85,47 +67,68 @@
                     </div>
                 </Dialog>
             </div>
-            <div class="containerCards" v-show="bCargando">
-                <Skeleton v-for="index in 8" :key="index" width="100%" height="auto" border-radius="12px"
-                    :style="{ aspectRatio: '1/1' }" />
-            </div>
-            <div class="containerCards" v-show="!bCargando">
+            <div class=" containerCards" v-show="!bCargando">
                 <Card v-for="dog in filteredDogs" :key="dog.idRefAnimals" class="cardCatalog" :style="{
                     backgroundImage: `url(${dog.animalImage})`
-                }" @click="GoListApplicants(dog.idRefAnimals)">
-                    <template #header>
-                        <Badge :value="dog.countApplicants" size="xlarge" severity="danger" />
-                    </template>
+                }" @click="openActionsDialog(dog.idRefAnimals)">
                     <template #title>
                         <p class="regularSize title">{{ dog.animalName }}</p>
                     </template>
                 </Card>
             </div>
+            <div class="containerCards" v-show="bCargando">
+                <Skeleton v-for="index in 10" :key="index" fluid height="auto" border-radius="12px"
+                    class="cardCatalog" />
+            </div>
+
+            <!-- Dialog de acciones (Editar o Eliminar) -->
+            <Dialog v-model:visible="visibleActions" modal header="Acciones" class="actionsDialog">
+                <p>Acciones que puedes realizar:</p>
+                <div class="optionsContainer">
+                    <Button label="Editar datos" @click="confirmEdit" class="primary" fluid icon="pi pi-pencil" />
+                    <Button label="Eliminar del catálogo" severity="danger" @click="openDeleteConfirm" fluid
+                        icon="pi pi-trash" class="danger" />
+                </div>
+            </Dialog>
+
+            <!-- Dialog de confirmación de eliminación -->
+            <Dialog v-model:visible="visibleDeleteConfirm" modal header="Confirmar eliminación" class="confirmDialog">
+                <p>¿Estás segura de que deseas eliminarlo del catálogo?</p>
+                <p>Esta acción no se puede deshacer.</p>
+                <!-- <div class="confirmActions"> -->
+                <Button label="Eliminar" severity="danger" @click="confirmDelete" icon="pi pi-trash" fluid
+                    class="danger" />
+                <Button label="Cancelar" severity="secondary" text @click="visibleDeleteConfirm = false"
+                    icon="pi pi-times" fluid class="secondary" />
+                <!-- </div> -->
+            </Dialog>
         </div>
     </section>
 </template>
 
 <script setup>
-import { onMounted, ref, computed } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import { useRouter } from 'vue-router'
-import CommonService from '@/services/CommonService'
-import DogCatalogService from '@/services/ApplicantServices/DogCatalogService'
+import { useToast } from 'primevue'
+import CatalogService from '@/services/CatalogServices/CatalogService'
 
-const commonService = new CommonService()
-const dogCatalogService = new DogCatalogService()
 const router = useRouter()
+const catalogService = new CatalogService()
+const oListCatalog = ref([])
+const toast = useToast()
 const bCargando = ref(false)
-const oPendingCount = ref()
-const oListDogCatalog = ref([])
 const searchQuery = ref('')
 const sortOrder = ref('alphabetic') // 'alphabetic', 'age-asc', 'age-desc'
 const visibleFilters = ref(false);
-
+const visibleActions = ref(false);
+const visibleDeleteConfirm = ref(false);
+const selectedDogId = ref(null);
 
 // Refs para los filtros
 const selectedSize = ref(null)
 const selectedGender = ref(null)
 const selectedAge = ref(null)
+
 
 // Computed property para obtener el icono según el estado de ordenamiento
 const sortIcon = computed(() => {
@@ -156,36 +159,26 @@ onMounted(async () => {
     await Initialize();
 });
 
-const Initialize = async () => {
-    LoadPendingCount();
-    await LoadDogCatalog();
+async function Initialize() {
+    LoadCatalog();
 }
 
-const LoadPendingCount = async () => {
-    bCargando.value = true;
-    const response = await commonService.GetPendingCountService();
-
-    if (response.status === 200) {
-        oPendingCount.value = response.data.countPending;
-        bCargando.value = false;
-    }
-}
-
-const LoadDogCatalog = async () => {
-    bCargando.value = true;
-    const response = await dogCatalogService.GetDogCatalogService();
+async function LoadCatalog() {
+    bCargando.value = true
+    const response = await catalogService.GetCatalogService()
     // debugger;
-
-    if (response.status == 200) {
-        oListDogCatalog.value = response.data;
-        bCargando.value = false;
+    if (response.status === 200) {
+        oListCatalog.value = response.data
+        bCargando.value = false
+    } else {
+        toast.add({ severity: 'error', summary: 'Error', detail: 'Error al cargar el catálogo', life: 3000 });
     }
 }
 
 // Computed property para filtrar y ordenar perros
 const filteredDogs = computed(() => {
     // Primero filtramos por nombre
-    let result = oListDogCatalog.value
+    let result = oListCatalog.value
 
     if (searchQuery.value) {
         result = result.filter(dog =>
@@ -237,15 +230,73 @@ const filteredDogs = computed(() => {
     return result
 })
 
+const openNewDog = () => {
+    localStorage.clear();
+    router.push(`catalogo/nuevo`)
+}
+
+const openActionsDialog = (id) => {
+    selectedDogId.value = id
+    visibleActions.value = true
+}
+
+const confirmEdit = () => {
+    visibleActions.value = false
+    editDog(selectedDogId.value)
+}
+
+const openDeleteConfirm = () => {
+    visibleActions.value = false
+    visibleDeleteConfirm.value = true
+}
+
+const confirmDelete = async () => {
+    const request = {
+        idRefAnimals: selectedDogId.value
+    }
+
+    try {
+        const response = await catalogService.UpdateDeleteDogCatalogService(request)
+        console.log("response delete:", response);
+
+        if (response.status === 200) {
+            toast.add({
+                severity: 'success',
+                summary: 'Operación exitosa',
+                detail: 'Perro eliminado del catálogo correctamente',
+                life: 2000
+            });
+            visibleDeleteConfirm.value = false
+            selectedDogId.value = null
+            // Recargar el catálogo
+            await LoadCatalog()
+        } else {
+            toast.add({
+                severity: 'error',
+                summary: 'Operación fallida',
+                detail: 'No se pudo eliminar el perro del catálogo',
+                life: 2000
+            });
+        }
+    } catch (error) {
+        toast.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: 'Ocurrió un error al eliminar el perro',
+            life: 2000
+        });
+    }
+}
+
+const editDog = (id) => {
+    localStorage.setItem('idDog', id)
+    router.push(`catalogo/editar/${id}`)
+}
+
 const clearFilters = () => {
     selectedSize.value = null
     selectedGender.value = null
     selectedAge.value = null
 }
-
-const GoListApplicants = (idRefAnimals) => {
-    localStorage.setItem('idDog', idRefAnimals);
-    router.push({ path: `solicitudes/${idRefAnimals}` });
-};
 
 </script>

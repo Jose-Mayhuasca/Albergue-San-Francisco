@@ -22,6 +22,14 @@ import Toast from 'primevue/toast'
 import Fluid from 'primevue/fluid'
 import Badge from 'primevue/badge'
 import OverlayBadge from 'primevue/overlaybadge'
+import Drawer from 'primevue/drawer'
+import ToggleSwitch from 'primevue/toggleswitch'
+import Checkbox from 'primevue/checkbox'
+import Select from 'primevue/select'
+import InputNumber from 'primevue/inputnumber'
+import RadioButton from 'primevue/radiobutton'
+import RadioButtonGroup from 'primevue/radiobuttongroup'
+import ConfirmPopup from 'primevue/confirmpopup'
 
 export default {
   Button,
@@ -47,4 +55,12 @@ export default {
   Fluid,
   Badge,
   OverlayBadge,
+  Drawer,
+  ToggleSwitch,
+  Checkbox,
+  Select,
+  InputNumber,
+  RadioButton,
+  RadioButtonGroup,
+  ConfirmPopup,
 }
