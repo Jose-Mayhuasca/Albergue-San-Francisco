@@ -2,7 +2,6 @@
 import Button from 'primevue/button'
 import Dialog from 'primevue/dialog'
 import InputText from 'primevue/inputtext'
-import Dropdown from 'primevue/dropdown'
 import Card from 'primevue/card'
 import Toolbar from 'primevue/toolbar'
 import DataTable from 'primevue/datatable'
@@ -20,12 +19,22 @@ import Skeleton from 'primevue/skeleton'
 import Carousel from 'primevue/carousel'
 import FileUpload from 'primevue/fileupload'
 import Toast from 'primevue/toast'
+import Fluid from 'primevue/fluid'
+import Badge from 'primevue/badge'
+import OverlayBadge from 'primevue/overlaybadge'
+import Drawer from 'primevue/drawer'
+import ToggleSwitch from 'primevue/toggleswitch'
+import Checkbox from 'primevue/checkbox'
+import Select from 'primevue/select'
+import InputNumber from 'primevue/inputnumber'
+import RadioButton from 'primevue/radiobutton'
+import RadioButtonGroup from 'primevue/radiobuttongroup'
+import ConfirmPopup from 'primevue/confirmpopup'
 
 export default {
   Button,
   Dialog,
   InputText,
-  Dropdown,
   Card,
   Toolbar,
   DataTable,
@@ -43,4 +52,15 @@ export default {
   Carousel,
   FileUpload,
   Toast,
+  Fluid,
+  Badge,
+  OverlayBadge,
+  Drawer,
+  ToggleSwitch,
+  Checkbox,
+  Select,
+  InputNumber,
+  RadioButton,
+  RadioButtonGroup,
+  ConfirmPopup,
 }

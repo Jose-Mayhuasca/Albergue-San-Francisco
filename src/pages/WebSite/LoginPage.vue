@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import FormSection from '@/components/LoginSections/FormSection.vue'
+import FormSection from '@/components/WebSite/LoginSections/FormSection.vue'
 </script>
 
 <template>

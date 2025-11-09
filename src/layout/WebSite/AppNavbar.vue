@@ -10,22 +10,46 @@
     </Section>
     <Section v-else class="sectionNavbar">
         <div class="containerNavbar">
-            <Menubar :model="desktopOptions">
-                <template #start>
-                    <h6>San Francisco Logo</h6>
-                </template>
-                <template #end>
-                    <div class="containerLogin" @click="router.push('/login')">
-                        <i class="pi pi-user"></i>
-                        <label>LOGIN</label>
-                    </div>
-                </template>
-            </Menubar>
+            <!-- Custom nav to avoid PrimeVue internal classes that block styling -->
+            <nav class="w-full flex items-center justify-between bg-black rounded-2xl p-3 px-8">
+                <!-- Start: logo -->
+                <div class="flex items-center h-10">
+                    <img src="@/assets/icons/logo.png" alt="Logo" class="logoNavbar h-10" />
+                </div>
+
+                <!-- Center: menu items -->
+                <ul class="flex items-center gap-6 list-none m-0 p-0">
+                    <template v-for="(option, idx) in desktopOptions" :key="idx">
+                        <li v-if="option.separator" class="mx-2">
+                            <!-- <div class="w-px h-6 bg-gray-600"></div> -->
+                        </li>
+                        <li v-else>
+                            <button
+                                @click="(option.command && option.command()) || (option.to && router.push(option.to))"
+                                :class="['flex items-center gap-2 px-3 py-2 rounded-md transition', option.class || '']"
+                                :style="option.style || ''"
+                            >
+                                <i v-if="option.icon" :class="option.icon + ' text-white'" aria-hidden="true"></i>
+                                <span class="text-white">{{ option.label }}</span>
+                            </button>
+                        </li>
+                    </template>
+                </ul>
+
+                <!-- End: login icon -->
+                <div class="containerLogin cursor-pointer" @click="router.push('/login')">
+                    <i class="ri-bard-fill text-white"></i>
+                </div>
+            </nav>
         </div>
     </Section>
 </template>
 
+
 <script setup>
+import homeIcon from '@/assets/icons/home-icon.svg'
+import catalogIcon from '@/assets/icons/catalog-icon.svg'
+import loginIcon from '@/assets/icons/login-icon.svg'
 import { ref, onMounted, onUnmounted } from 'vue';
 import { useRouter } from 'vue-router'
 
@@ -51,33 +75,36 @@ onUnmounted(() => {
 const mobileOptions = ref([
     {
         id: 1, label: 'INICIO',
-        icon: '/icons/home-icon.svg',
+        icon: homeIcon,
         command: () => router.push('/')
     },
     {
         id: 2, label: 'CATALOGO',
-        icon: '/icons/catalog-icon.svg',
+        icon: catalogIcon,
         command: () => router.push('/catalogo')
     },
     {
         id: 3, label: 'LOGIN',
-        icon: '/icons/login-icon.svg',
+        icon: loginIcon,
         command: () => router.push('/login')
     }
 ])
 
 // Items para desktop
 const desktopOptions = ref([
-    {
-        label: 'INICIO',
-        icon: 'pi pi-home',
-        command: () => router.push('/')
-    },
-    {
-        label: 'CATÁLOGO',
-        icon: 'pi pi-book',
-        command: () => router.push('/catalogo')
-    }
+  {
+    label: 'Inicio',
+    icon: 'ri ri-home-fill',
+    class: 'my-menuitem',
+    command: () => router.push('/')
+  },
+  { separator: true },
+  {
+    label: 'Fichas de adopción',
+    icon: 'ri-baidu-line',
+    class: 'my-menuitem',
+    command: () => router.push('/catalogo')
+  }
 ])
 
 const active = ref(null);

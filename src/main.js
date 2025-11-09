@@ -16,11 +16,9 @@ import Componentes from './primevue'
 // PrimeIcons
 import 'primeicons/primeicons.css'
 
-// Tailwind utilities (v4) primero
-import '@/assets/tailwind.css'
+// Estilos globales personalizados
+import './assets/styles.scss';
 
-// Estilos globales personalizados (SCSS)
-import '@/assets/styles.scss'
 
 // Inicialización de la app
 const app = createApp(App)
