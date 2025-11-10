@@ -22,7 +22,7 @@
 
             <!-- 🔹 Grid -->
             <section class="flex-1">
-                <CatalogGrid :pets="filteredPets" />
+                <CatalogGrid :pets="filteredPets" @petSelected="goDetail" />
             </section>
         </div>
     </div>
@@ -31,6 +31,7 @@
 
 <script setup>
 import { ref, computed, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 import CatalogFilter from '@/components/WebSite/HomeSections/CatalogFilter.vue'
 import CatalogGrid from '@/components/WebSite/HomeSections/CatalogGrid.vue'
 import AppFooter from '@/layout/WebSite/AppFooter.vue'
@@ -38,6 +39,8 @@ import CatalogService from '@/services/CatalogServices/CatalogService.js'
 
 const catalogService = new CatalogService()
 const oListPets = ref([])
+const router = useRouter()
+
 
 onMounted(() => {
     Initialize()
@@ -88,6 +91,14 @@ const filteredPets = computed(() => {
         return matchTamaño && matchGenero && matchEdad
     })
 })
+
+const goDetail = (id) => {
+    localStorage.clear();
+    localStorage.setItem('idDog', id);
+    router.push({ path: `catalogo/detalle/${id}` })
+}
+
+
 </script>
 
 <style scoped>

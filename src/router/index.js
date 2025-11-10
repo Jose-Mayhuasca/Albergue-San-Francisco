@@ -15,6 +15,7 @@ import PreselectedApplicants from '@/components/System/ApplicantsSections/Presel
 import PreselectedApplicantDetail from '@/components/System/ApplicantsSections/PreselectedApplicantDetail.vue'
 import AdoptionForm from '@/components/WebSite/CatalogSections/AdoptionForm.vue'
 import SponsorshipsPlans from '@/components/WebSite/CatalogSections/SponsorshipsPlans.vue'
+import PaymentOptions from '@/components/WebSite/CatalogSections/PaymentOptions.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -32,16 +33,20 @@ const router = createRouter({
           component: CatalogPage,
         },
         {
-          path: 'catalogo/detalle/id',
+          path: 'catalogo/detalle/:id',
           component: DogDetail,
         },
         {
-          path: 'catalogo/adoptar/id',
+          path: 'catalogo/adoptar/:id',
           component: AdoptionForm,
         },
         {
           path: 'catalogo/apadrinar',
           component: SponsorshipsPlans,
+        },
+        {
+          path: 'catalogo/apadrinar/opciones',
+          component: PaymentOptions,
         },
         {
           path: 'login',

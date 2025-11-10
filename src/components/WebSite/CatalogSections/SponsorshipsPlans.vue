@@ -3,55 +3,89 @@
         <Section class="sectionSponsorshipsPlans">
             <div class="container">
                 <div class="title">
+                    <div class="buttonback">
+                        <i class="pi pi-arrow-left" @click="goBack()" />
+                    </div>
                     <h3 class="bold">Planes de Apadrinamiento</h3>
+                    <div class="subtitle">
+                        <p>Elige un plan de apadrinamiento y ayuda a nuestros peluditos a tener una vida mejor.</p>
+                    </div>
                 </div>
-                <div class="subtitle">
-                    <p>Elige un plan de apadrinamiento y ayuda a nuestros peluditos a tener una vida mejor.</p>
-                </div>
-                //Se esta evaluando la posibilidad de agregar la opcion de mensualidad/anualidad
                 <div class="plansContainer">
-                    <Card class="cardPlan">
+                    <Card v-for="plan in plans" :key="plan.id" class="cardPlan">
                         <template #title>
-                            <h6>Basic</h6>
+                            <h6 class="bold">{{ plan.title }}</h6>
                         </template>
                         <template #content>
                             <div class="price">
-                                <h3 class="bold">$20</h3>
-                                <span>mensuales</span>
+                                <h2 class="bold">S/.{{ plan.price.toFixed(2) }}</h2>
+                                <span>{{ plan.subtitle }}</span>
                             </div>
-                            <Button label="Get Started" />
+                            <Button label="Get Started" fluid @click="goPaymentOption()" />
                             <div class="line"></div>
-                            <ul class="benefitsList">
-                                <li>Actualizaciones mensuales por correo electrónico</li>
-                                <li>Reconocimiento en nuestro sitio web</li>
-                                <li>Visitas guiadas al refugio una vez al año</li>
-                            </ul>
                             <div class="benefitsList">
-                                <div class="items">
+                                <div class="item" v-for="(benefit, index) in plan.benefits" :key="index">
                                     <i class="pi pi-check" />
-                                    <label for="benefit1">Tour guiado por el albergue</label>
-                                </div>
-                                <div class="items">
-                                    <i class="pi pi-check" />
-                                    <label for="benefit1">Tour guiado por el albergue</label>
-                                </div>
-                                <div class="items">
-                                    <i class="pi pi-check" />
-                                    <label for="benefit1">Tour guiado por el albergue</label>
+                                    <label for="benefit1">{{ benefit }}</label>
                                 </div>
                             </div>
                         </template>
                     </Card>
                 </div>
-
             </div>
         </Section>
     </div>
 </template>
 
-/* TODO:
+<script setup>
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 
-1.- Darle diseño
-2.- Diseñar la seccion metodos de pagos
+const router = useRouter();
+const idDog = localStorage.getItem('idDog');
 
-*/
+const plans = ref([
+    {
+        id: 1,
+        title: 'Basic',
+        price: 10.00,
+        subtitle: 'mensuales',
+        benefits: [
+            'Tour guiado por el albergue',
+            'Acceso a boletines mensuales',
+            'Descuentos en eventos del albergue',
+        ],
+    },
+    {
+        id: 2,
+        title: 'Premium',
+        price: 25.0,
+        subtitle: 'mensuales',
+        benefits: [
+            'Incluye todos los beneficios del plan Basic',
+            'Acceso prioritario a eventos',
+            'Certificado digital de donador',
+        ],
+    },
+    {
+        id: 3,
+        title: 'Gold',
+        price: 50.0,
+        subtitle: 'mensuales',
+        benefits: [
+            'Incluye todos los beneficios del plan Premium',
+            'Tour privado con los animales',
+            'Foto con tu mascota apadrinada',
+        ],
+    },
+])
+
+const goPaymentOption = () => {
+    router.push({ path: '/catalogo/apadrinar/opciones' });
+}
+
+const goBack = (idDog) => {
+    router.push({ path: `/catalogo/detalle/${idDog}` });
+}
+
+</script>

@@ -49,4 +49,17 @@ export default class CommonService {
     const data = await response.json()
     return { status: response.status, data }
   }
+
+  //* Get para obtener los distritos de los solicitantes
+
+  async GetDistrictsService() {
+    const response = await fetch(import.meta.env.VITE_API_URL + `/district/district`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    const data = await response.json()
+    return { status: response.status, data }
+  }
 }

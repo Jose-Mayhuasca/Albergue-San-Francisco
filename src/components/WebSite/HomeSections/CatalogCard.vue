@@ -1,7 +1,8 @@
 <template>
   <!-- Contenedor relativo con altura fija (igual que antes) -->
   <div
-    class="catalog-card relative border rounded-xl overflow-hidden shadow hover:shadow-lg transition transform hover:-translate-y-1 h-[550px]">
+    class="catalog-card relative border rounded-xl overflow-hidden shadow hover:shadow-lg transition transform hover:-translate-y-1 h-[550px] cursor-pointer"
+    @click.stop="$emit('click')">
     <!-- Imagen de fondo que ocupa todo el contenedor -->
     <img :src="pet.imagen || require('@/assets/img/dog_card.jpg')" :alt="pet.nombre"
       class="absolute inset-0 w-full h-full object-cover" />
