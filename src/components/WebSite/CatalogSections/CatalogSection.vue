@@ -30,31 +30,38 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import CatalogFilter from '@/components/WebSite/HomeSections/CatalogFilter.vue'
 import CatalogGrid from '@/components/WebSite/HomeSections/CatalogGrid.vue'
-import dogCard from '@/assets/img/dog_card.jpg'
 import AppFooter from '@/layout/WebSite/AppFooter.vue'
+import CatalogService from '@/services/CatalogServices/CatalogService.js'
 
-// 🐾 Datos de ejemplo (dog_card como imagen temporal)
-const pets = ref([
-    { id: 1, nombre: 'Luna', genero: 'Hembra', edad: 0.5, tamaño: 'Pequeño', imagen: dogCard },
-    { id: 2, nombre: 'Rocky', genero: 'Macho', edad: 2, tamaño: 'Mediano', imagen: dogCard },
-    { id: 3, nombre: 'Max', genero: 'Macho', edad: 4, tamaño: 'Grande', imagen: dogCard },
-    { id: 4, nombre: 'Nina', genero: 'Hembra', edad: 1.5, tamaño: 'Mediano', imagen: dogCard },
-    { id: 5, nombre: 'Toby', genero: 'Macho', edad: 0.8, tamaño: 'Pequeño', imagen: dogCard },
-    { id: 6, nombre: 'Bella', genero: 'Hembra', edad: 3, tamaño: 'Grande', imagen: dogCard },
-    { id: 7, nombre: 'Charlie', genero: 'Macho', edad: 5, tamaño: 'Grande', imagen: dogCard },
-    { id: 8, nombre: 'Molly', genero: 'Hembra', edad: 2.5, tamaño: 'Mediano', imagen: dogCard },
-    { id: 9, nombre: 'Daisy', genero: 'Hembra', edad: 0.3, tamaño: 'Pequeño', imagen: dogCard },
-    { id: 10, nombre: 'Buddy', genero: 'Macho', edad: 4.5, tamaño: 'Grande', imagen: dogCard },
-    { id: 11, nombre: 'Lucy', genero: 'Hembra', edad: 1, tamaño: 'Mediano', imagen: dogCard },
-    { id: 12, nombre: 'Jack', genero: 'Macho', edad: 3.5, tamaño: 'Grande', imagen: dogCard },
-    { id: 13, nombre: 'Sadie', genero: 'Hembra', edad: 2, tamaño: 'Mediano', imagen: dogCard },
-    { id: 14, nombre: 'Oliver', genero: 'Macho', edad: 0.9, tamaño: 'Pequeño', imagen: dogCard },
-    { id: 15, nombre: 'Chloe', genero: 'Hembra', edad: 5, tamaño: 'Grande', imagen: dogCard },
-    { id: 16, nombre: 'Zeus', genero: 'Macho', edad: 1.2, tamaño: 'Mediano', imagen: dogCard }
-])
+const catalogService = new CatalogService()
+const oListPets = ref([])
+
+onMounted(() => {
+    Initialize()
+})
+
+const Initialize = async () => {
+    const response = await catalogService.GetCatalogService();
+    if (response.status === 200) {
+        // Mapear los datos del endpoint al formato esperado por los componentes
+        oListPets.value = response.data.map(pet => ({
+            id: pet.idRefAnimals,
+            nombre: pet.animalName,
+            genero: pet.animalGenderDesc,
+            edad: pet.animalAge,
+            tamaño: pet.animalSizeDesc,
+            imagen: pet.animalImage,
+            // Mantener los datos originales para filtrado
+            animalSizeDesc: pet.animalSizeDesc,
+            animalGenderDesc: pet.animalGenderDesc,
+            animalAge: pet.animalAge
+        }));
+        console.log("Lista de perros:", oListPets.value);
+    }
+}
 
 // 🎛️ Estado de filtros
 const filters = ref({
@@ -70,14 +77,14 @@ const updateFilters = (newFilters) => {
 
 // 🧮 Lógica de filtrado
 const filteredPets = computed(() => {
-    return pets.value.filter(pet => {
-        const matchTamaño = !filters.value.tamaño || pet.tamaño === filters.value.tamaño
-        const matchGenero = !filters.value.genero || pet.genero === filters.value.genero
+    return oListPets.value.filter(pet => {
+        const matchTamaño = !filters.value.tamaño || pet.animalSizeDesc === filters.value.tamaño
+        const matchGenero = !filters.value.genero || pet.animalGenderDesc === filters.value.genero
         const matchEdad =
             !filters.value.edad ||
-            (filters.value.edad === 'Cachorro' && pet.edad < 1) ||
-            (filters.value.edad === '1-3' && pet.edad >= 1 && pet.edad <= 3) ||
-            (filters.value.edad === 'Adulto' && pet.edad > 3)
+            (filters.value.edad === 'Cachorro' && pet.animalAge < 1) ||
+            (filters.value.edad === '1-3' && pet.animalAge >= 1 && pet.animalAge <= 3) ||
+            (filters.value.edad === 'Adulto' && pet.animalAge > 3)
         return matchTamaño && matchGenero && matchEdad
     })
 })
@@ -87,8 +94,8 @@ const filteredPets = computed(() => {
 .full-bleed {
     /* Break out of a centered container and occupy the full viewport width */
     position: relative;
-    left: 50%;
-    right: 50%;
+    /* left: 50%;
+    right: 50%; */
     margin-left: -50vw;
     margin-right: -50vw;
     width: 100vw;

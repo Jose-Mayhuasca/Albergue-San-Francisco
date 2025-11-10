@@ -1676,3 +1676,204 @@ h6 {
     }
   }
 }
+
+.sectionDogDetail {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 1rem 0 6rem 0;
+
+  .container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    .containerPhoto {
+      .photo {
+        // background-color: #000;
+        .item {
+          background-color: #000;
+        }
+      }
+    }
+
+    .cardData {
+      width: 100%;
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      border: solid 1px black;
+
+      .p-card-body {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem !important;
+        padding: 1rem !important;
+
+        .p-card-content {
+          display: flex;
+          flex-direction: column;
+          gap: 1.5rem !important;
+
+          .standarContainer {
+            width: 100%;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+
+            .containerItems {
+              width: 100%;
+              height: auto;
+              display: flex;
+              flex-wrap: wrap;
+              gap: 0.5rem;
+
+              .item {
+                padding: 0.25rem 0.5rem;
+                background-color: var(--color-light-gray);
+                border: solid 1px black;
+                border-radius: 0.5rem;
+                font-size: 0.875rem;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .actionsContainer {
+      width: 100%;
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+
+      .p-button {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.sectionAdoptionForm {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  margin-top: 1.5rem;
+  margin-bottom: 6rem;
+
+  .container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+
+    .containerTitle {
+      .title {
+        text-align: center;
+      }
+    }
+    .containerSubtitle {
+      text-align: center;
+    }
+
+    .containerForm {
+      width: 100%;
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      border: solid 1px black;
+      padding: 1rem;
+      border-radius: 0.5rem;
+
+      .form {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+
+        .sameField {
+          width: 100%;
+          height: auto;
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 0.5rem;
+        }
+
+        .field {
+          width: 100%;
+          height: auto;
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+        }
+      }
+
+      .evidence {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        // .images {
+        //   width: 100%;
+        //   display: flex;
+        //   flex-direction: row;
+        //   gap: 0.5rem;
+
+        //   .image {
+        //     width: 100%;
+        //     height: auto;
+        //     aspect-ratio: 1/1;
+        //     background-color: #000;
+        //     background-size: cover;
+        //     background-position: center;
+        //   }
+        // }
+      }
+
+      .permissions {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        .standarContainer {
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+
+          .toggleContainer {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+          }
+        }
+      }
+    }
+
+    .actions {
+      width: 100%;
+      height: auto;
+      display: flex;
+      gap: 0.75rem;
+    }
+  }
+}
