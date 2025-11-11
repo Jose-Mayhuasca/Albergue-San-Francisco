@@ -75,7 +75,7 @@
                         <Button label="Apadrinar" icon="pi pi-crown" @click="goPlans()" />
                     </div>
                 </div>
-                <div class="viewDesktop">
+                <div class="viewDesktop" v-show="viewDesktop">
                     <div class="containerPhoto">
                         <!-- <Skeleton fluid height="auto" :style="{ aspectRatio: '1 / 1' }" class="item" /> -->
                         <Card class="photo" :style="{
