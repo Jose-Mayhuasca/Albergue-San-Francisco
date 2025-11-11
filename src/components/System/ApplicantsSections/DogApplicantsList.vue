@@ -1,5 +1,5 @@
 <template>
-    <div class="page">
+    <div class="pageSystem">
         <section class="sectionDogApplicantsList">
             <div class="container" v-show="bCargando">
                 <div class="title">

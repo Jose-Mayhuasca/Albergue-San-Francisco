@@ -1,5 +1,5 @@
 <template>
-    <div class="page">
+    <div class="pageSystem">
         <section class="sectionPreselectedApplicants">
             <div class="container">
                 <div class="title">

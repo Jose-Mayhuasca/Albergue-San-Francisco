@@ -1,5 +1,5 @@
 <template>
-    <div class="page">
+    <div class="pageSystem">
         <section class="sectionDogNew">
             <div class="container">
                 <!-- <div class="title">
@@ -59,7 +59,8 @@
                     <div class="containerPhoto space">
                         <label>Adjuntar foto</label>
                         <FileUpload mode="advanced" :auto="false" :multiple="false" :maxFileCount="1" accept="image/*"
-                            maxFileSize="5242880" @select="enArchivoSeleccionado" @clear="clearImage">
+                            maxFileSize="5242880" @select="enArchivoSeleccionado" @clear="clearImage"
+                            :showUploadButton="false" :showCancelButton="false" chooseLabel="Seleccionar foto">
                             <template #empty>
                                 <span>Selecciona o arrastra una foto aquí.</span>
                             </template>

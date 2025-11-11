@@ -48,7 +48,7 @@ const plans = ref([
     {
         id: 1,
         title: 'Basic',
-        price: 10.00,
+        price: 10.0,
         subtitle: 'mensuales',
         benefits: [
             'Tour guiado por el albergue',
@@ -59,7 +59,7 @@ const plans = ref([
     {
         id: 2,
         title: 'Premium',
-        price: 25.0,
+        price: 50.0,
         subtitle: 'mensuales',
         benefits: [
             'Incluye todos los beneficios del plan Basic',
@@ -70,7 +70,7 @@ const plans = ref([
     {
         id: 3,
         title: 'Gold',
-        price: 50.0,
+        price: 110.0,
         subtitle: 'mensuales',
         benefits: [
             'Incluye todos los beneficios del plan Premium',

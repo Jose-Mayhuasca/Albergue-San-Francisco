@@ -3,7 +3,7 @@ import CatalogDashboard from '@/components/System/CatalogSections/CatalogDashboa
 </script>
 
 <template>
-    <div class="page">
+    <div class="pageSystem">
         <CatalogDashboard />
     </div>
 </template>

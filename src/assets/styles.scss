@@ -216,6 +216,10 @@ h6 {
   gap: 1rem;
   padding: 1rem;
 
+  @media (min-width: $bp-tablet) {
+    width: 40%;
+  }
+
   .p-dialog-header {
     padding: 0;
     .p-dialog-close-button {
@@ -245,6 +249,10 @@ h6 {
   display: flex;
   gap: 1rem;
   padding: 1rem;
+
+  @media (min-width: $bp-tablet) {
+    width: 40%;
+  }
 
   .p-dialog-header {
     padding: 0;
@@ -297,7 +305,7 @@ h6 {
   border-color: rgb(255, 0, 0) !important;
 }
 
-.viewpage {
+.viewpageSystem {
   width: auto;
   height: auto;
   margin: 0 1rem;
@@ -309,6 +317,24 @@ h6 {
     display: flex;
     flex-direction: row;
     justify-content: end;
+    gap: 2rem;
+    position: relative;
+  }
+}
+
+.viewpage {
+  width: auto;
+  height: auto;
+  margin: 0 1rem;
+  position: relative;
+
+  @media (min-width: $bp-tablet) {
+    // width: 100%;
+    height: 100%;
+    margin: 0 7.5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
     gap: 2rem;
     position: relative;
   }
@@ -743,6 +769,22 @@ h6 {
   }
 }
 
+.pageSystem {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  gap: 4rem;
+  // overflow: hidden;
+
+  @media (min-width: $bp-tablet) {
+    width: calc(90% - 2rem);
+    right: 0;
+  }
+}
+
 .page {
   width: 100%;
   height: auto;
@@ -751,12 +793,12 @@ h6 {
   justify-content: start;
   align-items: center;
   gap: 4rem;
-  overflow: hidden;
+  // overflow: hidden;
 
   @media (min-width: $bp-tablet) {
-    width: calc(90% - 2rem);
-    // height: 100vh;
-    right: 0;
+    height: auto;
+    // width: calc(90% - 2rem);
+    // right: 0;
   }
 }
 
@@ -873,6 +915,12 @@ h6 {
   margin-top: 6rem;
   margin-bottom: 6rem;
 
+  @media (min-width: $bp-tablet) {
+    height: auto;
+    align-items: start;
+    margin-bottom: 1.5rem;
+  }
+
   .container {
     width: 100%;
     height: auto;
@@ -882,11 +930,21 @@ h6 {
     align-items: start;
     gap: 1.5rem;
 
+    @media (min-width: $bp-tablet) {
+      margin-bottom: 1.5rem;
+    }
+
     .containerNavigation {
       width: 100%;
       height: auto;
       display: flex;
       gap: 0.5rem;
+
+      @media (min-width: $bp-tablet) {
+        .p-iconfield {
+          width: 100%;
+        }
+      }
 
       .p-inputtext {
         width: 100%;
@@ -902,40 +960,6 @@ h6 {
           font-size: 1.5rem;
         }
       }
-
-      // .filterDialog {
-      //   // Cambiar fondo del cuadro
-      //   .p-dialog-content {
-      //     background-color: #f8f9fa;
-      //   }
-
-      //   // Cambiar título
-      //   .p-dialog-header {
-      //     background-color: #004085;
-      //     color: white;
-      //     font-weight: bold;
-      //   }
-
-      //   // Radio buttons personalizados
-      //   .p-radiobutton {
-      //     margin-right: 0.5rem;
-
-      //     .p-radiobutton-box {
-      //       border-color: #004085;
-      //     }
-
-      //     &.p-highlight .p-radiobutton-box {
-      //       background-color: #004085;
-      //       border-color: #004085;
-      //     }
-      //   }
-
-      //   // Etiquetas
-      //   label {
-      //     font-weight: 600;
-      //     color: #333;
-      //   }
-      // }
     }
 
     .containerCards {
@@ -944,6 +968,10 @@ h6 {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 0.75rem;
+
+      @media (min-width: $bp-tablet) {
+        grid-template-columns: repeat(4, 1fr);
+      }
 
       .cardCatalog {
         width: 100%;
@@ -1002,6 +1030,10 @@ h6 {
   margin-top: 6rem;
   margin-bottom: 6rem;
 
+  @media (min-width: $bp-tablet) {
+    width: 80%;
+  }
+
   .container {
     width: 100%;
     height: auto;
@@ -1010,6 +1042,10 @@ h6 {
     justify-content: center;
     align-items: center;
     gap: 1.5rem;
+
+    @media (min-width: $bp-tablet) {
+      margin-bottom: 1.5rem;
+    }
 
     .content {
       width: 100%;
@@ -1256,7 +1292,7 @@ h6 {
       gap: 1.5rem;
 
       @media (min-width: $bp-tablet) {
-        height: calc(100% - 5rem);
+        // height: calc(100% - 5rem);
         flex-direction: row;
         align-items: start;
         // overflow-y: hidden;
@@ -1425,45 +1461,69 @@ h6 {
       }
     }
 
-    .evidence {
+    .viewPhone {
       width: 100%;
       height: auto;
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      align-items: start;
-      gap: 0.5rem;
+      gap: 1rem;
 
-      .images {
+      .evidence {
         width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: start;
+        gap: 0.5rem;
 
-        @media (min-width: $bp-tablet) {
-          display: flex;
-          flex-direction: row;
-          gap: 0.5rem;
-        }
-
-        .image {
+        .images {
           width: 100%;
-          height: auto;
-          aspect-ratio: 1/1;
-          background-size: cover;
-          background-position: center;
+
           @media (min-width: $bp-tablet) {
-            background-color: #000;
+            display: flex;
+            flex-direction: row;
+            gap: 0.5rem;
+          }
+
+          .image {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1/1;
+            background-size: cover;
+            background-position: center;
+            @media (min-width: $bp-tablet) {
+              background-color: #000;
+            }
           }
         }
       }
-    }
 
-    .reminder {
-      width: 100%;
-      height: auto;
-
-      .p-card-footer {
+      .reminder {
         width: 100%;
+        height: auto;
+
+        .p-card-footer {
+          width: 100%;
+          display: flex;
+          gap: 0.75rem;
+
+          .p-button {
+            width: 100%;
+          }
+        }
+      }
+
+      .actions {
+        width: 100%;
+        height: auto;
+        // margin-bottom: 5rem;
         display: flex;
         gap: 0.75rem;
+
+        @media (min-width: $bp-tablet) {
+          margin-bottom: 1.5rem;
+        }
 
         .p-button {
           width: 100%;
@@ -1471,19 +1531,82 @@ h6 {
       }
     }
 
-    .actions {
+    .viewDesktop {
       width: 100%;
       height: auto;
-      // margin-bottom: 5rem;
       display: flex;
-      gap: 0.75rem;
+      flex-direction: row;
+      gap: 1rem;
 
-      @media (min-width: $bp-tablet) {
-        margin-bottom: 1.5rem;
+      .evidence {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: start;
+        gap: 0.5rem;
+
+        .images {
+          width: 100%;
+
+          @media (min-width: $bp-tablet) {
+            display: flex;
+            flex-direction: row;
+            gap: 0.5rem;
+          }
+
+          .image {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1/1;
+            background-size: cover;
+            background-position: center;
+            @media (min-width: $bp-tablet) {
+              background-color: #000;
+            }
+          }
+        }
       }
 
-      .p-button {
+      .containerColumn {
         width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        padding-top: 2.5rem;
+
+        .reminder {
+          width: 100%;
+          height: auto;
+
+          .p-card-footer {
+            width: 100%;
+            display: flex;
+            gap: 0.75rem;
+
+            .p-button {
+              width: 100%;
+            }
+          }
+        }
+
+        .actions {
+          width: 100%;
+          height: auto;
+          // margin-bottom: 5rem;
+          display: flex;
+          gap: 0.75rem;
+
+          @media (min-width: $bp-tablet) {
+            margin-bottom: 1.5rem;
+          }
+
+          .p-button {
+            width: 100%;
+          }
+        }
       }
     }
   }
@@ -1623,55 +1746,134 @@ h6 {
       }
     }
 
-    .evidence {
+    .viewPhone {
       width: 100%;
       height: auto;
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      align-items: start;
-      gap: 0.5rem;
+      gap: 1rem;
 
-      .images {
+      .evidence {
         width: 100%;
+        height: auto;
         display: flex;
         flex-direction: column;
+        justify-content: center;
+        align-items: start;
         gap: 0.5rem;
 
-        @media (min-width: $bp-tablet) {
-          flex-direction: row;
-        }
-
-        .image {
+        .images {
           width: 100%;
-          height: auto;
-          aspect-ratio: 1/1;
-          background-color: #000;
-          background-size: cover;
-          background-position: center;
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
 
           @media (min-width: $bp-tablet) {
-            width: 50%;
+            flex-direction: row;
+          }
+
+          .image {
+            width: 100%;
             height: auto;
             aspect-ratio: 1/1;
+            background-color: #000;
+            background-size: cover;
+            background-position: center;
+
+            @media (min-width: $bp-tablet) {
+              width: 50%;
+              height: auto;
+              aspect-ratio: 1/1;
+            }
           }
+        }
+      }
+
+      .reminder {
+        width: 100%;
+        height: auto;
+      }
+
+      .actions {
+        width: 100%;
+        height: auto;
+        display: flex;
+        margin-bottom: 1rem;
+
+        .p-button {
+          width: 100%;
         }
       }
     }
 
-    .reminder {
-      width: 100%;
-      height: auto;
-    }
-
-    .actions {
+    .viewDesktop {
       width: 100%;
       height: auto;
       display: flex;
-      margin-bottom: 2rem;
+      flex-direction: row;
+      gap: 1rem;
 
-      .p-button {
+      .evidence {
         width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: start;
+        gap: 0.5rem;
+        grid-row: span 2;
+
+        .images {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+
+          @media (min-width: $bp-tablet) {
+            flex-direction: row;
+          }
+
+          .image {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1/1;
+            background-color: #000;
+            background-size: cover;
+            background-position: center;
+
+            @media (min-width: $bp-tablet) {
+              // width: 50%;
+              height: auto;
+              aspect-ratio: 1/1;
+            }
+          }
+        }
+      }
+
+      .containerColumn {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        padding-top: 2.5rem;
+        gap: 2rem;
+
+        .reminder {
+          width: 100%;
+          height: auto;
+        }
+
+        .actions {
+          width: 100%;
+          height: auto;
+          display: flex;
+          margin-bottom: 1rem;
+
+          .p-button {
+            width: 100%;
+          }
+        }
       }
     }
   }
@@ -1682,7 +1884,13 @@ h6 {
   height: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
   margin: 1rem 0 6rem 0;
+
+  @media (min-width: $bp-tablet) {
+    margin: 8rem 0 3rem 0;
+    height: auto;
+  }
 
   .container {
     width: 100%;
@@ -1691,103 +1899,224 @@ h6 {
     flex-direction: column;
     gap: 1.5rem;
 
-    .containerPhoto {
-      .photo {
-        width: 100%;
-        height: auto;
-        aspect-ratio: 1/1;
-        background-size: cover;
-        background-position: center;
-
-        .p-card-body {
-          padding: 0.25rem !important;
-          .buttonBack {
-            width: 2rem;
-            height: 2rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #000;
-            border-radius: 8px;
-
-            i {
-              font-size: 1rem;
-              color: var(--color-primary);
-            }
-          }
-        }
-      }
-    }
-
-    .cardData {
+    .viewPhone {
       width: 100%;
       height: auto;
       display: flex;
       flex-direction: column;
       gap: 1.5rem;
-      border: solid 1px black;
 
-      .p-card-body {
+      .containerPhoto {
+        .photo {
+          width: 100%;
+          height: auto;
+          aspect-ratio: 1/1;
+          background-size: cover;
+          background-position: center;
+
+          .p-card-body {
+            padding: 0.25rem !important;
+            .buttonBack {
+              width: 2rem;
+              height: 2rem;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              background-color: #000;
+              border-radius: 8px;
+
+              i {
+                font-size: 1rem;
+                color: var(--color-primary);
+              }
+            }
+          }
+        }
+      }
+
+      .cardData {
         width: 100%;
         height: auto;
         display: flex;
         flex-direction: column;
-        gap: 1.5rem !important;
-        padding: 1rem !important;
+        gap: 1.5rem;
+        border: solid 1px black;
 
-        .p-card-content {
+        .p-card-body {
+          width: 100%;
+          height: auto;
           display: flex;
           flex-direction: column;
           gap: 1.5rem !important;
+          padding: 1rem !important;
 
-          .standarContainer {
-            width: 100%;
-            height: auto;
+          .p-card-content {
             display: flex;
             flex-direction: column;
-            gap: 0.75rem;
+            gap: 1.5rem !important;
 
-            .containerItems {
+            .standarContainer {
               width: 100%;
               height: auto;
               display: flex;
-              flex-wrap: wrap;
-              gap: 0.5rem;
+              flex-direction: column;
+              gap: 0.75rem;
 
-              .item {
-                padding: 0.25rem 0.5rem;
-                background-color: var(--color-light-gray);
-                border: solid 1px black;
-                border-radius: 0.5rem;
-                font-size: 0.875rem;
-                width: auto;
+              .containerItems {
+                width: 100%;
                 height: auto;
                 display: flex;
-                justify-content: center;
-                align-self: center;
-                gap: 0.25rem;
+                flex-wrap: wrap;
+                gap: 0.5rem;
 
-                i {
-                  // width: 1.5rem;
-                  // height: 1.5rem;
-                  font-size: 1.5rem;
+                .item {
+                  padding: 0.25rem 0.5rem;
+                  background-color: var(--color-light-gray);
+                  border: solid 1px black;
+                  border-radius: 0.5rem;
+                  font-size: 0.875rem;
+                  width: auto;
+                  height: auto;
+                  display: flex;
+                  justify-content: center;
+                  align-self: center;
+                  gap: 0.25rem;
+
+                  i {
+                    // width: 1.5rem;
+                    // height: 1.5rem;
+                    font-size: 1.5rem;
+                  }
                 }
               }
             }
           }
         }
       }
+
+      .actionsContainer {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+
+        .p-button {
+          width: 100%;
+        }
+      }
     }
 
-    .actionsContainer {
+    .viewDesktop {
       width: 100%;
       height: auto;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+      gap: 1.5rem;
 
-      .p-button {
+      .containerPhoto {
+        grid-row: span 3 / span 3;
+        .photo {
+          width: 100%;
+          height: auto;
+          aspect-ratio: 1/1;
+          background-size: cover;
+          background-position: center;
+
+          .p-card-body {
+            padding: 0.25rem !important;
+            .buttonBack {
+              width: 2rem;
+              height: 2rem;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              background-color: #000;
+              border-radius: 8px;
+
+              i {
+                font-size: 1rem;
+                color: var(--color-primary);
+              }
+            }
+          }
+        }
+      }
+
+      .cardData {
         width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        border: solid 1px black;
+        grid-row: span 2 / span 2;
+
+        .p-card-body {
+          width: 100%;
+          height: auto;
+          display: flex;
+          flex-direction: column;
+          gap: 1.5rem !important;
+          padding: 1rem !important;
+
+          .p-card-content {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem !important;
+
+            .standarContainer {
+              width: 100%;
+              height: auto;
+              display: flex;
+              flex-direction: column;
+              gap: 0.75rem;
+
+              .containerItems {
+                width: 100%;
+                height: auto;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+
+                .item {
+                  padding: 0.25rem 0.5rem;
+                  background-color: var(--color-light-gray);
+                  border: solid 1px black;
+                  border-radius: 0.5rem;
+                  font-size: 0.875rem;
+                  width: auto;
+                  height: auto;
+                  display: flex;
+                  justify-content: center;
+                  align-self: center;
+                  gap: 0.25rem;
+
+                  i {
+                    // width: 1.5rem;
+                    // height: 1.5rem;
+                    font-size: 1.5rem;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .actionsContainer {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        grid-column-start: 2;
+        grid-row-start: 3;
+
+        .p-button {
+          width: 100%;
+        }
       }
     }
   }
@@ -1799,9 +2128,15 @@ h6 {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: start;
+  align-items: center;
   margin-top: 1.5rem;
   margin-bottom: 6rem;
+
+  @media (min-width: $bp-tablet) {
+    margin: 8rem 0 3rem 0;
+    width: 90%;
+    height: auto;
+  }
 
   .container {
     width: 100%;
@@ -1919,6 +2254,12 @@ h6 {
   margin-top: 1.5rem;
   margin-bottom: 6rem;
 
+  @media (min-width: $bp-tablet) {
+    margin: 8rem 0 3rem 0;
+    width: 90%;
+    height: auto;
+  }
+
   .container {
     width: 100%;
     height: auto;
@@ -1962,11 +2303,28 @@ h6 {
       display: flex;
       flex-direction: column;
       gap: 1.25rem;
-      // border: solid 1px black;
+
+      @media (min-width: $bp-mobile) and (max-width: $bp-tablet) {
+        width: 80%;
+      }
+
+      @media (min-width: $bp-tablet) and (max-width: $bp-desktop) {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      @media (min-width: $bp-desktop) {
+        flex-direction: row;
+      }
 
       .cardPlan {
         border: solid 1px black;
         background-color: #e2e2e8;
+
+        @media (min-width: $bp-tablet) {
+          width: 100%;
+        }
+
         .p-card-body {
           padding: 1rem !important;
           gap: 1rem !important;
@@ -2027,6 +2385,12 @@ h6 {
   align-items: center;
   margin-top: 1.5rem;
   margin-bottom: 6rem;
+
+  @media (min-width: $bp-tablet) {
+    margin: 8rem 0 3rem 0;
+    width: 100%;
+    height: auto;
+  }
 
   .container {
     width: 100%;
@@ -2124,10 +2488,20 @@ h6 {
         gap: 0.5rem;
         text-align: center;
 
+        // @media (min-width: $bp-mobile) and (max-width: $bp-tablet) {
+        //   gap: 3rem;
+        // }
+
+        @media (min-width: $bp-mobile) {
+          gap: 3rem;
+        }
+
         .containerLogo {
           width: auto;
           height: 100%;
           display: flex;
+          flex-direction: column;
+
           .logo {
             width: 4rem;
             height: auto;
