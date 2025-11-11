@@ -1,5 +1,5 @@
 <template>
-    <div class="page">
+    <div class="pageSystem">
         <Section class="sectionApplicantDetail">
             <div class="container" v-show="bCargando">
                 <div class="title">
@@ -74,37 +74,76 @@
                     </div>
                     <div class="line"></div>
                 </div>
-                <div class="evidence">
-                    <h6>Fotos Adjuntas</h6>
-                    <div class="images">
-                        <Card class="image" :style="{
-                            backgroundImage: `url(${oApplicant.urlImage})`
-                        }" />
-                        <!-- <Card class="image" /> -->
+
+                <div v-show="!viewDesktop" class="viewPhone">
+                    <div class="evidence">
+                        <h6>Fotos Adjuntas</h6>
+                        <div class="images">
+                            <Card class="image" :style="{
+                                backgroundImage: `url(${oApplicant.urlImage})`
+                            }" />
+                            <!-- <Card class="image" /> -->
+                        </div>
+                    </div>
+                    <div class="reminder">
+                        <Card>
+                            <template #title>
+                                <h6>Recordatorio</h6>
+                            </template>
+                            <template #content>
+                                <Textarea rows="4" fluid auto-resize placeholder="Escribe un recordatorio..."
+                                    v-model="oApplicant.msgAdmin" />
+                            </template>
+                            <template #footer>
+                                <Button label="Guardar" icon="pi pi-save" iconPos="right" class="primary"
+                                    @click="updateReminder()" />
+                                <Button label="Descartar" icon="pi pi-times" iconPos="right" class="secondary"
+                                    @click="discardUpdateReminder()" />
+                            </template>
+                        </Card>
+                    </div>
+                    <div class="actions">
+                        <Button label="Aprobar" icon="pi pi-check" iconPos="right" class="success"
+                            @click="acceptApplicant()" />
+                        <Button label="Rechazar" icon="pi pi-times" iconPos="right" class="danger"
+                            @click="rejectApplicant()" />
                     </div>
                 </div>
-                <div class="reminder">
-                    <Card>
-                        <template #title>
-                            <h6>Recordatorio</h6>
-                        </template>
-                        <template #content>
-                            <Textarea rows="4" fluid auto-resize placeholder="Escribe un recordatorio..."
-                                v-model="oApplicant.msgAdmin" />
-                        </template>
-                        <template #footer>
-                            <Button label="Guardar" icon="pi pi-save" iconPos="right" class="primary"
-                                @click="updateReminder()" />
-                            <Button label="Descartar" icon="pi pi-times" iconPos="right" class="secondary"
-                                @click="discardUpdateReminder()" />
-                        </template>
-                    </Card>
-                </div>
-                <div class="actions">
-                    <Button label="Aprobar" icon="pi pi-check" iconPos="right" class="success"
-                        @click="acceptApplicant()" />
-                    <Button label="Rechazar" icon="pi pi-times" iconPos="right" class="danger"
-                        @click="rejectApplicant()" />
+                <div v-show="viewDesktop" class="viewDesktop">
+                    <div class="evidence">
+                        <h6>Fotos Adjuntas</h6>
+                        <div class="images">
+                            <Card class="image" :style="{
+                                backgroundImage: `url(${oApplicant.urlImage})`
+                            }" />
+                            <!-- <Card class="image" /> -->
+                        </div>
+                    </div>
+                    <div class="containerColumn">
+                        <div class="reminder">
+                            <Card>
+                                <template #title>
+                                    <h6>Recordatorio</h6>
+                                </template>
+                                <template #content>
+                                    <Textarea rows="4" fluid auto-resize placeholder="Escribe un recordatorio..."
+                                        v-model="oApplicant.msgAdmin" />
+                                </template>
+                                <template #footer>
+                                    <Button label="Guardar" icon="pi pi-save" iconPos="right" class="primary"
+                                        @click="updateReminder()" />
+                                    <Button label="Descartar" icon="pi pi-times" iconPos="right" class="secondary"
+                                        @click="discardUpdateReminder()" />
+                                </template>
+                            </Card>
+                        </div>
+                        <div class="actions">
+                            <Button label="Aprobar" icon="pi pi-check" iconPos="right" class="success"
+                                @click="acceptApplicant()" />
+                            <Button label="Rechazar" icon="pi pi-times" iconPos="right" class="danger"
+                                @click="rejectApplicant()" />
+                        </div>
+                    </div>
                 </div>
             </div>
             <Toast />
@@ -113,7 +152,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
 import ApplicantService from '@/services/ApplicantServices/ApplicantService'
 import { useToast } from 'primevue/usetoast';
@@ -124,8 +163,21 @@ const applicantService = new ApplicantService()
 const oApplicant = ref({})
 const bCargando = ref(false)
 
+const viewDesktop = ref(false);
+
+const checkScreenSize = () => {
+    viewDesktop.value = window.innerWidth > 480;
+}
+
 onMounted(async () => {
     await Initialize();
+    checkScreenSize(); // Verificar tamaño inicial
+    window.addEventListener('resize', checkScreenSize);
+})
+
+// Limpiar el event listener cuando el componente se desmonte
+onUnmounted(() => {
+    window.removeEventListener('resize', checkScreenSize);
 })
 
 const Initialize = async () => {

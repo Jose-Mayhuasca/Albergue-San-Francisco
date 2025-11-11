@@ -1,5 +1,5 @@
 <template>
-    <div class="page">
+    <div class="pageSystem">
         <Section class="sectionPreselectedApplicantDetail">
             <div class="container" v-show="bCargando">
                 <div class="title">
@@ -83,29 +83,59 @@
                     </div>
                     <div class="line"></div>
                 </div>
-                <div class="evidence">
-                    <h6>Fotos Adjuntas</h6>
-                    <div class="images">
-                        <Card class="image" :style="{
-                            backgroundImage: `url(${oApplicantDetails.urlImage})`
-                        }" />
+                <div v-show="!viewDesktop" class="viewPhone">
+                    <div class="evidence">
+                        <h6>Fotos Adjuntas</h6>
+                        <div class="images">
+                            <Card class="image" :style="{
+                                backgroundImage: `url(${oApplicantDetails.urlImage})`
+                            }" />
+                        </div>
+                    </div>
+                    <div class="reminder">
+                        <Card>
+                            <template #title>
+                                <h6>Recordatorio</h6>
+                            </template>
+                            <template #content>
+                                <Textarea rows="4" fluid auto-resize disabled
+                                    placeholder="Comentarios guardados se muestran aquí ..."
+                                    v-model="oApplicantDetails.msgAdmin" />
+                            </template>
+                        </Card>
+                    </div>
+                    <div class="actions">
+                        <Button label="Eliminar Solicitud" icon="pi pi-times" iconPos="right" class="danger"
+                            @click="deleteApplicant()" />
                     </div>
                 </div>
-                <div class="reminder">
-                    <Card>
-                        <template #title>
-                            <h6>Recordatorio</h6>
-                        </template>
-                        <template #content>
-                            <Textarea rows="4" fluid auto-resize disabled
-                                placeholder="Comentarios guardados se muestran aquí ..."
-                                v-model="oApplicantDetails.msgAdmin" />
-                        </template>
-                    </Card>
-                </div>
-                <div class="actions">
-                    <Button label="Eliminar Solicitud" icon="pi pi-times" iconPos="right" class="danger"
-                        @click="deleteApplicant()" />
+                <div v-show="viewDesktop" class="viewDesktop">
+                    <div class="evidence">
+                        <h6>Fotos Adjuntas</h6>
+                        <div class="images">
+                            <Card class="image" :style="{
+                                backgroundImage: `url(${oApplicantDetails.urlImage})`
+                            }" />
+                        </div>
+                    </div>
+                    <div class="containerColumn">
+                        <div class="reminder">
+                            <Card>
+                                <template #title>
+                                    <h6>Recordatorio</h6>
+                                </template>
+                                <template #content>
+                                    <Textarea rows="4" fluid auto-resize disabled
+                                        placeholder="Comentarios guardados se muestran aquí ..."
+                                        v-model="oApplicantDetails.msgAdmin" />
+                                </template>
+                            </Card>
+                        </div>
+                        <div class="actions">
+                            <Button label="Eliminar Solicitud" icon="pi pi-times" iconPos="right" class="danger"
+                                @click="deleteApplicant()" />
+                        </div>
+                    </div>
                 </div>
             </div>
             <Toast />
@@ -114,7 +144,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
 import ApplicantPreApprovedService from '@/services/ApplicantServices/ApplicantPreApprovedService.js'
 import { useToast } from 'primevue/usetoast';
@@ -125,8 +155,21 @@ const applicantPreApprovedService = new ApplicantPreApprovedService()
 const oApplicantDetails = ref({})
 const bCargando = ref(false)
 
+const viewDesktop = ref(false);
+
+const checkScreenSize = () => {
+    viewDesktop.value = window.innerWidth > 480;
+}
+
 onMounted(() => {
     Initialize();
+    checkScreenSize(); // Verificar tamaño inicial
+    window.addEventListener('resize', checkScreenSize);
+})
+
+// Limpiar el event listener cuando el componente se desmonte
+onUnmounted(() => {
+    window.removeEventListener('resize', checkScreenSize);
 })
 
 const Initialize = async () => {

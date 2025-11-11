@@ -75,4 +75,16 @@ export default class ApplicantService {
     const data = await response.json()
     return { status: response.status, data }
   }
+
+  // * Post para enviar solicitud de adopción
+
+  async CreateFormApplicantService(formData) {
+    const response = await fetch(import.meta.env.VITE_API_URL + '/userApp/insertUserApp', {
+      method: 'POST',
+      body: formData, // ⚠️ Importante: no agregar Content-Type manualmente
+    })
+
+    const data = await response.json()
+    return { status: response.status, data }
+  }
 }

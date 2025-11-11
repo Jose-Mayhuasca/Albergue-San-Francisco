@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import AppLayout from '@/layout/WebSite/AppLayout.vue'
 import HomePage from '@/pages/WebSite/HomePage.vue'
 import CatalogPage from '@/pages/WebSite/CatalogPage.vue'
+import DogDetail from '@/components/WebSite/CatalogSections/DogDetail.vue'
 import LoginPage from '@/pages/WebSite/LoginPage.vue'
 import AppLayout_s from '@/layout/System/AppLayout_s.vue'
 import HomePage_s from '@/pages/System/HomePage_s.vue'
@@ -12,6 +13,9 @@ import DogApplicantsList from '@/components/System/ApplicantsSections/DogApplica
 import ApplicantDetail from '@/components/System/ApplicantsSections/ApplicantDetail.vue'
 import PreselectedApplicants from '@/components/System/ApplicantsSections/PreselectedApplicants.vue'
 import PreselectedApplicantDetail from '@/components/System/ApplicantsSections/PreselectedApplicantDetail.vue'
+import AdoptionForm from '@/components/WebSite/CatalogSections/AdoptionForm.vue'
+import SponsorshipsPlans from '@/components/WebSite/CatalogSections/SponsorshipsPlans.vue'
+import PaymentOptions from '@/components/WebSite/CatalogSections/PaymentOptions.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -27,6 +31,22 @@ const router = createRouter({
         {
           path: 'catalogo',
           component: CatalogPage,
+        },
+        {
+          path: 'catalogo/detalle/:id',
+          component: DogDetail,
+        },
+        {
+          path: 'catalogo/adoptar/:id',
+          component: AdoptionForm,
+        },
+        {
+          path: 'catalogo/apadrinar',
+          component: SponsorshipsPlans,
+        },
+        {
+          path: 'catalogo/apadrinar/opciones',
+          component: PaymentOptions,
         },
         {
           path: 'login',

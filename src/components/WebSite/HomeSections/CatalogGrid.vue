@@ -7,38 +7,27 @@
     <div v-else>
       <!-- Grid de cards (paginadas) -->
       <div class="catalog-grid grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <CatalogCard v-for="pet in pagedPets" :key="pet.id" :pet="pet" />
+        <CatalogCard v-for="pet in pagedPets" :key="pet.id" :pet="pet" @click="emit('petSelected', pet.id)" />
       </div>
 
       <!-- Paginación numérica -->
       <nav v-if="totalPages > 1" class="mt-6 flex items-center justify-center">
-        <button
-          class="px-3 py-1 rounded-l-md border mr-2"
-          :class="{'bg-white text-gray-700 border-gray-300 hover:bg-gray-100': currentPage>1, 'opacity-50 cursor-not-allowed': currentPage<=1}"
-          @click="prevPage"
-          :disabled="currentPage <= 1"
-        >
+        <button class="px-3 py-1 rounded-l-md border mr-2"
+          :class="{ 'bg-white text-gray-700 border-gray-300 hover:bg-gray-100': currentPage > 1, 'opacity-50 cursor-not-allowed': currentPage <= 1 }"
+          @click="prevPage" :disabled="currentPage <= 1">
           ‹
         </button>
 
         <div class="flex gap-2">
-          <button
-            v-for="n in pageNumbers"
-            :key="n"
-            @click="goToPage(n)"
-            class="px-3 py-1 border rounded-md"
-            :class="n === currentPage ? 'bg-amber-500 text-white border-amber-400' : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-100'"
-          >
+          <button v-for="n in pageNumbers" :key="n" @click="goToPage(n)" class="px-3 py-1 border rounded-md"
+            :class="n === currentPage ? 'bg-amber-500 text-white border-amber-400' : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-100'">
             {{ n }}
           </button>
         </div>
 
-        <button
-          class="px-3 py-1 rounded-r-md border ml-2"
-          :class="{'bg-white text-gray-700 border-gray-300 hover:bg-gray-100': currentPage<totalPages, 'opacity-50 cursor-not-allowed': currentPage>=totalPages}"
-          @click="nextPage"
-          :disabled="currentPage >= totalPages"
-        >
+        <button class="px-3 py-1 rounded-r-md border ml-2"
+          :class="{ 'bg-white text-gray-700 border-gray-300 hover:bg-gray-100': currentPage < totalPages, 'opacity-50 cursor-not-allowed': currentPage >= totalPages }"
+          @click="nextPage" :disabled="currentPage >= totalPages">
           ›
         </button>
       </nav>
@@ -51,6 +40,7 @@ import { ref, computed, watch } from 'vue'
 import CatalogCard from './CatalogCard.vue'
 
 const props = defineProps({ pets: { type: Array, default: () => [] } })
+const emit = defineEmits(['petSelected'])
 
 // Configuración de paginación
 const perPage = 9

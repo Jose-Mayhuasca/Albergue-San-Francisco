@@ -3,10 +3,10 @@
   <div class="hero relative h-screen overflow-hidden flex items-center justify-between p-12">
 
     <!-- Contenido de texto -->
-    <div class="relative text-black w-1/2 ml-40 pr-40">
-      <h1 class="text-xl ">ADOPTAR CAMBIA VIDAS</h1>
-      <h2 class="text-6xl font-semibold mt-2">HAZ FELIZ A UN NUEVO AMIGO</h2>
-      <p class="mt-4 text-2xl">Tú puedes ser su héroe y llenar tu vida de amor incondicional.</p>
+    <div class="relative text-black w-1/2 ml-40 pr-40 md:col-row">
+      <h1 class="text-xl md:text-lg">ADOPTAR CAMBIA VIDAS</h1>
+      <h2 class="text-6xl font-semibold mt-2 md:text-4xl">HAZ FELIZ A UN NUEVO AMIGO</h2>
+      <p class="mt-4 text-2xl md:text-lg">Tú puedes ser su héroe y llenar tu vida de amor incondicional.</p>
       <button class="mt-6  bg-[color:var(--color-primary)] text-gray-800 px-6 py-2 rounded-full hover:bg-amber-500 transition">
         CONÓCELOS
       </button>

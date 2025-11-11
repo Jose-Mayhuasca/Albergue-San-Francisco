@@ -3,7 +3,7 @@ import DashboardSection from '@/components/System/HomeSections/DashboardSection.
 </script>
 
 <template>
-    <div class="page">
+    <div class="pageSystem">
         <DashboardSection />
     </div>
 </template>

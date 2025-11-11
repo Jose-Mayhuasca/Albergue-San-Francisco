@@ -3,7 +3,7 @@ import ApplicantsDashboard from '@/components/System/ApplicantsSections/Applican
 </script>
 
 <template>
-    <div class="page">
+    <div class="pageSystem">
         <ApplicantsDashboard />
     </div>
 </template>

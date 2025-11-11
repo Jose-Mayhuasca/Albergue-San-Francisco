@@ -1,5 +1,5 @@
 <template>
-    <div class="viewpage">
+    <div class="viewpageSystem">
         <AppNavbar_s />
         <AppHeader_s />
         <router-view />

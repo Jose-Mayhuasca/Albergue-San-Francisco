@@ -14,8 +14,8 @@ import AppFooter from '@/layout/WebSite/AppFooter.vue';
 
 </script>
 
-<template class="homePage">
-    <div class="homepage">
+<template>
+    <div class="page dark:bg-gray-700 dark:text-white">
         <HeroSectionOne />
         <HeroSectionTwo />
         <HeroSectionThree />
@@ -27,7 +27,7 @@ import AppFooter from '@/layout/WebSite/AppFooter.vue';
 </template>
 
 <style scoped>
-.homepageContainer {
+/* .homepageContainer {
     width: 100%;
     height: auto;
 }
@@ -36,5 +36,5 @@ import AppFooter from '@/layout/WebSite/AppFooter.vue';
     display: flex;
     flex-direction: column;
     gap: 7.875rem;
-}
+} */
 </style>
