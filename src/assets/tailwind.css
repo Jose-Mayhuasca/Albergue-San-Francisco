@@ -1,0 +1,9 @@
+/* Entrada principal de utilidades Tailwind */
+@import "tailwindcss";
+
+/* Puedes añadir layers si quieres personalizar: */
+/*
+@layer base {
+  h1 { @apply font-bold; }
+}
+*/
