@@ -191,7 +191,6 @@ const LoadApplicant = async () => {
 
     if (response.status === 200) {
         oApplicant.value = response.data;
-        console.log(oApplicant.value);
         bCargando.value = false;
     }
 }
@@ -209,13 +208,10 @@ const updateReminder = async () => {
         idUserApp: oApplicant.value.idUserApp,
         msgAdmin: oApplicant.value.msgAdmin
     };
-    console.log("request", request);
 
     const response = await applicantService.UpdateApplicantReminderService(request);
-    console.log("response", response);
 
     if (response.status === 200) {
-        console.log("Update reminder successful");
         toast.add({
             severity: 'success',
             summary: 'Actualización Exitosa',

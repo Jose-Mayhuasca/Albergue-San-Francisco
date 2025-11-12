@@ -11,7 +11,7 @@
     <Section v-else class="sectionSideBarSystem">
         <div class="containerSideBar">
             <div class="logo">
-                <h5>San Francisco Logo</h5>
+                <img src="@/assets/icons/logo.png" alt="Logo" class="logoNavbar" />
             </div>
             <div class="options">
                 <div v-for="option in optionsNavbar" :key="option.id" class="containerIconSidebar"

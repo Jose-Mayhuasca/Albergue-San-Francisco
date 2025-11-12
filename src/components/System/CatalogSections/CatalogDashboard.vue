@@ -166,7 +166,6 @@ async function Initialize() {
 async function LoadCatalog() {
     bCargando.value = true
     const response = await catalogService.GetCatalogService()
-    // debugger;
     if (response.status === 200) {
         oListCatalog.value = response.data
         bCargando.value = false
@@ -257,7 +256,6 @@ const confirmDelete = async () => {
 
     try {
         const response = await catalogService.UpdateDeleteDogCatalogService(request)
-        console.log("response delete:", response);
 
         if (response.status === 200) {
             toast.add({

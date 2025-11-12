@@ -62,7 +62,6 @@ const Initialize = async () => {
             animalGenderDesc: pet.animalGenderDesc,
             animalAge: pet.animalAge
         }));
-        console.log("Lista de perros:", oListPets.value);
     }
 }
 

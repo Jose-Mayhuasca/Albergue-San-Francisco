@@ -266,7 +266,6 @@ onUnmounted(() => {
 
 const Initialize = async () => {
     const idDog = localStorage.getItem('idDog');
-    console.log("ID del perro:", idDog);
     bCargando.value = true;
     await LoadGenders();
     await LoadSizes();
@@ -290,7 +289,6 @@ const LoadSizes = async () => {
 const LoadPet = async (idDog) => {
     const response = await dogDetailService.GetDogDetailService(idDog);
     if (response.status === 200) {
-        console.log("Detalle del perro:", response.data);
         oPet.value = response.data;
         oPet.value.sizeDesc = oListSizes.value.find(s => s.idAnimalSize === oPet.value.idAnimalSize)?.animalSizeDesc || '';
         oPet.value.genderDesc = oListGenders.value.find(g => g.idAnimalGender === oPet.value.idAnimalGender)?.animalGenderDesc || '';

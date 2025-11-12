@@ -51,8 +51,8 @@
                         <label for="">Adjuntar foto(Opcional) <br>
                             mascotas / espacio designado </label>
                         <FileUpload mode="advanced" :auto="false" :multiple="false" :maxFileCount="1" accept="image/*"
-                            :maxFileSize="5242880" @select="enArchivoSeleccionado" @clear="clearImage"
-                            :showUploadButton="false" :showCancelButton="false">
+                            maxFileSize="5242880" :fileLimit="1" @select="enArchivoSeleccionado" @clear="clearImage"
+                            :showUploadButton="false" :showCancelButton="false" chooseLabel="Seleccionar foto">
                             <template #empty>
                                 <span>Selecciona o arrastra una foto aquí.</span>
                             </template>
@@ -121,7 +121,6 @@ const LoadDistricts = async () => {
     const response = await commonService.GetDistrictsService();
     if (response.status === 200) {
         oListDistricts.value = response.data;
-        // console.log("Distritos cargados:", response.data);
     }
 }
 
@@ -184,8 +183,6 @@ const sendApplication = async () => {
     formData.append('userImageFile', oApplicant.value.applicantImageFile);
     formData.append('isOnApaTyC', oApplicant.value.useData);
     formData.append('isOnPdTyC', oApplicant.value.tyc);
-
-    console.log([...formData.entries()]);
 
     const response = await applicantService.CreateFormApplicantService(formData);
 

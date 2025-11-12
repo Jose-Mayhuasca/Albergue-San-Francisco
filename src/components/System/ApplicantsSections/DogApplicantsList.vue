@@ -113,7 +113,6 @@ const Initialize = async () => {
 
 const LoadDogData = async () => {
     const response = await getDogService.GetDogService(id);
-    // debugger;
     if (response.status === 200) {
         oDog.value = response.data;
     }
@@ -121,7 +120,6 @@ const LoadDogData = async () => {
 
 const LoadListApplicants = async () => {
     const response = await applicantService.GetListApplicantsService(id);
-    // debugger;
     if (response.status === 200) {
         oListApplicants.value = response.data;
     }
