@@ -47,18 +47,17 @@ const idDog = localStorage.getItem('idDog');
 const plans = ref([
     {
         id: 1,
-        title: 'Basic',
+        title: 'Tazon Lleno',
         price: 10.0,
-        subtitle: 'mensuales',
+        subtitle: 'Un pequeño gesto que alimenta grandes esperanzas.',
         benefits: [
-            'Tour guiado por el albergue',
-            'Acceso a boletines mensuales',
-            'Descuentos en eventos del albergue',
+            'Tu donación equivale a 1 kg de comida que llena su pancita y su corazón.',
+            'No se envía evidencia, pero tu apoyo hace una gran diferencia.',
         ],
     },
     {
         id: 2,
-        title: 'Premium',
+        title: 'Panza Feliz',
         price: 50.0,
         subtitle: 'mensuales',
         benefits: [
@@ -69,7 +68,7 @@ const plans = ref([
     },
     {
         id: 3,
-        title: 'Gold',
+        title: 'Héroe Peludo',
         price: 110.0,
         subtitle: 'mensuales',
         benefits: [

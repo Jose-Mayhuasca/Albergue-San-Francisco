@@ -2320,6 +2320,15 @@ h6 {
           flex-direction: column;
           gap: 0.5rem;
 
+          .title {
+            width: 100%;
+            height: auto;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: #2185e2;
+          }
+
           .toggleContainer {
             display: flex;
             align-items: center;
@@ -2460,7 +2469,7 @@ h6 {
               width: 100%;
               height: auto;
               display: flex;
-              align-items: center;
+              align-items: start;
               gap: 0.75rem;
             }
           }

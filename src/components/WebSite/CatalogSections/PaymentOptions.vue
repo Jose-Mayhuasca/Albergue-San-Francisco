@@ -19,7 +19,7 @@
                             PayPal.</li>
                         <li><strong>2.</strong> Realiza el envío del monto al número o cuenta indicada.</li>
                         <li><strong>3.</strong> Guarda tu comprobante (captura o voucher).</li>
-                        <li><strong>4.</strong> Envíalo al WhatsApp del albergue <br> <strong>922 266 310</strong>
+                        <li><strong>4.</strong> Envíalo al WhatsApp del albergue <strong>922 266 310</strong>
                             para confirmar
                             tu
                             donación.</li>
