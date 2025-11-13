@@ -20,7 +20,7 @@
                 <CatalogFilter :filters="filters" @updateFilters="updateFilters" />
             </aside>
 
-            <!-- 🔹 Grid -->
+            <!-- 🔹 Grid --->
             <section class="flex-1">
                 <CatalogGrid :pets="filteredPets" @petSelected="goDetail" />
             </section>
