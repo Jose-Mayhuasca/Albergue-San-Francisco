@@ -1,6 +1,6 @@
 <template>
   <!-- Usamos background CSS en la sección para que el fondo pertenezca a la sección y se mueva con el scroll -->
-  <div class="hero relative h-screen overflow-hidden flex items-center justify-between p-12">
+  <div class="hero relative h-screen overflow-hidden flex items-center justify-between ">
 
     <!-- Contenido sin texto -->
     <div class="relative text-black w-1/2 ml-40 pr-40">
@@ -8,8 +8,8 @@
     </div>
 
     <!-- Contenido derecho: tarjeta de donación mejorada -->
-    <div class="relative w-1/2 flex items-center justify-center pr-16">
-      <aside class="max-w-lg w-full py-8 px-4 rounded-2xl" aria-labelledby="donation-title">
+    <div class="relative w-1/2 flex items-center justify-center pr-10">
+      <aside class="max-w-3xl w-full py-8 rounded-2xl" aria-labelledby="donation-title">
 
         <h3 id="donation-title" class="text-3xl md:text-4xl font-extrabold text-gray-900 leading-tight">Dona comida para mascotas</h3>
 

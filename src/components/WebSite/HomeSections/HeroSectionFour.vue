@@ -1,6 +1,6 @@
 <template>
   <section class="py-16 md:py-18 font-sans">
-    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch h-[500px] md:h-[600px]">
+    <div class=" mx-auto px-10 w-[80vw] grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch h-[500px] md:h-[600px]">
       <!-- IZQUIERDA -->
       <div class="flex flex-col justify-center px-6 md:px-8">
         <h1 class="text-5xl md:text-6xl font-extrabold leading-none text-neutral-900">

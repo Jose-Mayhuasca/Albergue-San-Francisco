@@ -1,6 +1,6 @@
 <template>
   <section class="font-montpellier">
-    <div class="max-w-8xl mx-auto px-10">
+    <div class=" mx-auto px-10 w-[90vw]">
       <!-- GRID -->
       <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
         <!-- HERO: ocupa todo el ancho -->
