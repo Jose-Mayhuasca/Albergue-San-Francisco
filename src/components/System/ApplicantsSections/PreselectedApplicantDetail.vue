@@ -179,7 +179,6 @@ const Initialize = async () => {
         const response = await applicantPreApprovedService.GetApplicantPreApprovedDetailService(id);
         if (response.status === 200) {
             oApplicantDetails.value = response.data;
-            console.log("Detalles del solicitante pre-aprobado:", oApplicantDetails.value);
             bCargando.value = false;
         } else {
             console.error("Error al obtener los detalles del solicitante pre-aprobado:", response.status);
@@ -202,10 +201,8 @@ const deleteApplicant = async () => {
         const request = {
             idUserApp: oApplicantDetails.value.idUserApp,
         }
-        console.log("Solicitud de eliminación:", request);
 
         const response = await applicantPreApprovedService.UpdateDeleteApplicantPreApprovedService(request);
-        console.log("Respuesta de eliminación:", response);
         if (response.status === 200) {
             toast.add({
                 severity: 'success',

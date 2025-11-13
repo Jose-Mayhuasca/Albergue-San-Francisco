@@ -19,21 +19,30 @@
                             PayPal.</li>
                         <li><strong>2.</strong> Realiza el envío del monto al número o cuenta indicada.</li>
                         <li><strong>3.</strong> Guarda tu comprobante (captura o voucher).</li>
-                        <li><strong>4.</strong> Envíalo al WhatsApp del albergue para confirmar tu donación.</li>
+                        <li><strong>4.</strong> Envíalo al WhatsApp del albergue <br> <strong>922 266 310</strong>
+                            para confirmar
+                            tu
+                            donación.</li>
                         <li><strong>NOTA:</strong> Debes indicar tu nombre, nombre de la mascota y monto donado.</li>
                     </ol>
                 </div>
                 <div class="paymentOptions">
                     <div class="cardOption">
-                        <p>Envía tu donación via Yape o Plin.</p>
                         <div class="containerQR">
                             <div class="qrCode">
-                                <Skeleton fluid height="auto" class="qr" />
+                                <div class="logo">
+                                    <img src="@/assets/icons/yape_logo_out.png" alt="QR Yape">
+                                </div>
+                                <img src="@/assets/images/qr_yape.jpg" alt="QR Yape">
                             </div>
                             <div class="qrCode">
-                                <Skeleton fluid height="auto" class="qr" />
+                                <div class="logo">
+                                    <img src="@/assets/icons/plin_logo_out.png" alt="QR Plin">
+                                </div>
+                                <img src="@/assets/images/qr_plin.jpg" alt="QR Plin">
                             </div>
                         </div>
+                        <p class="bold">Stephanie Christel Mendoza Velasquez</p>
                     </div>
                     <div class="cardOption2">
                         <div class="containerLogo">

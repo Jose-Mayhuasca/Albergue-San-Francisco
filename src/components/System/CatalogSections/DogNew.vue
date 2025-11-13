@@ -57,21 +57,21 @@
                         </div>
                     </div>
                     <div class="containerPhoto space">
-                        <label>Adjuntar foto</label>
+                        <label class="bold">Adjuntar foto</label>
                         <FileUpload mode="advanced" :auto="false" :multiple="false" :maxFileCount="1" accept="image/*"
-                            maxFileSize="5242880" @select="enArchivoSeleccionado" @clear="clearImage"
-                            :showUploadButton="false" :showCancelButton="false" chooseLabel="Seleccionar foto">
-                            <template #empty>
+                            maxFileSize="5242880" :fileLimit="1" @select="enArchivoSeleccionado" @clear="clearImage"
+                            :showUploadButton="false" :showCancelButton="false" chooseLabel="Seleccionar foto"
+                            class="uploadComponent"> <template #empty>
                                 <span>Selecciona o arrastra una foto aquí.</span>
                             </template>
                         </FileUpload>
                     </div>
                     <div class="containerDescription space">
-                        <label>Descripción</label>
+                        <label class="bold">Descripción</label>
                         <Textarea fluid rows="5" v-model="oDog.animalDesc" />
                     </div>
                     <div class="containerHistory space">
-                        <label>Historia</label>
+                        <label class="bold">Historia</label>
                         <Textarea fluid rows="5" v-model="oDog.animalHistory" />
                     </div>
                     <div class="actions">
@@ -131,7 +131,6 @@ const LoadSizes = async () => {
     const response = await commonService.GetSizesService();
     if (response.status === 200) {
         oListSizes.value = response.data;
-        // debugger;
     }
 };
 
@@ -140,7 +139,6 @@ const LoadDog = async () => {
         const response = await dogDetailService.GetDogDetailService(id);
         if (response.status === 200) {
             oDog.value = response.data;
-            console.log("Cargando perro:", oDog.value);
         }
     }
 };
@@ -215,8 +213,6 @@ const createUpdateDog = async () => {
         formData.append('animalImage', oDog.value.animalImage);
     }
 
-    console.log([...formData.entries()]);
-
     try {
         const isNew = !id;
         const serviceMethod = isNew
@@ -224,7 +220,6 @@ const createUpdateDog = async () => {
             : dogDetailService.UpdateDogService;
 
         const response = await serviceMethod(formData);
-        debugger;
 
         if ([200, 201].includes(response.status)) {
             toast.add({

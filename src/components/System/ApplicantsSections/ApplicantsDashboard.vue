@@ -174,7 +174,6 @@ const LoadPendingCount = async () => {
 const LoadDogCatalog = async () => {
     bCargando.value = true;
     const response = await dogCatalogService.GetDogCatalogService();
-    // debugger;
 
     if (response.status == 200) {
         oListDogCatalog.value = response.data;
