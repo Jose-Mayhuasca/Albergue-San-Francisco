@@ -8,7 +8,7 @@
       <div>
         <h1 class="text-2xl font-bold tracking-wide">ALBERGUE SAN FRANCISCO</h1>
         <p class="mt-4 text-base text-gray-300 leading-relaxed">
-          Brindamos refugio, alimento y cuidado a quienes más lo necesitan.  
+          Brindamos refugio, alimento y cuidado a quienes más lo necesitan.
           Tu apoyo puede transformar vidas.
         </p>
       </div>
@@ -46,3 +46,5 @@
 <style scoped>
 /* No se requiere CSS adicional: Tailwind ya maneja toda la responsividad */
 </style>
+
+//si mi delegeit
