@@ -63,6 +63,9 @@ h3 { text-transform: none; } /* solo el hero usa mayúsculas/parcial */
 .hero {
   position: relative; /* establece el contexto de apilamiento para el pseudo-elemento */
   overflow: visible; /* permite que el pseudo-elemento se salga de los límites del contenedor */
+  /* Variables para controlar la posición del fondo (se pueden ajustar para trasladar la imagen en X/Y) */
+  --bg-pos-x: 50%;
+  --bg-pos-y: 50%;
 }
 
 /* Fondo de pantalla completo: se usa un pseudo-elemento para que el contenido se quede dentro del contenedor mientras que el fondo cubre todo el viewport */
@@ -76,7 +79,8 @@ h3 { text-transform: none; } /* solo el hero usa mayúsculas/parcial */
   height: 100%;
   background-image: url('@/assets/img/dog_food.png');
   background-size: cover;
-  background-position: center;
+  /* Usamos variables para poder trasladar la imagen en X/Y desde CSS (mobile/tablet tendrán valores específicos) */
+  background-position: var(--bg-pos-x) var(--bg-pos-y);
   background-repeat: no-repeat;
   z-index: -1;
 }
@@ -84,7 +88,9 @@ h3 { text-transform: none; } /* solo el hero usa mayúsculas/parcial */
 /* Ajustes para la vista móvil */
 @media (max-width: 768px) {
   .hero {
-    background-position: center top;
+    /* En móvil movemos el fondo hacia arriba para alinearlo con el Contenedor A (ajusta los valores si quieres otro punto) */
+    --bg-pos-x: 10%;
+    --bg-pos-y: 25%;
     padding: 2rem;
   }
 
@@ -113,7 +119,9 @@ h3 { text-transform: none; } /* solo el hero usa mayúsculas/parcial */
 /* Ajustes para tabletas (768px a 1024px) */
 @media (min-width: 768px) and (max-width: 1024px) {
   .hero {
-    background-position: center top;
+    /* En tablet también desplazamos el fondo para que coincida con la altura del Contenedor A (A arriba de B) */
+    --bg-pos-x: 10%;
+    --bg-pos-y: 18%;
     padding: 2rem;
     /* For tablet we want the two containers stacked vertically (A arriba de B) */
     display: flex;
