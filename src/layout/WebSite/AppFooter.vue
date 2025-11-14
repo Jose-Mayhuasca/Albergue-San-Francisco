@@ -2,7 +2,7 @@
   <footer class="w-full bg-black text-white py-12 px-6 md:px-16" style="width:100vw; position:relative;">
 
     <!-- Contenedor principal -->
-    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:px-32 lg:gap-20 md:grid-cols-3 gap-12">
 
       <!-- Columna 1 -->
       <div>

@@ -80,9 +80,9 @@ const localFilters = reactive({ ...props.filters })
 
 const tamaños = ['Pequeño', 'Mediano', 'Grande']
 const edades = [
-  { label: 'Cachorro (<1 año)', value: 'Cachorro' },
-  { label: '1–3 años', value: '1-3' },
-  { label: 'Adulto (>3 años)', value: 'Adulto' }
+  { label: 'Cachorro', value: 'Cachorro' },
+  { label: 'Joven', value: 'Joven' },
+  { label: 'Adulto', value: 'Adulto' }
 ]
 const generos = ['Macho', 'Hembra']
 
