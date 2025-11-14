@@ -19,7 +19,7 @@
         <ul class="space-y-2 text-gray-300 text-sm">
           <li><i class="ri-map-pin-2-fill mr-2"></i> Av. Los Olivos 123, Lima, Perú</li>
           <li><i class="ri-phone-fill mr-2"></i> +51 123 456 789</li>
-          <li><i class="ri-mail-unread-fill mr-2"></i> contacto@alberguesanfrancisco.pe</li>
+          <li><i class="ri-mail-unread-fill mr-2"></i> contacto@asfrancisco</li>
         </ul>
       </div>
 

@@ -1,5 +1,5 @@
 <template>
-  <section class="py-14 md:py-20 font-sans">
+  <section class="py-14 md:py-20 font-sans full-bleed">
     <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 items-start px-6">
       <!-- LEFT: hero image with big title -->
       <figure class="relative rounded-[30px] overflow-hidden lg:col-span-7 h-[300px] md:h-[400px] lg:h-[500px] shadow-md">
@@ -50,6 +50,14 @@ export default {};
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
 .font-sans { font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
+
+/* Make section background span the full viewport width */
+.full-bleed {
+  width: 100vw; /* full viewport width */
+  margin-left: calc(50% - 50vw); /* pull to the left edge of viewport */
+  margin-right: calc(50% - 50vw); /* pull to the right edge of viewport */
+  box-sizing: border-box;
+}
 
 /* Estilos generales */
 section {
