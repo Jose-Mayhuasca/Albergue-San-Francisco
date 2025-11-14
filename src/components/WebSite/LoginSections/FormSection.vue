@@ -3,13 +3,13 @@
         <div class="container">
             <Toast />
             <div class="title">
-                <h1>LOGIN</h1>
+                <h1 class="bold">LOGIN</h1>
                 <h6>Solo para personal autorizado</h6>
             </div>
             <Form class="form" @submit="onSubmit">
                 <div class="inputBox">
                     <h6>Usuario</h6>
-                    <InputText v-model="user.username" type="number" fluid />
+                    <InputText v-model="user.username" fluid />
                 </div>
                 <div class="inputBox">
                     <h6>Contraseña</h6>
@@ -28,7 +28,9 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router';
 import { useToast } from 'primevue/usetoast';
+import LoginService from '@/services/Authentication/LoginService.js';
 
+const loginService = new LoginService();
 const router = useRouter();
 const toast = useToast();
 
@@ -37,38 +39,30 @@ const user = ref({
     password: ""
 })
 
-function onSubmit() {
-    const response = userValidation(user.value.username, user.value.password);
+async function onSubmit() {
 
-    if (response) {
-        setTimeout(() => {
-            router.push("/admin");
-        }, 2500); // Espera 1.5 segundos para que se vea el toast
-        console.log("Usuario o contraseña correctos");
+    const request = {
+        userName: user.value.username,
+        userRefugePassword: user.value.password
     }
-    else {
-        console.log("Usuario o contraseña incorrectos");
-    }
-}
 
-function userValidation(username, password) {
-    let response = false;
-    if (username === "123456789" && password === "admin") {
+    console.log("Request:", request);
+
+    const response = await loginService.LoginService(request);
+    console.log("Response:", response);
+
+    if (response.status === 200) {
         toast.add({
             severity: 'success',
             summary: 'Login Exitoso',
             detail: 'Bienvenido al sistema',
             life: 2000
         });
-        response = true;
-    } else if (username === "" && password === "") {
-        toast.add({
-            severity: 'warn',
-            summary: 'Campos Vacíos',
-            detail: 'Por favor, complete todos los campos',
-            life: 2000
-        });
-    } else {
+        setTimeout(() => {
+            router.push("/admin");
+        }, 2000);
+    }
+    else {
         toast.add({
             severity: 'error',
             summary: 'Error de Autenticación',
@@ -76,7 +70,7 @@ function userValidation(username, password) {
             life: 2000
         });
     }
-    return response;
+
 }
 
 </script>
