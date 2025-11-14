@@ -4,7 +4,10 @@
 
     <!-- Contenedor A -->
     <div class="relative text-black w-full md:w-1/2 ml-40 pr-40">
-      <!-- Aquí puedes agregar el contenido de contenedor A -->
+      <!-- Contenido de contenedor A -->
+       <div class="container-a-content">
+        
+       </div>
     </div>
 
     <!-- Contenedor B derecho: tarjeta de donación mejorada -->
@@ -62,7 +65,8 @@ h3 { text-transform: none; } /* solo el hero usa mayúsculas/parcial */
 /* Ajustes generales para la imagen de fondo */
 .hero {
   position: relative; /* establece el contexto de apilamiento para el pseudo-elemento */
-  overflow: visible; /* permite que el pseudo-elemento se salga de los límites del contenedor */
+  /* En móvil y por defecto evitamos que contenidos se salgan y solapen con secciones siguientes */
+  overflow: hidden;
   /* Variables para controlar la posición del fondo (se pueden ajustar para trasladar la imagen en X/Y) */
   --bg-pos-x: 50%;
   --bg-pos-y: 50%;
@@ -76,13 +80,16 @@ h3 { text-transform: none; } /* solo el hero usa mayúsculas/parcial */
   left: 50%;
   transform: translateX(-50%);
   width: 100vw; /* abarca todo el ancho del viewport */
-  height: 100%;
+  /* Queremos que el fondo cubra la ventana gráfica pero no dependa de la altura del contenedor
+     (así evita que el pseudo-elemento se extienda fuera del viewport en móviles y provoque solapes) */
+  height: 100vh;
   background-image: url('@/assets/img/dog_food.png');
   background-size: cover;
   /* Usamos variables para poder trasladar la imagen en X/Y desde CSS (mobile/tablet tendrán valores específicos) */
   background-position: var(--bg-pos-x) var(--bg-pos-y);
   background-repeat: no-repeat;
   z-index: -1;
+  pointer-events: none; /* evitar que el pseudo-elemento capture eventos y cause problemas de interacción */
 }
 
 /* Ajustes para la vista móvil */
@@ -92,6 +99,8 @@ h3 { text-transform: none; } /* solo el hero usa mayúsculas/parcial */
     --bg-pos-x: 10%;
     --bg-pos-y: 25%;
     padding: 2rem;
+    /* en móvil queremos que la sección no ocupe forzosamente la altura completa del viewport */
+    height: auto;
   }
 
   /* Ajuste para los contenedores */
@@ -143,6 +152,7 @@ h3 { text-transform: none; } /* solo el hero usa mayúsculas/parcial */
     order: 1;
     width: 100%;
     padding-right: 0;
+    padding: 0 90px;
     display: flex;
     justify-content: center;
   }
@@ -150,6 +160,8 @@ h3 { text-transform: none; } /* solo el hero usa mayúsculas/parcial */
 
 /* Ajustes para PC (más de 1024px) */
 @media (min-width: 1024px) {
+  /* En escritorio permitimos que el pseudo-elemento pueda salirse visualmente si es necesario */
+  .hero { overflow: visible; }
   /* Aquí no hacemos cambios significativos en la disposición, ya que está correcto. Solo aseguramos que no se vean afectados por los cambios de las otras vistas */
   .hero > .relative.text-black {
     order: 0;
@@ -157,6 +169,26 @@ h3 { text-transform: none; } /* solo el hero usa mayúsculas/parcial */
 
   .hero > .relative.w-full.md\:w-1\/2 {
     order: 1;
+  }
+}
+
+/* Alturas específicas para el Contenido del Contenedor A */
+.container-a-content {
+  /* valor por defecto para escritorio / vista base */
+  height: 500px;
+}
+
+@media (max-width: 768px) {
+  /* En móvil: aumentamos a 700px */
+  .container-a-content {
+    height: 700px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  /* En tablet: aumentamos a 800px */
+  .container-a-content {
+    height: 800px;
   }
 }
 </style>
