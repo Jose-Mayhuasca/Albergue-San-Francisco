@@ -1,18 +1,18 @@
 <template>
   <!-- Sección hero -->
-  <div class="hero relative h-screen overflow-hidden flex flex-col md:flex-row items-center justify-between p-6 md:p-12 xs:mb-40">
+  <div class="hero relative h-screen overflow-hidden flex flex-col lg:flex-row items-center justify-between p-6 md:p-12 xs:mb-40">
 
     <!-- Imagen del perro (quedará arriba en móviles y a la derecha en PC) -->
-    <div class="hero-image relative w-full md:w-1/2 flex justify-center md:order-2">
+  <div class="hero-image relative w-full lg:w-1/2 flex justify-center lg:order-2">
       <img 
         src="@/assets/img/happy_dog.png" 
         alt="Perro" 
-        class="hero-dog-img w-auto object-contain mt-10 md:mr-60"
+        class="hero-dog-img w-auto object-contain mt-10 lg:mr-60"
       />
     </div>
 
     <!-- Contenido de texto -->
-    <div class="relative text-black w-full md:w-1/2 md:ml-40 md:pr-40 md:text-left sm:text-left xs:text-left mt-10 md:mt-0">
+  <div class="relative text-black w-full lg:w-1/2 lg:ml-40 lg:pr-40 lg:text-left sm:text-left xs:text-left mt-10 lg:mt-0">
       <h1 class="text-xl md:text-lg">ADOPTAR CAMBIA VIDAS</h1>
       <h2 class="text-4xl font-semibold mt-2 md:text-4xl xs:text-2xl sm:text-3xl">HAZ FELIZ A UN NUEVO AMIGO</h2>
       <p class="mt-4 text-lg md:text-lg xs:text-base">Tú puedes ser su héroe y llenar tu vida de amor incondicional.</p>
@@ -84,6 +84,7 @@
   /* Ajustes para móviles (menos de 768px) */
   .hero {
     padding: 2rem;
+    margin-bottom: 40px;
   }
 
   /* Aseguramos que la imagen quede arriba y el texto abajo */
@@ -133,7 +134,13 @@
 @media (min-width: 768px) and (max-width: 1024px) {
   /* Ajustes para tabletas grandes (de 768px a 1024px) */
   .hero-image {
-    order: 1; /* Imagen arriba en tabletas */
+    order: 0; /* Imagen arriba en tabletas */
+  }
+
+  .hero-dog-img {
+    height: 700px;
+    margin-top: 0;
+    margin-bottom: 1rem;
   }
 }
 </style>
