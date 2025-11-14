@@ -97,7 +97,7 @@
   .hero-dog-img {
     height: 540px;
     margin-top: 0;
-    margin-bottom: 1rem;
+   
   }
 
   /* Ajustes para el texto */
