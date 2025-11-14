@@ -156,7 +156,7 @@ h3 { text-transform: none; } /* solo el hero usa mayúsculas/parcial */
     order: 1;
     width: 100%;
     padding-right: 0;
-    padding: 0 0px;
+    padding: 0 90px;
     display: flex;
     justify-content: center;
   }
