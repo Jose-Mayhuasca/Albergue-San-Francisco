@@ -28,17 +28,15 @@
       <aside class="lg:col-span-5">
         <h2 class="leading-[0.9] tracking-tight">
           <span class="block font-extrabold text-neutral-900 text-4xl md:text-5xl">
-            brand that embodies
+            Juntos podemos
           </span>
           <span class="block font-extrabold text-neutral-500 text-4xl md:text-5xl mt-1">
-            understated elegance
+            hacer la diferencia
           </span>
         </h2>
 
         <p class="mt-6 text-neutral-600 text-lg md:text-xl leading-8">
-          Borcelle is a brand that embodies understated elegance. Our philosophy
-          combines timeless minimalism with subtle confidence, empowering
-          wearers to feel sophisticated in every situation.
+          Para nuestras mascotas, tu ayuda significa compañía, salud y esperanza. Lo que para ti es poco, para ellos es todo. Elige ser esa luz que tanto necesitan.
         </p>
       </aside>
     </div>
