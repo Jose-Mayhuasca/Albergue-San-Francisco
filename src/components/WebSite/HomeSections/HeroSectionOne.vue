@@ -1,6 +1,6 @@
 <template>
   <!-- Sección hero -->
-  <div class="hero relative h-screen overflow-hidden flex flex-col md:flex-row items-center justify-between p-12 mb-40">
+  <div class="hero relative h-screen overflow-hidden flex flex-col md:flex-row items-center justify-between p-6 md:p-12 xs:mb-40">
 
     <!-- Imagen del perro (quedará arriba en móviles y a la derecha en PC) -->
     <div class="hero-image relative w-full md:w-1/2 flex justify-center md:order-2">
@@ -12,10 +12,10 @@
     </div>
 
     <!-- Contenido de texto -->
-    <div class="relative text-black w-full md:w-1/2 md:ml-40 md:pr-40 text-center md:text-left mt-10 md:mt-0">
+    <div class="relative text-black w-full md:w-1/2 md:ml-40 md:pr-40 md:text-left sm:text-left xs:text-left mt-10 md:mt-0">
       <h1 class="text-xl md:text-lg">ADOPTAR CAMBIA VIDAS</h1>
-      <h2 class="text-6xl font-semibold mt-2 md:text-4xl">HAZ FELIZ A UN NUEVO AMIGO</h2>
-      <p class="mt-4 text-2xl md:text-lg">Tú puedes ser su héroe y llenar tu vida de amor incondicional.</p>
+      <h2 class="text-4xl font-semibold mt-2 md:text-4xl xs:text-2xl sm:text-3xl">HAZ FELIZ A UN NUEVO AMIGO</h2>
+      <p class="mt-4 text-lg md:text-lg xs:text-base">Tú puedes ser su héroe y llenar tu vida de amor incondicional.</p>
       <button class="mt-6 bg-[color:var(--color-primary)] text-gray-800 px-6 py-2 rounded-full hover:bg-amber-500 transition">
         CONÓCELOS
       </button>
@@ -59,6 +59,7 @@
 }
 
 @media (max-width: 1024px) {
+  /* Ajustes para tabletas (entre 768px y 1024px) */
   .hero {
     background-position: center top;
     padding: 3rem 2rem;
@@ -80,6 +81,7 @@
 }
 
 @media (max-width: 768px) {
+  /* Ajustes para móviles (menos de 768px) */
   .hero {
     padding: 2rem;
   }
@@ -101,6 +103,19 @@
   .hero h1, .hero h2, .hero p {
     text-align: center;
   }
+
+  /* Ajuste de tamaño de texto */
+  .hero h1 {
+    font-size: 1.25rem;
+  }
+
+  .hero h2 {
+    font-size: 2rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
 }
 
 /* Asegurar que el orden cambie en móviles (imagen arriba, texto abajo) y en PC (imagen derecha, texto izquierda) */
@@ -109,8 +124,16 @@
 }
 
 @media (min-width: 1024px) {
+  /* Ajustes para pantallas grandes (PC - más de 1024px) */
   .hero-image {
     order: 2; /* Imagen a la derecha en PC */
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  /* Ajustes para tabletas grandes (de 768px a 1024px) */
+  .hero-image {
+    order: 1; /* Imagen arriba en tabletas */
   }
 }
 </style>
