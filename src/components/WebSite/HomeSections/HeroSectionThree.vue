@@ -101,6 +101,8 @@ h3 { text-transform: none; } /* solo el hero usa mayúsculas/parcial */
     padding: 2rem;
     /* en móvil queremos que la sección no ocupe forzosamente la altura completa del viewport */
     height: auto;
+    /* Permitimos que el pseudo-elemento del fondo pueda desbordar visualmente sin ser recortado */
+    overflow: visible;
   }
 
   /* Ajuste para los contenedores */
@@ -136,6 +138,8 @@ h3 { text-transform: none; } /* solo el hero usa mayúsculas/parcial */
     display: flex;
     flex-direction: column;
     align-items: center;
+    /* Permitimos que el pseudo-elemento del fondo pueda desbordar visualmente sin ser recortado */
+    overflow: visible;
   }
 
   /* Los contenedores deben seguir el mismo orden: el contenedor A encima del contenedor B */
@@ -152,7 +156,7 @@ h3 { text-transform: none; } /* solo el hero usa mayúsculas/parcial */
     order: 1;
     width: 100%;
     padding-right: 0;
-    padding: 0 90px;
+    padding: 0 0px;
     display: flex;
     justify-content: center;
   }
