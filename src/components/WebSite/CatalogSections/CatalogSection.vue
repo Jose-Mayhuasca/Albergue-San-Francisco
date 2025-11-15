@@ -30,7 +30,8 @@
 
         <div class="flex flex-col lg:flex-row gap-8 px-10">
             <!-- 🔹 Filtros: oculto en pantallas < lg, visible como panel en lg+ -->
-            <aside class="hidden lg:block w-full lg:w-1/4 bg-white rounded-xl shadow-md p-5 h-fit">
+            <!-- Se usa sticky en lg+ para que el panel siga el scroll con top:20px -->
+            <aside class="hidden lg:block w-full lg:w-1/4 bg-white rounded-xl shadow-md p-5 h-fit lg:sticky lg:top-24 lg:self-start">
                 <h2 class="text-lg font-semibold mb-4 text-gray-700">Filtros</h2>
                 <CatalogFilter :filters="filters" @updateFilters="updateFilters" />
             </aside>
