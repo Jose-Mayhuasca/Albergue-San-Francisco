@@ -13,9 +13,25 @@
         </div>
 
         <!-- Filtros + grids -->
-        <div class="flex flex-col md:flex-row gap-8 px-10">
-            <!-- 🔹 Filtros -->
-            <aside class="w-full md:w-1/4 bg-white rounded-xl shadow-md p-5 h-fit">
+        <!-- Botón hamburguesa (visible en tablet y móvil). En pantallas grandes el aside se muestra fijo. -->
+        <div class="flex items-center justify-between gap-4 px-10 mb-4 lg:hidden">
+            <h2 class="text-lg font-semibold text-gray-700">Catálogo</h2>
+            <button
+                @click="showFilters = true"
+                aria-label="Abrir filtros"
+                class="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-amber-500 text-white hover:bg-amber-600 transition"
+            >
+                <!-- simple icono hamburguesa -->
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+                Filtros
+            </button>
+        </div>
+
+        <div class="flex flex-col lg:flex-row gap-8 px-10">
+            <!-- 🔹 Filtros: oculto en pantallas < lg, visible como panel en lg+ -->
+            <aside class="hidden lg:block w-full lg:w-1/4 bg-white rounded-xl shadow-md p-5 h-fit">
                 <h2 class="text-lg font-semibold mb-4 text-gray-700">Filtros</h2>
                 <CatalogFilter :filters="filters" @updateFilters="updateFilters" />
             </aside>
@@ -25,6 +41,28 @@
                 <CatalogGrid :pets="filteredPets" @petSelected="goDetail" />
             </section>
         </div>
+
+        <!-- Drawer / panel para filtros en tablet y móvil -->
+        <transition name="fade">
+            <div v-if="showFilters" class="fixed inset-0 z-50 flex">
+                <!-- Backdrop -->
+                <div class="absolute inset-0 bg-black/40" @click="showFilters = false"></div>
+
+                <!-- Panel lateral (desde la izquierda) -->
+                <div class="relative bg-white w-full max-w-xs sm:max-w-sm h-full p-5 overflow-auto shadow-lg">
+                    <div class="flex items-center justify-between mb-4">
+                        <h2 class="text-lg font-semibold text-gray-700">Filtros</h2>
+                        <button @click="showFilters = false" aria-label="Cerrar filtros" class="p-2 rounded-md text-gray-600 hover:bg-gray-100">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                    </div>
+
+                    <CatalogFilter :filters="filters" @updateFilters="onDrawerUpdate" />
+                </div>
+            </div>
+        </transition>
     </div>
     <AppFooter />
 </template>
@@ -40,6 +78,15 @@ import CatalogService from '@/services/CatalogServices/CatalogService.js'
 const catalogService = new CatalogService()
 const oListPets = ref([])
 const router = useRouter()
+
+// Mostrar/ocultar drawer de filtros en tablet/móvil
+const showFilters = ref(false)
+
+// Cuando se actualizan filtros desde el drawer, aplicar y cerrar el panel
+const onDrawerUpdate = (newFilters) => {
+    updateFilters(newFilters)
+    showFilters.value = false
+}
 
 
 onMounted(() => {
