@@ -12,7 +12,7 @@
             </div>
         </div>
 
-        <!-- Filtros + grid -->
+        <!-- Filtros + grids -->
         <div class="flex flex-col md:flex-row gap-8 px-10">
             <!-- 🔹 Filtros -->
             <aside class="w-full md:w-1/4 bg-white rounded-xl shadow-md p-5 h-fit">
