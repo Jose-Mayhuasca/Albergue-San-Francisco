@@ -60,14 +60,20 @@
                     </div>
                     <div class="permissions">
                         <div class="useData standarContainer">
-                            <label for="">Uso de Datos</label>
+                            <a class="title" href="/src/assets/pdf/29733.pdf" target="_blank" rel="noopener" as="a">
+                                <label for="">Uso de Datos</label>
+                                <i class="pi pi-info-circle" />
+                            </a>
                             <div class="toggleContainer">
                                 <toggle-switch v-model="oApplicant.useData" />
                                 <label for="">Estoy de acuerdo</label>
                             </div>
                         </div>
                         <div class="tyc standarContainer">
-                            <label for="">Términos y condiciones</label>
+                            <a class="title" href="/src/assets/pdf/30407.pdf" target="_blank" rel="noopener" as="a">
+                                <label for="">Ley de protección animal</label>
+                                <i class="pi pi-info-circle" />
+                            </a>
                             <div class="toggleContainer">
                                 <toggle-switch v-model="oApplicant.tyc" />
                                 <label for="">Acepto</label>
