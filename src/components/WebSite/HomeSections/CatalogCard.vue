@@ -21,9 +21,9 @@
         <p class="text-md text-gray-200">{{ pet.genero }}</p>
         <p class="text-md text-gray-200 px-1"> ● </p>
         <p class="text-md text-gray-200">
-          <span v-if="pet.edad < 1">1 año</span>
-          <span v-else-if="pet.edad <= 3">{{ pet.edad }} años </span>
-          <span v-else>3 años</span>
+          <span v-if="pet.edad < 1">Menos de 1 año</span>
+          <span v-else-if="Math.floor(pet.edad) === 1">1 año</span>
+          <span v-else>{{ Math.floor(pet.edad) }} años</span>
         </p>
       </div>
     </div>
