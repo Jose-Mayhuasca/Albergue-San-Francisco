@@ -4,31 +4,27 @@
             <!-- ================== CONTENIDO PRINCIPAL ================== -->
             <div class="container mx-auto max-w-5xl px-4" v-show="!bCargando">
                 <!-- Una sola vista: cambia layout con media queries + clase is-desktop -->
-                <div
-                    :class="[
-                        'detailView w-full gap-6 lg:gap-10',
-                        viewDesktop ? 'is-desktop' : 'is-mobile'
-                    ]"
-                >
+                <div :class="[
+                    'detailView w-full gap-6 lg:gap-10',
+                    viewDesktop ? 'is-desktop' : 'is-mobile'
+                ]">
                     <!-- Foto -->
                     <div class="containerPhoto relative w-full">
-                        <Card
-                            class="photo overflow-hidden rounded-3xl shadow-xl bg-cover bg-center"
-                            :style="{
-                                backgroundImage: `url(${oPet.animalImage})`
-                            }"
-                        >
+                        <Card class="photo overflow-hidden rounded-3xl shadow-xl bg-cover bg-center" :style="{
+                            backgroundImage: `url(${oPet.animalImage})`
+                        }">
                             <template #title>
                                 <div class="buttonBack absolute top-4 left-4 z-10">
                                     <button
                                         class="inline-flex items-center justify-center rounded-lg bg-white/50 hover:bg-white shadow-md w-10 h-10 transition"
-                                        @click="goBack()"
-                                    >
+                                        @click="goBack()">
                                         <i class="ri-arrow-left-line text-slate-700 text-lg"></i>
                                     </button>
                                 </div>
                                 <!-- Overlay suave arriba para mejorar contraste -->
-                                <div class="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-black/40 to-transparent pointer-events-none"></div>
+                                <div
+                                    class="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-black/40 to-transparent pointer-events-none">
+                                </div>
                             </template>
                         </Card>
                     </div>
@@ -53,50 +49,48 @@
                                     </h6>
                                 </div>
                                 <div class="containerItems grid grid-cols-2 gap-3 md:grid-cols-3 justify-items-stretch">
-                                    <div class="item flex items-center gap-2 px-3 py-2 rounded-xl bg-cyan-50 w-full min-w-0">
+                                    <div
+                                        class="item flex items-center gap-2 px-3 py-2 rounded-xl bg-cyan-50 w-full min-w-0">
                                         <i class="ri-calendar-event-fill text-cyan-600 text-lg"></i>
                                         <label class="text-sm text-cyan-600">
-                                            {{ oPet.animalAge }} años
+                                            {{ formatAge(oPet.animalAge) }} años
                                         </label>
                                     </div>
-                                    
-                                    <div class="item flex items-center gap-2 px-3 py-2 rounded-xl bg-cyan-50 w-full min-w-0">
-                                        <i
-                                            class="text-cyan-600 text-lg"
-                                            :class="oPet.idAnimalGender == 1 ? 'ri-men-line' : 'ri-women-line'"
-                                        ></i>
+
+                                    <div
+                                        class="item flex items-center gap-2 px-3 py-2 rounded-xl bg-cyan-50 w-full min-w-0">
+                                        <i class="text-cyan-600 text-lg"
+                                            :class="oPet.idAnimalGender == 1 ? 'ri-men-line' : 'ri-women-line'"></i>
                                         <label class="text-sm text-cyan-600">
                                             {{ oPet.genderDesc }}
                                         </label>
                                     </div>
 
-                                    <div class="item flex items-center gap-2 px-3 py-2 rounded-xl bg-cyan-50 w-full min-w-0">
+                                    <div
+                                        class="item flex items-center gap-2 px-3 py-2 rounded-xl bg-cyan-50 w-full min-w-0">
                                         <i class="ri-ruler-line text-cyan-600 text-lg"></i>
                                         <label class="text-sm text-cyan-600">
                                             {{ oPet.sizeDesc }}
                                         </label>
                                     </div>
 
-                                    <div class="item flex items-center gap-2 px-3 py-2 rounded-xl bg-cyan-50 w-full min-w-0">
+                                    <div
+                                        class="item flex items-center gap-2 px-3 py-2 rounded-xl bg-cyan-50 w-full min-w-0">
                                         <i class="ri-scales-2-line text-cyan-600 text-lg"></i>
                                         <label class="text-sm text-cyan-600">
                                             {{ oPet.animalWeight }} kg
                                         </label>
                                     </div>
-                                    <div
-                                        class="item flex items-center gap-2 px-3 py-2 rounded-xl bg-cyan-50 w-full min-w-0"
-                                        v-show="oPet.isVaccinated"
-                                    >
+                                    <div class="item flex items-center gap-2 px-3 py-2 rounded-xl bg-cyan-50 w-full min-w-0"
+                                        v-show="oPet.isVaccinated">
                                         <i class="ri-syringe-line text-cyan-600 text-lg"></i>
                                         <label class="text-sm text-cyan-600">
                                             {{ oPet.isVaccinated ? 'Vacunado' : 'Sin vacunar' }}
                                         </label>
                                     </div>
 
-                                    <div
-                                        class="item flex items-center gap-2 px-3 py-2 rounded-xl bg-cyan-50 w-full min-w-0"
-                                        v-show="oPet.isSterilized"
-                                    >
+                                    <div class="item flex items-center gap-2 px-3 py-2 rounded-xl bg-cyan-50 w-full min-w-0"
+                                        v-show="oPet.isSterilized">
                                         <i class="ri-quill-pen-line text-cyan-600 text-lg"></i>
                                         <label class="text-sm text-cyan-600">
                                             {{ oPet.isSterilized ? 'Esterilizado' : 'Sin esterilizar' }}
@@ -113,7 +107,8 @@
                                     </h6>
                                 </div>
                                 <div class="content">
-                                    <p class="text-sm md:text-base leading-relaxed text-slate-700 bg-slate-50/80 rounded-2xl px-4 py-3">
+                                    <p
+                                        class="text-sm md:text-base leading-relaxed text-slate-700 bg-slate-50/80 rounded-2xl px-4 py-3">
                                         {{ oPet.animalHistory }}
                                     </p>
                                 </div>
@@ -127,7 +122,8 @@
                                     </h6>
                                 </div>
                                 <div class="content">
-                                    <p class="text-sm md:text-base leading-relaxed text-slate-700 bg-slate-50/80 rounded-2xl px-4 py-3">
+                                    <p
+                                        class="text-sm md:text-base leading-relaxed text-slate-700 bg-slate-50/80 rounded-2xl px-4 py-3">
                                         {{ oPet.animalDesc }}
                                     </p>
                                 </div>
@@ -136,21 +132,11 @@
                     </Card>
 
                     <!-- Acciones -->
-                    <div
-                        class="actionsContainer flex flex-col sm:flex-row gap-3 mt-4 sm:mt-6 w-full"
-                    >
-                        <Button
-                            label="Adoptar"
-                            icon="ri-heart-2-line"
-                            @click="goFormAdoption(oPet.idRefAnimals)"
-                            class="flex-1 min-w-[140px] sm:max-w-xs"
-                        />
-                        <Button
-                            label="Apadrinar"
-                            icon="ri-vip-crown-line"
-                            @click="goPlans()"
-                            class="flex-1 min-w-[140px] sm:max-w-xs p-button-outlined"
-                        />
+                    <div class="actionsContainer flex flex-col sm:flex-row gap-3 mt-4 sm:mt-6 w-full">
+                        <Button label="Adoptar" icon="ri-heart-2-line" @click="goFormAdoption(oPet.idRefAnimals)"
+                            class="flex-1 min-w-[140px] sm:max-w-xs" />
+                        <Button label="Apadrinar" icon="ri-vip-crown-line" @click="goPlans()"
+                            class="flex-1 min-w-[140px] sm:max-w-xs p-button-outlined" />
                     </div>
                 </div>
             </div>
@@ -159,12 +145,8 @@
             <div class="container mx-auto max-w-5xl px-4" v-show="bCargando">
                 <div class="detailView w-full flex flex-col gap-6 md:flex-row md:gap-8">
                     <div class="containerPhoto w-full md:w-1/2">
-                        <Skeleton
-                            fluid
-                            height="auto"
-                            :style="{ aspectRatio: '4 / 5' }"
-                            class="item rounded-3xl shadow-lg"
-                        />
+                        <Skeleton fluid height="auto" :style="{ aspectRatio: '4 / 5' }"
+                            class="item rounded-3xl shadow-lg" />
                     </div>
 
                     <Card class="cardData flex-1 rounded-3xl shadow-lg border border-slate-100 bg-white/90">
@@ -180,13 +162,8 @@
                                     </h6>
                                 </div>
                                 <div class="containerItems grid grid-cols-2 gap-3 md:grid-cols-3">
-                                    <Skeleton
-                                        v-for="index in 6"
-                                        :key="index"
-                                        width="100%"
-                                        height="2.4rem"
-                                        class="rounded-2xl"
-                                    />
+                                    <Skeleton v-for="index in 6" :key="index" width="100%" height="2.4rem"
+                                        class="rounded-2xl" />
                                 </div>
                             </div>
 
@@ -197,11 +174,7 @@
                                     </h6>
                                 </div>
                                 <div class="content">
-                                    <Skeleton
-                                        fluid
-                                        height="6rem"
-                                        class="rounded-2xl"
-                                    />
+                                    <Skeleton fluid height="6rem" class="rounded-2xl" />
                                 </div>
                             </div>
 
@@ -212,32 +185,18 @@
                                     </h6>
                                 </div>
                                 <div class="content">
-                                    <Skeleton
-                                        fluid
-                                        height="6rem"
-                                        class="rounded-2xl"
-                                    />
+                                    <Skeleton fluid height="6rem" class="rounded-2xl" />
                                 </div>
                             </div>
                         </template>
                     </Card>
                 </div>
 
-                <div
-                    class="actionsContainer flex flex-col sm:flex-row gap-3 mt-6 w-full"
-                >
-                    <Button
-                        label="Adoptar"
-                        icon="ri-heart-2-line"
-                        @click="goFormAdoption(oPet.idRefAnimals)"
-                        class="flex-1 min-w-[140px] sm:max-w-xs"
-                    />
-                    <Button
-                        label="Apadrinar"
-                        icon="ri-vip-crown-line"
-                        @click="goPlans()"
-                        class="flex-1 min-w-[140px] sm:max-w-xs p-button-outlined"
-                    />
+                <div class="actionsContainer flex flex-col sm:flex-row gap-3 mt-6 w-full">
+                    <Button label="Adoptar" icon="ri-heart-2-line" @click="goFormAdoption(oPet.idRefAnimals)"
+                        class="flex-1 min-w-[140px] sm:max-w-xs" />
+                    <Button label="Apadrinar" icon="ri-vip-crown-line" @click="goPlans()"
+                        class="flex-1 min-w-[140px] sm:max-w-xs p-button-outlined" />
                 </div>
             </div>
         </Section>
@@ -313,6 +272,38 @@ const LoadPet = async (idDog) => {
     }
 };
 
+function formatAge(decimalAge) {
+    if (decimalAge == null) return "";
+
+    // Separar parte entera (años) y parte decimal (meses)
+    const years = Math.floor(decimalAge);
+    const decimalPart = decimalAge - years;
+
+    // Obtener los meses redondeando correctamente
+    const months = Math.round(decimalPart * 10);
+
+    let result = "";
+
+    // Construir la parte de años
+    if (years > 0) {
+        result += years === 1 ? "1 año" : `${years} años`;
+    }
+
+    // Construir la parte de meses
+    if (months > 0) {
+        if (result.length > 0) result += " y ";
+        result += months === 1 ? "1 mes" : `${months} meses`;
+    }
+
+    // Si no es ni años ni meses (ej: 0.0)
+    if (result === "") {
+        result = "0 meses";
+    }
+
+    return result;
+}
+
+
 const goFormAdoption = (id) => {
     router.push({ path: `/catalogo/adoptar/${id}` });
 };
@@ -335,7 +326,8 @@ const goBack = () => {
 
 /* Móvil por defecto */
 .detailView.is-mobile .containerPhoto {
-    margin-bottom: 0; /* dejamos que el card se solape sin gap extra */
+    margin-bottom: 0;
+    /* dejamos que el card se solape sin gap extra */
 }
 
 /* ---------- Foto ---------- */
@@ -383,10 +375,12 @@ const goBack = () => {
 /* ================== VISTA MÓVIL (full viewport width + 10px overlap) ================== */
 /* Hasta 639px aprox (sm en Tailwind) */
 @media (max-width: 639px) {
+
     /* En móvil queremos fondo blanco para esta vista */
     .page {
         background-color: #FFFFFF !important;
     }
+
     /* Romper el contenedor centrado: usar 100vw y centrarlo con transform
        para que la imagen y el card ocupen realmente todo el ancho del viewport. */
     .detailView.is-mobile .containerPhoto,
@@ -397,14 +391,17 @@ const goBack = () => {
         left: 50%;
         transform: translateX(-50%);
         position: relative;
-        box-sizing: border-box; /* aseguramos que padding interno no aumente ancho */
-        padding-left: 1rem; /* dejemos el espaciado interior igual que px-4 */
+        box-sizing: border-box;
+        /* aseguramos que padding interno no aumente ancho */
+        padding-left: 1rem;
+        /* dejemos el espaciado interior igual que px-4 */
         padding-right: 1rem;
     }
 
     /* Foto: mantener altura mínima y que quede visualmente detrás del Card */
     .detailView.is-mobile .containerPhoto .photo {
-        border-radius: 0 0; /* opcional: redondeado en la parte inferior */
+        border-radius: 0 0;
+        /* opcional: redondeado en la parte inferior */
         min-height: 350px;
         z-index: 1;
         margin-top: -40px;
@@ -414,14 +411,15 @@ const goBack = () => {
     /* Asegurar que el propio Card (.photo) ocupe todo el ancho del viewport
        y no quede limitado por el padding del contenedor padre. También aplica
        a elementos directos hijos como Skeleton durante el loading. */
-    .detailView.is-mobile .containerPhoto > * {
+    .detailView.is-mobile .containerPhoto>* {
         width: 100vw;
         max-width: 100vw;
         left: 50%;
         transform: translateX(-50%);
         position: relative;
         box-sizing: border-box;
-        padding-left: 0; /* evitamos el padding extra que pueda empujar el contenido */
+        padding-left: 0;
+        /* evitamos el padding extra que pueda empujar el contenido */
         padding-right: 0;
         margin-left: 0;
         margin-right: 0;
@@ -439,11 +437,16 @@ const goBack = () => {
 
     /* Card: superponer 60px sobre la imagen como pediste */
     .detailView.is-mobile .cardData {
-        margin-top: -70px; /* 70px sobre la imagen */
-        z-index: 2; /* por encima de la imagen */
-        border-radius: 2.5rem 2.5rem 0 0; /* redondeado arriba, plano abajo */
-        padding-top: 1rem; /* evitar que el contenido quede pegado al borde */
-        box-shadow: none; /* eliminar sombra extra en móvil */
+        margin-top: -70px;
+        /* 70px sobre la imagen */
+        z-index: 2;
+        /* por encima de la imagen */
+        border-radius: 2.5rem 2.5rem 0 0;
+        /* redondeado arriba, plano abajo */
+        padding-top: 1rem;
+        /* evitar que el contenido quede pegado al borde */
+        box-shadow: none;
+        /* eliminar sombra extra en móvil */
     }
 
     /* Acciones: mantener alineadas con el ancho real de la vista */
@@ -453,7 +456,9 @@ const goBack = () => {
     }
 
     /* Evitar overflow horizontal causado por 100vw en algunos navegadores */
-    html, body, #app {
+    html,
+    body,
+    #app {
         overflow-x: hidden;
 
     }
@@ -468,8 +473,10 @@ const goBack = () => {
     /* Hacer que el fondo de la página abarque todo el ancho del viewport
        en tablet y desktop (full-bleed) sin afectar el contenido centrado. */
     .page {
-        width: 100vw; /* forzar ancho del viewport */
-        margin-left: calc(50% - 50vw); /* centrar y compensar el contenedor padre */
+        width: 100vw;
+        /* forzar ancho del viewport */
+        margin-left: calc(50% - 50vw);
+        /* centrar y compensar el contenedor padre */
         margin-right: calc(50% - 50vw);
         box-sizing: border-box;
         /* mantener el padding vertical ya definido en la clase HTML, solo
@@ -485,7 +492,7 @@ const goBack = () => {
         display: grid;
         grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.2fr);
         align-items: flex-start;
-        
+
     }
 
     .detailView .containerPhoto {
@@ -527,7 +534,8 @@ const goBack = () => {
     }
 
     .characteristicsContainer .containerItems .item label {
-        white-space: nowrap; /* no forzar salto de línea dentro del texto */
+        white-space: nowrap;
+        /* no forzar salto de línea dentro del texto */
     }
 }
 
@@ -538,4 +546,3 @@ const goBack = () => {
     }
 }
 </style>
-

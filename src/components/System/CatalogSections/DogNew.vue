@@ -18,7 +18,7 @@
                         </div>
                         <div class="age">
                             <label>Edad</label>
-                            <InputNumber fluid v-model="oDog.animalAge" :maxFractionDigits="1" :min="0" :max="50" />
+                            <InputNumber fluid v-model="oDog.animalAge" :maxFractionDigits="2" :min="0" :max="50" />
                         </div>
                         <div class="size">
                             <label>Tamaño</label>
@@ -27,7 +27,8 @@
                         </div>
                         <div class="weight">
                             <label>Peso</label>
-                            <InputNumber fluid v-model="oDog.animalWeight" :maxFractionDigits="2" :min="0" :max="100" />
+                            <InputNumber fluid v-model="oDog.animalWeight" :maxFractionDigits="2" :min="0" :max="100"
+                                suffix=" kg" showClear />
                         </div>
                         <div class="isVaccinate containerOptions">
                             <label>¿Está vacunado?</label>
