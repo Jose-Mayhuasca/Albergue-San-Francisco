@@ -51,8 +51,9 @@ const plans = ref([
         price: 10.0,
         subtitle: 'Un pequeño gesto que alimenta grandes esperanzas.',
         benefits: [
-            'Tu donación equivale a 1 kg de comida que llena su pancita y su corazón.',
-            'No se envía evidencia, pero tu apoyo hace una gran diferencia.',
+            'Tour guiado por el albergue',
+            'Acceso a boletines mensuales',
+            'Descuentos en eventos del albergue',
         ],
     },
     {

@@ -1,15 +1,18 @@
 <template>
   <!-- Usamos background CSS en la sección para que el fondo pertenezca a la sección y se mueva con el scroll -->
-  <div class="hero relative h-screen overflow-hidden flex items-center justify-between p-12">
+  <div class="hero relative h-screen overflow-hidden flex flex-col md:flex-row items-center justify-between">
 
-    <!-- Contenido sin texto -->
-    <div class="relative text-black w-1/2 ml-40 pr-40">
-
+    <!-- Contenedor A -->
+    <div class="relative text-black w-full md:w-1/2 ml-40 pr-40">
+      <!-- Contenido de contenedor A -->
+       <div class="container-a-content">
+        
+       </div>
     </div>
 
-    <!-- Contenido derecho: tarjeta de donación mejorada -->
-    <div class="relative w-1/2 flex items-center justify-center pr-16">
-      <aside class="max-w-lg w-full py-8 px-4 rounded-2xl" aria-labelledby="donation-title">
+    <!-- Contenedor B derecho: tarjeta de donación mejorada -->
+    <div class="relative w-full md:w-1/2 flex items-center justify-center pr-10">
+      <aside class="max-w-3xl w-full py-8 rounded-2xl" aria-labelledby="donation-title">
 
         <h3 id="donation-title" class="text-3xl md:text-4xl font-extrabold text-gray-900 leading-tight">Dona comida para mascotas</h3>
 
@@ -51,70 +54,145 @@ export default {
 </script>
 
 <style scoped>
-/* Opcional: sombra suave o ajustes extra */
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-}
+@import url('https://fonts.googleapis.com/css2?family=Ariella+Sans:wght@700;900&family=Montpellier:wght@400;700&display=swap');
 
-/* Background confined to the section; moves with page scroll. No fixed attachment for better mobile behavior. */
+.font-montpellier { font-family: 'Montpellier', ui-sans-serif, system-ui, sans-serif; }
+.font-ariela { font-family: 'Ariella Sans', ui-sans-serif, system-ui, sans-serif; }
+
+/* Títulos en mayúsculas según la guía */
+h3 { text-transform: none; } /* solo el hero usa mayúsculas/parcial */
+
+/* Ajustes generales para la imagen de fondo */
 .hero {
-  position: relative; /* establish stacking context for pseudo-element */
-  overflow: visible; /* allow the pseudo-element to escape container bounds */
+  position: relative; /* establece el contexto de apilamiento para el pseudo-elemento */
+  /* En móvil y por defecto evitamos que contenidos se salgan y solapen con secciones siguientes */
+  overflow: hidden;
+  /* Variables para controlar la posición del fondo (se pueden ajustar para trasladar la imagen en X/Y) */
+  --bg-pos-x: 50%;
+  --bg-pos-y: 50%;
 }
 
-/* Full-bleed background: use pseudo-element so content stays within the container while background spans viewport */
+/* Fondo de pantalla completo: se usa un pseudo-elemento para que el contenido se quede dentro del contenedor mientras que el fondo cubre todo el viewport */
 .hero::before {
   content: '';
   position: absolute;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 100vw; /* span full viewport width */
-  height: 100%;
+  width: 100vw; /* abarca todo el ancho del viewport */
+  /* Queremos que el fondo cubra la ventana gráfica pero no dependa de la altura del contenedor
+     (así evita que el pseudo-elemento se extienda fuera del viewport en móviles y provoque solapes) */
+  height: 100vh;
   background-image: url('@/assets/img/dog_food.png');
   background-size: cover;
-  background-position: center;
+  /* Usamos variables para poder trasladar la imagen en X/Y desde CSS (mobile/tablet tendrán valores específicos) */
+  background-position: var(--bg-pos-x) var(--bg-pos-y);
   background-repeat: no-repeat;
   z-index: -1;
+  pointer-events: none; /* evitar que el pseudo-elemento capture eventos y cause problemas de interacción */
 }
 
-/* Dog image sizing and mobile adjustments */
-.hero-dog-img {
-  height: 600px;
-}
-
+/* Ajustes para la vista móvil */
 @media (max-width: 768px) {
   .hero {
-    background-position: center top;
+    /* En móvil movemos el fondo hacia arriba para alinearlo con el Contenedor A (ajusta los valores si quieres otro punto) */
+    --bg-pos-x: 10%;
+    --bg-pos-y: 25%;
     padding: 2rem;
+    /* en móvil queremos que la sección no ocupe forzosamente la altura completa del viewport */
+    height: auto;
+    /* Permitimos que el pseudo-elemento del fondo pueda desbordar visualmente sin ser recortado */
+    overflow: visible;
   }
 
-  .hero-dog-img {
-    height: 320px;
-    margin-right: 0 !important;
-    margin-top: 1rem !important;
+  /* Ajuste para los contenedores */
+  .hero > .relative {
+    width: 100%;
+    margin-left: 0;
+    padding-right: 0;
   }
 
-  /* Make text area full width on small screens */
-  .hero > .relative.z-10.text-black.w-1\/2.ml-40.pr-40 {
+  .hero > .relative.text-black.w-1\/2.ml-40.pr-40 {
     width: 100%;
     margin-left: 0;
   }
-}
 
-.donate-btn {
-  min-width: 160px;
-}
-
-@media (max-width: 640px) {
-  .donation-card {
-    padding: 1.25rem;
-    border-radius: 1rem;
+  /* Cambio de orden: el contenedor A se coloca arriba del contenedor B */
+  .hero > .relative.text-black {
+    order: 1;
   }
 
-  .donation-badge {
-    display: block;
+  .hero > .relative.w-full.md\:w-1\/2 {
+    order: 2;
+  }
+}
+
+/* Ajustes para tabletas (768px a 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .hero {
+    /* En tablet también desplazamos el fondo para que coincida con la altura del Contenedor A (A arriba de B) */
+    --bg-pos-x: 10%;
+    --bg-pos-y: 18%;
+    padding: 2rem;
+    /* For tablet we want the two containers stacked vertically (A arriba de B) */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Permitimos que el pseudo-elemento del fondo pueda desbordar visualmente sin ser recortado */
+    overflow: visible;
+  }
+
+  /* Los contenedores deben seguir el mismo orden: el contenedor A encima del contenedor B */
+  .hero > .relative.text-black {
+    /* Contenedor A (texto) primero */
+    order: 0;
+    width: 100%;
+    margin-left: 0;
+    padding-right: 0;
+  }
+
+  .hero > .relative.w-full.md\:w-1\/2 {
+    /* Contenedor B (tarjeta) después */
+    order: 1;
+    width: 100%;
+    padding-right: 0;
+    padding: 0 90px;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+/* Ajustes para PC (más de 1024px) */
+@media (min-width: 1024px) {
+  /* En escritorio permitimos que el pseudo-elemento pueda salirse visualmente si es necesario */
+  .hero { overflow: visible; }
+  /* Aquí no hacemos cambios significativos en la disposición, ya que está correcto. Solo aseguramos que no se vean afectados por los cambios de las otras vistas */
+  .hero > .relative.text-black {
+    order: 0;
+  }
+
+  .hero > .relative.w-full.md\:w-1\/2 {
+    order: 1;
+  }
+}
+
+/* Alturas específicas para el Contenido del Contenedor A */
+.container-a-content {
+  /* valor por defecto para escritorio / vista base */
+  height: 500px;
+}
+
+@media (max-width: 768px) {
+  /* En móvil: aumentamos a 700px */
+  .container-a-content {
+    height: 700px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  /* En tablet: aumentamos a 800px */
+  .container-a-content {
+    height: 800px;
   }
 }
 </style>
