@@ -21,7 +21,7 @@
         <p class="text-md text-gray-200">{{ pet.genero }}</p>
         <p class="text-md text-gray-200 px-1"> ● </p>
         <p class="text-md text-gray-200">
-          <span v-if="pet.edad < 1">Menos de 1 año</span>
+          <span v-if="pet.edad < 1">{{ Math.max(1, Math.floor(pet.edad * 12)) }} meses</span>
           <span v-else-if="Math.floor(pet.edad) === 1">1 año</span>
           <span v-else>{{ Math.floor(pet.edad) }} años</span>
         </p>
