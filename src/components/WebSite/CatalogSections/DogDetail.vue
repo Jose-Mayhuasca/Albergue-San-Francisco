@@ -506,6 +506,29 @@ const goBack = () => {
         margin-left: 0;
         margin-right: 0;
     }
+
+    /* Características: permitir que los ítems no hagan wrap y, si no caben,
+       que el grid los coloque en la siguiente fila para mostrar todo el texto
+       en una sola línea (sin forzar saltos de línea). */
+    .characteristicsContainer .containerItems {
+        /* auto-fit con minmax y max-content permite que cada celda crezca
+           según su contenido y que el grid acomode los ítems en filas
+           posteriores si no hay espacio horizontal suficiente. */
+        grid-template-columns: repeat(auto-fit, minmax(140px, max-content));
+        grid-auto-rows: auto;
+        align-items: start;
+    }
+
+    .characteristicsContainer .containerItems .item {
+        /* asegurar que el item pueda crecer en ancho según su contenido
+           y que el texto no se rompa en varias líneas */
+        min-width: 0;
+        width: auto;
+    }
+
+    .characteristicsContainer .containerItems .item label {
+        white-space: nowrap; /* no forzar salto de línea dentro del texto */
+    }
 }
 
 /* ================== DESKTOP (>= 1024px) ================== */
