@@ -37,7 +37,7 @@
                     <Card class="cardData rounded-3xl shadow-lg border border-slate-100 bg-white/90 backdrop-blur-sm">
                         <template #title>
                             <div class="flex items-center justify-between gap-2">
-                                <h3 class="font-bold text-xl md:text-2xl text-slate-900">
+                                <h3 class="font-bold text-4xl md:text-4xl text-slate-900">
                                     {{ oPet.animalName }}
                                 </h3>
 
@@ -439,9 +439,9 @@ const goBack = () => {
 
     /* Card: superponer 60px sobre la imagen como pediste */
     .detailView.is-mobile .cardData {
-        margin-top: -60px; /* 60px sobre la imagen */
+        margin-top: -70px; /* 70px sobre la imagen */
         z-index: 2; /* por encima de la imagen */
-        border-radius: 2rem 2rem 0 0; /* redondeado arriba, plano abajo */
+        border-radius: 2.5rem 2.5rem 0 0; /* redondeado arriba, plano abajo */
         padding-top: 1rem; /* evitar que el contenido quede pegado al borde */
         box-shadow: none; /* eliminar sombra extra en móvil */
     }
@@ -514,7 +514,7 @@ const goBack = () => {
         /* auto-fit con minmax y max-content permite que cada celda crezca
            según su contenido y que el grid acomode los ítems en filas
            posteriores si no hay espacio horizontal suficiente. */
-        grid-template-columns: repeat(auto-fit, minmax(140px, max-content));
+        grid-template-columns: repeat(auto-fit, minmax(130px, max-content));
         grid-auto-rows: auto;
         align-items: start;
     }
@@ -534,7 +534,7 @@ const goBack = () => {
 /* ================== DESKTOP (>= 1024px) ================== */
 @media (min-width: 1024px) {
     .detailView {
-        gap: 2.5rem;
+        gap: 1.5rem;
     }
 }
 </style>
