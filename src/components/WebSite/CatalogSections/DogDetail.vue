@@ -335,34 +335,7 @@ const goBack = () => {
 
 /* Móvil por defecto */
 .detailView.is-mobile .containerPhoto {
-    margin-bottom: 1rem;
-}
-
-/* Tablet (>= 640px) */
-@media (min-width: 640px) {
-    .detailView {
-        gap: 1.75rem;
-    }
-}
-
-/* Tablet / pequeño desktop (>= 768px) */
-@media (min-width: 768px) {
-    .detailView {
-        display: grid;
-        grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.2fr);
-        align-items: flex-start;
-    }
-
-    .detailView .containerPhoto {
-        margin-bottom: 0;
-    }
-}
-
-/* Desktop (>= 1024px) */
-@media (min-width: 1024px) {
-    .detailView {
-        gap: 2.5rem;
-    }
+    margin-bottom: 0; /* dejamos que el card se solape sin gap extra */
 }
 
 /* ---------- Foto ---------- */
@@ -406,4 +379,77 @@ const goBack = () => {
         width: auto;
     }
 }
+
+/* ================== VISTA MÓVIL (full width + overlap) ================== */
+/* Hasta 639px aprox (sm en Tailwind) */
+@media (max-width: 639px) {
+    /* Hacer que la imagen “rompa” el padding horizontal (px-4) y vaya de borde a borde */
+    .detailView.is-mobile .containerPhoto {
+        width: calc(100% + 2rem);      /* 100% + 2 * 1rem (px-4) */
+        margin-left: -1rem;
+        margin-right: -1rem;
+    }
+
+    .detailView.is-mobile .containerPhoto .photo {
+        border-radius: 0 0; /* arriba recto, abajo redondeado (opcional) */
+    }
+
+    /* Card flotando sobre la imagen, ocupando todo el ancho de la vista */
+    .detailView.is-mobile .cardData {
+        margin-top: -60px;              /* se monta 60px sobre la imagen */
+        margin-left: -1rem;             /* mismo truco que la imagen para ir de borde a borde */
+        margin-right: -1rem;
+        border-radius: 1.75rem 1.75rem 0 0; /* opcional: redondeado arriba, recto abajo */
+    }
+
+    /* Botones también full width alineados al ancho de la vista */
+    .detailView.is-mobile .actionsContainer {
+        margin-left: -1rem;
+        margin-right: -1rem;
+        padding: 0 1rem 0.5rem; /* pequeño respiro lateral */
+    }
+}
+
+/* ================== TABLET (>= 640px) ================== */
+@media (min-width: 640px) {
+    .detailView {
+        gap: 1.75rem;
+    }
+}
+
+/* ================== TABLET / PEQUEÑO DESKTOP (>= 768px) ================== */
+@media (min-width: 768px) {
+    .detailView {
+        display: grid;
+        grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.2fr);
+        align-items: flex-start;
+    }
+
+    .detailView .containerPhoto {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        margin-bottom: 0;
+    }
+
+    .detailView .cardData {
+        margin-top: 0;
+        margin-left: 0;
+        margin-right: 0;
+        border-radius: 1.5rem;
+    }
+
+    .detailView .actionsContainer {
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+
+/* ================== DESKTOP (>= 1024px) ================== */
+@media (min-width: 1024px) {
+    .detailView {
+        gap: 2.5rem;
+    }
+}
 </style>
+
