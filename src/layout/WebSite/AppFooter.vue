@@ -17,9 +17,7 @@
       <div>
         <h2 class="text-xl font-semibold mb-3">Contáctanos</h2>
         <ul class="space-y-2 text-gray-300 text-sm">
-          <li><i class="ri-map-pin-2-fill mr-2"></i> Av. Los Olivos 123, Lima, Perú</li>
           <li><i class="ri-phone-fill mr-2"></i> +51 123 456 789</li>
-          <li><i class="ri-mail-unread-fill mr-2"></i> contacto@asfrancisco</li>
         </ul>
       </div>
 
@@ -29,7 +27,8 @@
         <div class="flex space-x-4 text-2xl">
           <a href="https://www.facebook.com/arcaneshow/?locale=es_LA" target="_blank" rel="noopener noreferrer" class="hover:text-gray-400 transition"><i class="ri-facebook-circle-fill"></i></a>
           <a href="https://www.instagram.com/arcaneshow/" target="_blank" rel="noopener noreferrer" class="hover:text-gray-400 transition"><i class="ri-instagram-fill"></i></a>
-          <a href="https://x.com/arcaneshow" target="_blank" rel="noopener noreferrer" class="hover:text-gray-400 transition"><i class="ri-twitter-x-line"></i></a>
+          <a href="https://x.com/arcaneshow" target="_blank" rel="noopener noreferrer" class="hover:text-gray-400 transition"><i class="ri-tiktok-fill"></i></a>
+          <a href="https://api.whatsapp.com/send/?phone=51951703662&text=Hola%2C+quiero+m%C3%A1s+informaci%C3%B3n+sobre+adopciones&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer" class="hover:text-gray-400 transition"><i class="ri-whatsapp-fill"></i></a>
         </div>
       </div>
 
