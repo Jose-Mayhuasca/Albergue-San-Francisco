@@ -53,7 +53,7 @@
                                         class="item flex items-center gap-2 px-3 py-2 rounded-xl bg-cyan-50 w-full min-w-0">
                                         <i class="ri-calendar-event-fill text-cyan-600 text-lg"></i>
                                         <label class="text-sm text-cyan-600">
-                                            {{ oPet.animalAge}} años
+                                            {{ oPet.animalAge}}
                                         </label>
                                     </div>
 
