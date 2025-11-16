@@ -1,167 +1,243 @@
 <template>
-    <div class="page">
-        <Section class="sectionDogDetail">
+    <div class="page bg-slate-50 min-h-screen flex justify-center items-start py-6 md:py-10">
+        <Section class="sectionDogDetail w-full">
             <!-- ================== CONTENIDO PRINCIPAL ================== -->
-            <div class="container" v-show="!bCargando">
-                <!-- Una sola vista: cambia layout con la clase is-desktop / is-mobile -->
-                <div :class="['detailView', viewDesktop ? 'is-desktop' : 'is-mobile']">
+            <div class="container mx-auto max-w-5xl px-4" v-show="!bCargando">
+                <!-- Una sola vista: cambia layout con media queries + clase is-desktop -->
+                <div
+                    :class="[
+                        'detailView w-full gap-6 lg:gap-10',
+                        viewDesktop ? 'is-desktop' : 'is-mobile'
+                    ]"
+                >
                     <!-- Foto -->
-                    <div class="containerPhoto">
-                        <!-- <Skeleton fluid height="auto" :style="{ aspectRatio: '1 / 1' }" class="item" /> -->
+                    <div class="containerPhoto relative w-full">
                         <Card
-                            class="photo"
+                            class="photo overflow-hidden rounded-3xl shadow-xl bg-cover bg-center"
                             :style="{
                                 backgroundImage: `url(${oPet.animalImage})`
                             }"
                         >
                             <template #title>
-                                <div class="buttonBack">
-                                    <i class="ri-arrow-left-line" @click="goBack()"></i>
+                                <div class="buttonBack absolute top-4 left-4 z-10">
+                                    <button
+                                        class="inline-flex items-center justify-center rounded-lg bg-white/50 hover:bg-white shadow-md w-10 h-10 transition"
+                                        @click="goBack()"
+                                    >
+                                        <i class="ri-arrow-left-line text-slate-700 text-lg"></i>
+                                    </button>
                                 </div>
+                                <!-- Overlay suave arriba para mejorar contraste -->
+                                <div class="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-black/40 to-transparent pointer-events-none"></div>
                             </template>
                         </Card>
                     </div>
 
                     <!-- Datos -->
-                    <Card class="cardData">
+                    <Card class="cardData rounded-3xl shadow-lg border border-slate-100 bg-white/90 backdrop-blur-sm">
                         <template #title>
-                            <h3 class="bold">{{ oPet.animalName }}</h3>
+                            <div class="flex items-center justify-between gap-2">
+                                <h3 class="font-bold text-xl md:text-2xl text-slate-900">
+                                    {{ oPet.animalName }}
+                                </h3>
+
+                            </div>
                         </template>
 
                         <template #content>
                             <!-- Características -->
-                            <div class="characteristicsContainer standarContainer">
-                                <div class="title">
-                                    <h6 class="bold">Características</h6>
+                            <div class="characteristicsContainer standarContainer mt-4">
+                                <div class="title mb-2">
+                                    <h6 class="font-semibold text-sm uppercase tracking-wide text-slate-500">
+                                        Características
+                                    </h6>
                                 </div>
-                                <div class="containerItems">
-                                    <div class="item">
-                                        <i class="ri-calendar-event-fill"></i>
-                                        <label>{{ oPet.animalAge }} años</label>
+                                <div class="containerItems grid grid-cols-2 gap-3 md:grid-cols-3">
+                                    <div class="item flex items-center gap-2 px-3 py-2 rounded-2xl bg-cyan-50">
+                                        <i class="ri-calendar-event-fill text-cyan-600 text-lg"></i>
+                                        <label class="text-sm text-cyan-600">
+                                            {{ oPet.animalAge }} años
+                                        </label>
                                     </div>
-                                    <div class="item">
-                                        <i class="ri-men-line" v-if="oPet.idAnimalGender == 1" />
-                                        <i class="ri-women-line" v-else />
-                                        <label>{{ oPet.genderDesc }}</label>
+                                    
+                                    <div class="item flex items-center gap-2 px-3 py-2 rounded-2xl bg-cyan-50">
+                                        <i
+                                            class="text-cyan-600 text-lg"
+                                            :class="oPet.idAnimalGender == 1 ? 'ri-men-line' : 'ri-women-line'"
+                                        ></i>
+                                        <label class="text-sm text-cyan-600">
+                                            {{ oPet.genderDesc }}
+                                        </label>
                                     </div>
-                                    <div class="item">
-                                        <i class="ri-ruler-line"></i>
-                                        <label>{{ oPet.sizeDesc }}</label>
+
+                                    <div class="item flex items-center gap-2 px-3 py-2 rounded-2xl bg-cyan-50">
+                                        <i class="ri-ruler-line text-cyan-600 text-lg"></i>
+                                        <label class="text-sm text-cyan-600">
+                                            {{ oPet.sizeDesc }}
+                                        </label>
                                     </div>
-                                    <div class="item">
-                                        <i class="ri-scales-2-line"></i>
-                                        <label>{{ oPet.animalWeight }}kg</label>
+
+                                    <div class="item flex items-center gap-2 px-3 py-2 rounded-2xl bg-cyan-50">
+                                        <i class="ri-scales-2-line text-cyan-600 text-lg"></i>
+                                        <label class="text-sm text-cyan-600">
+                                            {{ oPet.animalWeight }} kg
+                                        </label>
                                     </div>
-                                    <div class="item" v-show="oPet.isVaccinated">
-                                        <i class="ri-syringe-line"></i>
-                                        <label>{{ oPet.isVaccinated ? 'Vacunado' : 'Sin vacunar' }}</label>
+
+                                    <div
+                                        class="item flex items-center gap-2 px-3 py-2 rounded-2xl bg-cyan-50"
+                                        v-show="oPet.isVaccinated"
+                                    >
+                                        <i class="ri-syringe-line text-cyan-600 text-lg"></i>
+                                        <label class="text-sm text-cyan-600">
+                                            {{ oPet.isVaccinated ? 'Vacunado' : 'Sin vacunar' }}
+                                        </label>
                                     </div>
-                                    <div class="item" v-show="oPet.isSterilized">
-                                        <i class="ri-quill-pen-line"></i>
-                                        <label>{{ oPet.isSterilized ? 'Esterilizado' : 'Sin esterilizar' }}</label>
+
+                                    <div
+                                        class="item flex items-center gap-2 px-3 py-2 rounded-2xl bg-cyan-50"
+                                        v-show="oPet.isSterilized"
+                                    >
+                                        <i class="ri-quill-pen-line text-cyan-600 text-lg"></i>
+                                        <label class="text-sm text-cyan-600">
+                                            {{ oPet.isSterilized ? 'Esterilizado' : 'Sin esterilizar' }}
+                                        </label>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Historia -->
-                            <div class="historyContainer standarContainer">
-                                <div class="title">
-                                    <h6 class="bold">Historia</h6>
+                            <div class="historyContainer standarContainer mt-6">
+                                <div class="title mb-1">
+                                    <h6 class="font-semibold text-sm uppercase tracking-wide text-slate-500">
+                                        Historia
+                                    </h6>
                                 </div>
                                 <div class="content">
-                                    <p>{{ oPet.animalHistory }}</p>
+                                    <p class="text-sm md:text-base leading-relaxed text-slate-700 bg-slate-50/80 rounded-2xl px-4 py-3">
+                                        {{ oPet.animalHistory }}
+                                    </p>
                                 </div>
                             </div>
 
                             <!-- Descripción -->
-                            <div class="descriptionContainer standarContainer">
-                                <div class="title">
-                                    <h6 class="bold">Descripción</h6>
+                            <div class="descriptionContainer standarContainer mt-6">
+                                <div class="title mb-1">
+                                    <h6 class="font-semibold text-sm uppercase tracking-wide text-slate-500">
+                                        Descripción
+                                    </h6>
                                 </div>
                                 <div class="content">
-                                    <p>{{ oPet.animalDesc }}</p>
+                                    <p class="text-sm md:text-base leading-relaxed text-slate-700 bg-slate-50/80 rounded-2xl px-4 py-3">
+                                        {{ oPet.animalDesc }}
+                                    </p>
                                 </div>
                             </div>
                         </template>
                     </Card>
 
                     <!-- Acciones -->
-                    <div class="actionsContainer">
+                    <div
+                        class="actionsContainer flex flex-col sm:flex-row gap-3 mt-4 sm:mt-6 w-full"
+                    >
                         <Button
                             label="Adoptar"
                             icon="ri-heart-2-line"
                             @click="goFormAdoption(oPet.idRefAnimals)"
+                            class="flex-1 min-w-[140px] sm:max-w-xs"
                         />
                         <Button
                             label="Apadrinar"
                             icon="ri-vip-crown-line"
                             @click="goPlans()"
+                            class="flex-1 min-w-[140px] sm:max-w-xs p-button-outlined"
                         />
                     </div>
                 </div>
             </div>
 
             <!-- ================== SKELETON / CARGANDO ================== -->
-            <div class="container" v-show="bCargando">
-                <div class="containerPhoto">
-                    <Skeleton
-                        fluid
-                        height="auto"
-                        :style="{ aspectRatio: '1 / 1' }"
-                        class="item"
-                    />
+            <div class="container mx-auto max-w-5xl px-4" v-show="bCargando">
+                <div class="detailView w-full flex flex-col gap-6 md:flex-row md:gap-8">
+                    <div class="containerPhoto w-full md:w-1/2">
+                        <Skeleton
+                            fluid
+                            height="auto"
+                            :style="{ aspectRatio: '4 / 5' }"
+                            class="item rounded-3xl shadow-lg"
+                        />
+                    </div>
+
+                    <Card class="cardData flex-1 rounded-3xl shadow-lg border border-slate-100 bg-white/90">
+                        <template #title>
+                            <Skeleton fluid height="3rem" class="rounded-xl" />
+                        </template>
+
+                        <template #content>
+                            <div class="characteristicsContainer standarContainer mt-4">
+                                <div class="title mb-2">
+                                    <h6 class="font-semibold text-sm uppercase tracking-wide text-slate-400">
+                                        Características
+                                    </h6>
+                                </div>
+                                <div class="containerItems grid grid-cols-2 gap-3 md:grid-cols-3">
+                                    <Skeleton
+                                        v-for="index in 6"
+                                        :key="index"
+                                        width="100%"
+                                        height="2.4rem"
+                                        class="rounded-2xl"
+                                    />
+                                </div>
+                            </div>
+
+                            <div class="historyContainer standarContainer mt-6">
+                                <div class="title mb-2">
+                                    <h6 class="font-semibold text-sm uppercase tracking-wide text-slate-400">
+                                        Historia
+                                    </h6>
+                                </div>
+                                <div class="content">
+                                    <Skeleton
+                                        fluid
+                                        height="6rem"
+                                        class="rounded-2xl"
+                                    />
+                                </div>
+                            </div>
+
+                            <div class="descriptionContainer standarContainer mt-6">
+                                <div class="title mb-2">
+                                    <h6 class="font-semibold text-sm uppercase tracking-wide text-slate-400">
+                                        Descripción
+                                    </h6>
+                                </div>
+                                <div class="content">
+                                    <Skeleton
+                                        fluid
+                                        height="6rem"
+                                        class="rounded-2xl"
+                                    />
+                                </div>
+                            </div>
+                        </template>
+                    </Card>
                 </div>
 
-                <Card class="cardData">
-                    <template #title>
-                        <Skeleton fluid height="3rem" />
-                    </template>
-
-                    <template #content>
-                        <div class="characteristicsContainer standarContainer">
-                            <div class="title">
-                                <h6 class="bold">Características</h6>
-                            </div>
-                            <div class="containerItems">
-                                <Skeleton
-                                    v-for="index in 6"
-                                    :key="index"
-                                    width="6rem"
-                                    height="2rem"
-                                />
-                            </div>
-                        </div>
-
-                        <div class="historyContainer standarContainer">
-                            <div class="title">
-                                <h6 class="bold">Historia</h6>
-                            </div>
-                            <div class="content">
-                                <Skeleton fluid height="6rem" />
-                            </div>
-                        </div>
-
-                        <div class="descriptionContainer standarContainer">
-                            <div class="title">
-                                <h6 class="bold">Descripción</h6>
-                            </div>
-                            <div class="content">
-                                <Skeleton fluid height="6rem" />
-                            </div>
-                        </div>
-                    </template>
-                </Card>
-
-                <div class="actionsContainer">
+                <div
+                    class="actionsContainer flex flex-col sm:flex-row gap-3 mt-6 w-full"
+                >
                     <Button
                         label="Adoptar"
                         icon="ri-heart-2-line"
                         @click="goFormAdoption(oPet.idRefAnimals)"
+                        class="flex-1 min-w-[140px] sm:max-w-xs"
                     />
                     <Button
                         label="Apadrinar"
                         icon="ri-vip-crown-line"
                         @click="goPlans()"
+                        class="flex-1 min-w-[140px] sm:max-w-xs p-button-outlined"
                     />
                 </div>
             </div>
@@ -186,10 +262,12 @@ const oPet = ref({
     sizeDesc: ''
 });
 
+// Usaremos esto SOLO para ciertos ajustes de layout si lo necesitas
 const viewDesktop = ref(false);
 
+// Desktop real a partir de 1024px
 const checkScreenSize = () => {
-    viewDesktop.value = window.innerWidth > 480;
+    viewDesktop.value = window.innerWidth >= 1024;
 };
 
 onMounted(() => {
@@ -198,7 +276,6 @@ onMounted(() => {
     window.addEventListener('resize', checkScreenSize);
 });
 
-// Limpiar el event listener cuando el componente se desmonte
 onUnmounted(() => {
     window.removeEventListener('resize', checkScreenSize);
 });
@@ -249,44 +326,85 @@ const goBack = () => {
     router.push({ path: '/catalogo' });
 };
 </script>
+
 <style scoped>
+/* ---------- Layout base ---------- */
 .detailView {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
 }
 
-/* Desktop: foto y card en columnas */
-.detailView.is-desktop {
-    flex-direction: row;
-    align-items: flex-start;
+/* Móvil por defecto */
+.detailView.is-mobile .containerPhoto {
+    margin-bottom: 1rem;
 }
 
-.detailView.is-desktop .containerPhoto {
-    flex: 1;
+/* Tablet (>= 640px) */
+@media (min-width: 640px) {
+    .detailView {
+        gap: 1.75rem;
+    }
 }
 
-.detailView.is-desktop .cardData {
-    flex: 1;
+/* Tablet / pequeño desktop (>= 768px) */
+@media (min-width: 768px) {
+    .detailView {
+        display: grid;
+        grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.2fr);
+        align-items: flex-start;
+    }
+
+    .detailView .containerPhoto {
+        margin-bottom: 0;
+    }
 }
 
-/* Mobile: todo en columna */
-.detailView.is-mobile {
-    flex-direction: column;
+/* Desktop (>= 1024px) */
+@media (min-width: 1024px) {
+    .detailView {
+        gap: 2.5rem;
+    }
 }
 
-.detailView .actionsContainer {
-    margin-top: 1rem;
-    display: flex;
-    gap: 0.75rem;
+/* ---------- Foto ---------- */
+.containerPhoto .photo {
+    min-height: 320px;
+    aspect-ratio: 4 / 5;
+    background-size: cover;
+    background-position: center;
+    position: relative;
 }
 
-.detailView.is-mobile .actionsContainer {
-    justify-content: space-between;
+/* ---------- Card de datos ---------- */
+.cardData {
+    padding: 1rem;
 }
 
-.detailView.is-desktop .actionsContainer {
-    justify-content: flex-start;
+@media (min-width: 640px) {
+    .cardData {
+        padding: 1.25rem;
+    }
 }
 
+@media (min-width: 1024px) {
+    .cardData {
+        padding: 1.75rem;
+    }
+}
+
+/* ---------- Acciones ---------- */
+.actionsContainer {
+    /* estilos base ya con Tailwind, aquí solo podrías afinar si quieres */
+}
+
+/* Si usas PrimeVue, puedes ajustar los botones así: */
+:deep(.p-button) {
+    width: 100%;
+}
+
+@media (min-width: 640px) {
+    :deep(.p-button) {
+        width: auto;
+    }
+}
 </style>
