@@ -380,33 +380,78 @@ const goBack = () => {
     }
 }
 
-/* ================== VISTA MÓVIL (full width + overlap) ================== */
+/* ================== VISTA MÓVIL (full viewport width + 10px overlap) ================== */
 /* Hasta 639px aprox (sm en Tailwind) */
 @media (max-width: 639px) {
-    /* Hacer que la imagen “rompa” el padding horizontal (px-4) y vaya de borde a borde */
-    .detailView.is-mobile .containerPhoto {
-        width: calc(100% + 2rem);      /* 100% + 2 * 1rem (px-4) */
-        margin-left: -1rem;
-        margin-right: -1rem;
-    }
-
-    .detailView.is-mobile .containerPhoto .photo {
-        border-radius: 0 0; /* arriba recto, abajo redondeado (opcional) */
-    }
-
-    /* Card flotando sobre la imagen, ocupando todo el ancho de la vista */
-    .detailView.is-mobile .cardData {
-        margin-top: -60px;              /* se monta 60px sobre la imagen */
-        margin-left: -1rem;             /* mismo truco que la imagen para ir de borde a borde */
-        margin-right: -1rem;
-        border-radius: 1.75rem 1.75rem 0 0; /* opcional: redondeado arriba, recto abajo */
-    }
-
-    /* Botones también full width alineados al ancho de la vista */
+    /* Romper el contenedor centrado: usar 100vw y centrarlo con transform
+       para que la imagen y el card ocupen realmente todo el ancho del viewport. */
+    .detailView.is-mobile .containerPhoto,
+    .detailView.is-mobile .cardData,
     .detailView.is-mobile .actionsContainer {
-        margin-left: -1rem;
-        margin-right: -1rem;
-        padding: 0 1rem 0.5rem; /* pequeño respiro lateral */
+        width: 100vw;
+        max-width: 100vw;
+        left: 50%;
+        transform: translateX(-50%);
+        position: relative;
+        box-sizing: border-box; /* aseguramos que padding interno no aumente ancho */
+        padding-left: 1rem; /* dejemos el espaciado interior igual que px-4 */
+        padding-right: 1rem;
+    }
+
+    /* Foto: mantener altura mínima y que quede visualmente detrás del Card */
+    .detailView.is-mobile .containerPhoto .photo {
+        border-radius: 0 0; /* opcional: redondeado en la parte inferior */
+        min-height: 350px;
+        z-index: 1;
+        margin-top: -40px;
+        position: relative;
+    }
+
+    /* Asegurar que el propio Card (.photo) ocupe todo el ancho del viewport
+       y no quede limitado por el padding del contenedor padre. También aplica
+       a elementos directos hijos como Skeleton durante el loading. */
+    .detailView.is-mobile .containerPhoto > * {
+        width: 100vw;
+        max-width: 100vw;
+        left: 50%;
+        transform: translateX(-50%);
+        position: relative;
+        box-sizing: border-box;
+        padding-left: 0; /* evitamos el padding extra que pueda empujar el contenido */
+        padding-right: 0;
+        margin-left: 0;
+        margin-right: 0;
+
+    }
+
+    /* También forzamos que la propia .photo cubra 100vw por si el componente
+       Card añade wrappers internos que no heredan el ancho del padre. */
+    .detailView.is-mobile .containerPhoto .photo {
+        width: 100vw;
+        max-width: 100vw;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    /* Card: superponer 60px sobre la imagen como pediste */
+    .detailView.is-mobile .cardData {
+        margin-top: -60px; /* 60px sobre la imagen */
+        z-index: 2; /* por encima de la imagen */
+        border-radius: 2rem 2rem 0 0; /* redondeado arriba, plano abajo */
+        padding-top: 1rem; /* evitar que el contenido quede pegado al borde */
+        box-shadow: none; /* eliminar sombra extra en móvil */
+    }
+
+    /* Acciones: mantener alineadas con el ancho real de la vista */
+    .detailView.is-mobile .actionsContainer {
+        margin-top: 0.5rem;
+        padding-bottom: 0.5rem;
+    }
+
+    /* Evitar overflow horizontal causado por 100vw en algunos navegadores */
+    html, body, #app {
+        overflow-x: hidden;
+
     }
 }
 
