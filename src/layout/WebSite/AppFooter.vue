@@ -27,9 +27,9 @@
       <div>
         <h2 class="text-xl font-semibold mb-3">Síguenos</h2>
         <div class="flex space-x-4 text-2xl">
-          <a href="#" class="hover:text-gray-400 transition"><i class="ri-facebook-circle-fill"></i></a>
-          <a href="#" class="hover:text-gray-400 transition"><i class="ri-instagram-fill"></i></a>
-          <a href="#" class="hover:text-gray-400 transition"><i class="ri-twitter-x-line"></i></a>
+          <a href="https://www.facebook.com/arcaneshow/?locale=es_LA" target="_blank" rel="noopener noreferrer" class="hover:text-gray-400 transition"><i class="ri-facebook-circle-fill"></i></a>
+          <a href="https://www.instagram.com/arcaneshow/" target="_blank" rel="noopener noreferrer" class="hover:text-gray-400 transition"><i class="ri-instagram-fill"></i></a>
+          <a href="https://x.com/arcaneshow" target="_blank" rel="noopener noreferrer" class="hover:text-gray-400 transition"><i class="ri-twitter-x-line"></i></a>
         </div>
       </div>
 
