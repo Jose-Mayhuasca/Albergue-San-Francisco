@@ -81,7 +81,8 @@ const localFilters = reactive({ ...props.filters })
 const tamaños = ['Pequeño', 'Mediano', 'Grande']
 const edades = [
   { label: 'Cachorro', value: 'Cachorro' },
-  { label: 'Joven', value: 'Joven' },
+  // 'Joven' label maps to value '1-3' to match CatalogSection filtering logic
+  { label: 'Joven', value: '1-3' },
   { label: 'Adulto', value: 'Adulto' }
 ]
 const generos = ['Macho', 'Hembra']

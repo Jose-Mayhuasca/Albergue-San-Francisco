@@ -27,16 +27,16 @@
       <div>
         <h2 class="text-xl font-semibold mb-3">Síguenos</h2>
         <div class="flex space-x-4 text-2xl">
-          <a href="#" class="hover:text-gray-400 transition"><i class="ri-facebook-circle-fill"></i></a>
-          <a href="#" class="hover:text-gray-400 transition"><i class="ri-instagram-fill"></i></a>
-          <a href="#" class="hover:text-gray-400 transition"><i class="ri-twitter-x-line"></i></a>
+          <a href="https://www.facebook.com/arcaneshow/?locale=es_LA" target="_blank" rel="noopener noreferrer" class="hover:text-gray-400 transition"><i class="ri-facebook-circle-fill"></i></a>
+          <a href="https://www.instagram.com/arcaneshow/" target="_blank" rel="noopener noreferrer" class="hover:text-gray-400 transition"><i class="ri-instagram-fill"></i></a>
+          <a href="https://x.com/arcaneshow" target="_blank" rel="noopener noreferrer" class="hover:text-gray-400 transition"><i class="ri-twitter-x-line"></i></a>
         </div>
       </div>
 
     </div>
 
     <!-- Línea divisoria -->
-    <div class="border-t border-gray-700 mt-12 pt-6 text-center text-gray-400 text-sm">
+    <div class="border-t border-gray-700 mt-12 pt-6 text-center text-gray-400 text-sm footer-copyright">
       © 2025 Albergue San Francisco — Todos los derechos reservados.
     </div>
 
@@ -45,6 +45,18 @@
 
 <style scoped>
 /* No se requiere CSS adicional: Tailwind ya maneja toda la responsividad */
+@media (max-width: 640px) {
+  .footer-copyright {
+    padding-bottom: 60px;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .footer-copyright {
+    padding-bottom: 60px;
+  }
+}
+
 </style>
 
 //si mi delegeit
