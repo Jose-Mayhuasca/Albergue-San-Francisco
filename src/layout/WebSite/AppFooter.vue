@@ -36,7 +36,7 @@
     </div>
 
     <!-- Línea divisoria -->
-    <div class="border-t border-gray-700 mt-12 pt-6 text-center text-gray-400 text-sm">
+    <div class="border-t border-gray-700 mt-12 pt-6 text-center text-gray-400 text-sm footer-copyright">
       © 2025 Albergue San Francisco — Todos los derechos reservados.
     </div>
 
@@ -45,6 +45,18 @@
 
 <style scoped>
 /* No se requiere CSS adicional: Tailwind ya maneja toda la responsividad */
+@media (max-width: 640px) {
+  .footer-copyright {
+    padding-bottom: 60px;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .footer-copyright {
+    padding-bottom: 60px;
+  }
+}
+
 </style>
 
 //si mi delegeit

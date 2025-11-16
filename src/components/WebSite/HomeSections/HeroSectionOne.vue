@@ -1,6 +1,6 @@
 <template>
   <!-- Sección hero -->
-  <div class="hero relative h-screen overflow-hidden flex flex-col lg:flex-row items-center justify-between p-6 md:p-12 xs:mb-40">
+  <div class="hero relative h-screen overflow-hidden flex flex-col lg:flex-row items-center justify-between p-6 md:p-12 xs:mb-80">
 
     <!-- Imagen del perro (quedará arriba en móviles y a la derecha en PC) -->
   <div class="hero-image relative w-full lg:w-1/2 flex justify-center lg:order-2">
