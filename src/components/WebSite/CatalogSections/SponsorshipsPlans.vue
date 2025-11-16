@@ -103,8 +103,8 @@ const plans = ref([
     {
         id: 3,
         title: 'Héroe Peludo',
-        price: 110.0,
-        subtitle: '1 saco de croquetas (21kg)',
+        price: 100.0,
+        subtitle: '1 saco de croquetas (15kg)',
         benefits: [
             'Alimentación cubierta',
             'Atención veterinaria completa.',
