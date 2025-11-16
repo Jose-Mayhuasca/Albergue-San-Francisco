@@ -52,15 +52,15 @@
                                         Características
                                     </h6>
                                 </div>
-                                <div class="containerItems grid grid-cols-2 gap-3 md:grid-cols-3">
-                                    <div class="item flex items-center gap-2 px-3 py-2 rounded-2xl bg-cyan-50">
+                                <div class="containerItems grid grid-cols-2 gap-3 md:grid-cols-3 justify-items-stretch">
+                                    <div class="item flex items-center gap-2 px-3 py-2 rounded-xl bg-cyan-50 w-full min-w-0">
                                         <i class="ri-calendar-event-fill text-cyan-600 text-lg"></i>
                                         <label class="text-sm text-cyan-600">
                                             {{ oPet.animalAge }} años
                                         </label>
                                     </div>
                                     
-                                    <div class="item flex items-center gap-2 px-3 py-2 rounded-2xl bg-cyan-50">
+                                    <div class="item flex items-center gap-2 px-3 py-2 rounded-xl bg-cyan-50 w-full min-w-0">
                                         <i
                                             class="text-cyan-600 text-lg"
                                             :class="oPet.idAnimalGender == 1 ? 'ri-men-line' : 'ri-women-line'"
@@ -70,22 +70,21 @@
                                         </label>
                                     </div>
 
-                                    <div class="item flex items-center gap-2 px-3 py-2 rounded-2xl bg-cyan-50">
+                                    <div class="item flex items-center gap-2 px-3 py-2 rounded-xl bg-cyan-50 w-full min-w-0">
                                         <i class="ri-ruler-line text-cyan-600 text-lg"></i>
                                         <label class="text-sm text-cyan-600">
                                             {{ oPet.sizeDesc }}
                                         </label>
                                     </div>
 
-                                    <div class="item flex items-center gap-2 px-3 py-2 rounded-2xl bg-cyan-50">
+                                    <div class="item flex items-center gap-2 px-3 py-2 rounded-xl bg-cyan-50 w-full min-w-0">
                                         <i class="ri-scales-2-line text-cyan-600 text-lg"></i>
                                         <label class="text-sm text-cyan-600">
                                             {{ oPet.animalWeight }} kg
                                         </label>
                                     </div>
-
                                     <div
-                                        class="item flex items-center gap-2 px-3 py-2 rounded-2xl bg-cyan-50"
+                                        class="item flex items-center gap-2 px-3 py-2 rounded-xl bg-cyan-50 w-full min-w-0"
                                         v-show="oPet.isVaccinated"
                                     >
                                         <i class="ri-syringe-line text-cyan-600 text-lg"></i>
@@ -95,7 +94,7 @@
                                     </div>
 
                                     <div
-                                        class="item flex items-center gap-2 px-3 py-2 rounded-2xl bg-cyan-50"
+                                        class="item flex items-center gap-2 px-3 py-2 rounded-xl bg-cyan-50 w-full min-w-0"
                                         v-show="oPet.isSterilized"
                                     >
                                         <i class="ri-quill-pen-line text-cyan-600 text-lg"></i>
