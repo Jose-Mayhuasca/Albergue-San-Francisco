@@ -383,6 +383,10 @@ const goBack = () => {
 /* ================== VISTA MÓVIL (full viewport width + 10px overlap) ================== */
 /* Hasta 639px aprox (sm en Tailwind) */
 @media (max-width: 639px) {
+    /* En móvil queremos fondo blanco para esta vista */
+    .page {
+        background-color: #FFFFFF !important;
+    }
     /* Romper el contenedor centrado: usar 100vw y centrarlo con transform
        para que la imagen y el card ocupen realmente todo el ancho del viewport. */
     .detailView.is-mobile .containerPhoto,
@@ -460,6 +464,19 @@ const goBack = () => {
     .detailView {
         gap: 1.75rem;
     }
+
+    /* Hacer que el fondo de la página abarque todo el ancho del viewport
+       en tablet y desktop (full-bleed) sin afectar el contenido centrado. */
+    .page {
+        width: 100vw; /* forzar ancho del viewport */
+        margin-left: calc(50% - 50vw); /* centrar y compensar el contenedor padre */
+        margin-right: calc(50% - 50vw);
+        box-sizing: border-box;
+        /* mantener el padding vertical ya definido en la clase HTML, solo
+           eliminamos padding horizontal extra para evitar gaps laterales */
+        padding-left: 0;
+        padding-right: 0;
+    }
 }
 
 /* ================== TABLET / PEQUEÑO DESKTOP (>= 768px) ================== */
@@ -468,6 +485,7 @@ const goBack = () => {
         display: grid;
         grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.2fr);
         align-items: flex-start;
+        
     }
 
     .detailView .containerPhoto {
