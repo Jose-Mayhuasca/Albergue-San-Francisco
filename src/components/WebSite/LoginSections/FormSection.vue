@@ -16,9 +16,9 @@
                     <InputText v-model="user.password" type="password" fluid />
                 </div>
                 <Button type="submit" class="p-button" label="Iniciar Sesión" @click.prevent="onSubmit" />
-                <div class="links smallSize">
+                <!-- <div class="links smallSize">
                     <a href="#">¿Olvidaste tu contraseña?</a>
-                </div>
+                </div> -->
             </Form>
         </div>
     </section>

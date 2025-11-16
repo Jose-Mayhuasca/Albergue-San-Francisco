@@ -5,11 +5,8 @@
                 <!-- HEADER -->
                 <div class="title text-center mb-8 justify-end">
                     <div class="flex items-center justify-center bg-black hover:bg-white h-8 w-8 mb-3 rounded-lg">
-                        <button
-                            class="inline-flex items-center justify-center w-full h-full focus:outline-none"
-                            @click="goBack(idDog)"
-                            aria-label="Volver"
-                        >
+                        <button class="inline-flex items-center justify-center w-full h-full focus:outline-none"
+                            @click="goBack(idDog)" aria-label="Volver">
                             <i class="ri-arrow-left-line text-amber-500 text-lg" />
                         </button>
                     </div>
@@ -26,23 +23,17 @@
 
                 <!-- PLANES -->
                 <div class="plansContainer grid gap-5 sm:gap-6">
-                    <Card
-                        v-for="plan in plans"
-                        :key="plan.id"
-                        :class="[
-                            'cardPlan containerFormPlans transition transform',
-                            plan.id === 2 ? 'is-featured scale-[1.02]' : 'hover:-translate-y-1'
-                        ]"
-                    >
+                    <Card v-for="plan in plans" :key="plan.id" :class="[
+                        'cardPlan containerFormPlans transition transform',
+                        plan.id === 2 ? 'is-featured scale-[1.02]' : 'hover:-translate-y-1'
+                    ]">
                         <template #title>
                             <div class="flex flex-col items-center gap-2 mb-2">
                                 <h6 class="bold text-center text-xl md:text-2xl text-slate-900">
                                     {{ plan.title }}
                                 </h6>
-                                <span
-                                    v-if="plan.id === 2"
-                                    class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold bg-amber-100 text-amber-700"
-                                >
+                                <span v-if="plan.id === 2"
+                                    class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold bg-amber-100 text-amber-700">
                                     <i class="ri-star-smile-line text-sm" />
                                     Más popular
                                 </span>
@@ -58,23 +49,15 @@
                             </div>
 
                             <!-- CTA -->
-                            <Button
-                                label="Elegir plan"
-                                fluid
-                                class="mb-4 font-semibold"
-                                @click="goPaymentOption()"
-                            />
+                            <Button label="Elegir plan" fluid class="mb-4 font-semibold" @click="goPaymentOption()" />
 
                             <!-- thin horizontal rule -->
                             <div class="h-px w-full bg-slate-400 my-3"></div>
 
                             <!-- BENEFICIOS -->
                             <div class="benefitsList flex flex-col gap-2 mt-3">
-                                <div
-                                    class="item flex items-start gap-2 text-sm text-slate-700"
-                                    v-for="(benefit, index) in plan.benefits"
-                                    :key="index"
-                                >
+                                <div class="item flex items-start gap-2 text-sm text-slate-700"
+                                    v-for="(benefit, index) in plan.benefits" :key="index">
                                     <i class="ri-check-line text-lg text-emerald-500 mt-[2px]" />
                                     <label class="leading-snug">
                                         {{ benefit }}
@@ -101,33 +84,40 @@ const plans = ref([
         id: 1,
         title: 'Tazón Lleno',
         price: 10.0,
-        subtitle: '/mensual',
+        subtitle: '1kg de croquetas',
         benefits: [
-            'Tour guiado por el albergue',
-            'Acceso a boletines mensuales',
-            'Descuentos en eventos del albergue',
+            'Llenas 1 tazón y un corazón. Perfecto para quienes quieren ayudar con un gesto constante.',
         ],
     },
     {
         id: 2,
         title: 'Panza Feliz',
         price: 50.0,
-        subtitle: '/mensual',
+        subtitle: '5kg de croquetas',
         benefits: [
-            'Incluye todos los beneficios del plan Tazón Lleno',
-            'Acceso prioritario a eventos',
-            'Certificado digital de donador',
+            'Alimentación.',
+            'Atención veterinaria básica.',
+            'Recibirás fotos del peludito que estás ayudando a cuidar.',
         ],
     },
     {
         id: 3,
         title: 'Héroe Peludo',
         price: 110.0,
-        subtitle: '/mensual',
+        subtitle: '1 saco de croquetas (21kg)',
         benefits: [
-            'Incluye todos los beneficios del plan Panza Feliz',
-            'Tour privado con los animales',
-            'Foto con tu mascota apadrinada',
+            'Alimentación cubierta',
+            'Atención veterinaria completa.',
+            'Fotos y videos de tu peludito apadrinado',
+        ],
+    },
+    {
+        id: 4,
+        title: 'Huella Solidaria',
+        price: 10.0,
+        subtitle: 'Desde',
+        benefits: [
+            'Da lo que tu corazón te dicte. Cada sol cuenta y deja una huella en la vida de un peludo que te necesita.',
         ],
     },
 ])
