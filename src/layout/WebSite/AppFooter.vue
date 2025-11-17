@@ -25,8 +25,8 @@
       <div>
         <h2 class="text-xl font-semibold mb-3">Síguenos</h2>
         <div class="flex space-x-4 text-2xl">
-          <a href="https://www.facebook.com/arcaneshow/?locale=es_LA" target="_blank" rel="noopener noreferrer" class="hover:text-gray-400 transition"><i class="ri-facebook-circle-fill"></i></a>
-          <a href="https://www.instagram.com/arcaneshow/" target="_blank" rel="noopener noreferrer" class="hover:text-gray-400 transition"><i class="ri-instagram-fill"></i></a>
+          <a href="https://www.facebook.com/alberguesanfrancisco?mibextid=ZbWKwL" target="_blank" rel="noopener noreferrer" class="hover:text-gray-400 transition"><i class="ri-facebook-circle-fill"></i></a>
+          <a href="https://www.instagram.com/albergue.sanfrancisco/" target="_blank" rel="noopener noreferrer" class="hover:text-gray-400 transition"><i class="ri-instagram-fill"></i></a>
           <a href="https://www.tiktok.com/@stephanie_mv11?_r=1&_t=ZS-91SWCKTVjWx" target="_blank" rel="noopener noreferrer" class="hover:text-gray-400 transition"><i class="ri-tiktok-fill"></i></a>
           <a href="https://api.whatsapp.com/send/?phone=51951703662&text=Hola%2C+quiero+m%C3%A1s+informaci%C3%B3n+sobre+adopciones&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer" class="hover:text-gray-400 transition"><i class="ri-whatsapp-fill"></i></a>
         </div>
