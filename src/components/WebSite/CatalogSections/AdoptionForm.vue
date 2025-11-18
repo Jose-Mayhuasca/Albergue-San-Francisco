@@ -100,11 +100,11 @@
                                 </template>
                             </FileUpload>
 
-                            <!-- Preview opcional -->
+                            <!-- Preview opcional
                             <div v-if="previewImage"
                                 class="mt-2 rounded-xl overflow-hidden border border-slate-200 bg-white">
                                 <img :src="previewImage" alt="Vista previa" class="w-full h-32 object-cover" />
-                            </div>
+                            </div> -->
                         </div>
 
                         <!-- PERMISOS -->
@@ -256,6 +256,9 @@ const sendApplication = async () => {
     formData.append('userImageFile', oApplicant.value.applicantImageFile);
     formData.append('isOnApaTyC', oApplicant.value.useData);
     formData.append('isOnPdTyC', oApplicant.value.tyc);
+
+    console.log([...formData.entries()]);
+
 
     const response = await applicantService.CreateFormApplicantService(formData);
 

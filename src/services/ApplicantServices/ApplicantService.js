@@ -89,12 +89,8 @@ export default class ApplicantService {
   // * Post para enviar solicitud de adopción
 
   async CreateFormApplicantService(formData) {
-    const dataUser = JSON.parse(localStorage.getItem('dataUser'))
     const response = await fetch(import.meta.env.VITE_API_URL + '/userApp/insertUserApp', {
       method: 'POST',
-      headers: {
-        Authorization: `Bearer ${dataUser.token}`,
-      },
       body: formData, // ⚠️ Importante: no agregar Content-Type manualmente
     })
 
