@@ -54,6 +54,7 @@ const checkScreenSize = () => {
 }
 
 const logOut = () => {
+    localStorage.clear();
     toast.add({
         severity: 'success',
         summary: 'Operación Exitosa',
