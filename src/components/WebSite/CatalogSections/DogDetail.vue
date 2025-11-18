@@ -48,9 +48,9 @@
                                         Características
                                     </h6>
                                 </div>
-                                <div class="containerItems grid grid-cols-2 gap-3 md:grid-cols-3 justify-items-stretch">
+                                <div class="containerItems flex flex-wrap gap-3 items-start">
                                     <div
-                                        class="item flex items-center gap-2 px-3 py-2 rounded-xl bg-cyan-50 w-full min-w-0">
+                                        class="item flex items-center gap-2 px-3 py-2 rounded-xl bg-cyan-50 min-w-0">
                                         <i class="ri-calendar-event-fill text-cyan-600 text-lg"></i>
                                         <label class="text-sm text-cyan-600">
                                             {{ formatAge(oPet.animalAge) }}
@@ -58,7 +58,7 @@
                                     </div>
 
                                     <div
-                                        class="item flex items-center gap-2 px-3 py-2 rounded-xl bg-cyan-50 w-full min-w-0">
+                                        class="item flex items-center gap-2 px-3 py-2 rounded-xl bg-cyan-50 min-w-0">
                                         <i class="text-cyan-600 text-lg"
                                             :class="oPet.idAnimalGender == 1 ? 'ri-men-line' : 'ri-women-line'"></i>
                                         <label class="text-sm text-cyan-600">
@@ -67,7 +67,7 @@
                                     </div>
 
                                     <div
-                                        class="item flex items-center gap-2 px-3 py-2 rounded-xl bg-cyan-50 w-full min-w-0">
+                                        class="item flex items-center gap-2 px-3 py-2 rounded-xl bg-cyan-50 min-w-0">
                                         <i class="ri-ruler-line text-cyan-600 text-lg"></i>
                                         <label class="text-sm text-cyan-600">
                                             {{ oPet.sizeDesc }}
@@ -75,13 +75,13 @@
                                     </div>
 
                                     <div
-                                        class="item flex items-center gap-2 px-3 py-2 rounded-xl bg-cyan-50 w-full min-w-0">
+                                        class="item flex items-center gap-2 px-3 py-2 rounded-xl bg-cyan-50 min-w-0">
                                         <i class="ri-scales-2-line text-cyan-600 text-lg"></i>
                                         <label class="text-sm text-cyan-600">
                                             {{ oPet.animalWeight }} kg
                                         </label>
                                     </div>
-                                    <div class="item flex items-center gap-2 px-3 py-2 rounded-xl bg-cyan-50 w-full min-w-0"
+                                    <div class="item flex items-center gap-2 px-3 py-2 rounded-xl bg-cyan-50 min-w-0"
                                         v-show="oPet.isVaccinated">
                                         <i class="ri-syringe-line text-cyan-600 text-lg"></i>
                                         <label class="text-sm text-cyan-600">
@@ -89,7 +89,7 @@
                                         </label>
                                     </div>
 
-                                    <div class="item flex items-center gap-2 px-3 py-2 rounded-xl bg-cyan-50 w-full min-w-0"
+                                    <div class="item flex items-center gap-2 px-3 py-2 rounded-xl bg-cyan-50 min-w-0"
                                         v-show="oPet.isSterilized">
                                         <i class="ri-quill-pen-line text-cyan-600 text-lg"></i>
                                         <label class="text-sm text-cyan-600">
@@ -161,9 +161,9 @@
                                         Características
                                     </h6>
                                 </div>
-                                <div class="containerItems grid grid-cols-2 gap-3 md:grid-cols-3">
-                                    <Skeleton v-for="index in 6" :key="index" width="100%" height="2.4rem"
-                                        class="rounded-2xl" />
+                                <div class="containerItems flex flex-wrap gap-3 items-start">
+                                    <Skeleton v-for="index in 6" :key="index" height="2.4rem"
+                                        class="rounded-2xl w-auto" />
                                 </div>
                             </div>
 
@@ -514,28 +514,24 @@ const goBack = () => {
         margin-right: 0;
     }
 
-    /* Características: permitir que los ítems no hagan wrap y, si no caben,
-       que el grid los coloque en la siguiente fila para mostrar todo el texto
-       en una sola línea (sin forzar saltos de línea). */
+    /* Características: usar flex para que los items se ajusten al ancho
+       del contenido y hagan wrap automáticamente según el contenedor. */
     .characteristicsContainer .containerItems {
-        /* auto-fit con minmax y max-content permite que cada celda crezca
-           según su contenido y que el grid acomode los ítems en filas
-           posteriores si no hay espacio horizontal suficiente. */
-        grid-template-columns: repeat(auto-fit, minmax(130px, max-content));
-        grid-auto-rows: auto;
-        align-items: start;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        align-items: flex-start;
+        justify-content: flex-start;
     }
 
     .characteristicsContainer .containerItems .item {
-        /* asegurar que el item pueda crecer en ancho según su contenido
-           y que el texto no se rompa en varias líneas */
-        min-width: 0;
+        flex: 0 0 auto;
         width: auto;
+        min-width: 0;
     }
 
     .characteristicsContainer .containerItems .item label {
         white-space: nowrap;
-        /* no forzar salto de línea dentro del texto */
     }
 }
 
