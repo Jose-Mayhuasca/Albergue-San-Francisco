@@ -123,7 +123,7 @@
                         <div class="reminder">
                             <Card>
                                 <template #title>
-                                    <h6>Recordatorio</h6>
+                                    <h6>Recordatorio (Opcional)</h6>
                                 </template>
                                 <template #content>
                                     <Textarea rows="4" fluid auto-resize placeholder="Escribe un recordatorio..."
@@ -188,6 +188,7 @@ const LoadApplicant = async () => {
     bCargando.value = true;
     const id = localStorage.getItem('idApplicant');
     const response = await applicantService.GetApplicantDetailService(id);
+    // debugger;
 
     if (response.status === 200) {
         oApplicant.value = response.data;
@@ -204,6 +205,7 @@ const formatDate = (originalDate) => {
 };
 
 const updateReminder = async () => {
+
     const request = {
         idUserApp: oApplicant.value.idUserApp,
         msgAdmin: oApplicant.value.msgAdmin
@@ -235,15 +237,31 @@ const updateReminder = async () => {
 };
 
 const discardUpdateReminder = async () => {
-    toast.add({
-        severity: 'info',
-        summary: 'Cambios Descartados',
-        detail: 'Los cambios en el recordatorio han sido descartados',
-        life: 2000
-    });
-    setTimeout(() => {
+
+    const request = {
+        idUserApp: oApplicant.value.idUserApp,
+        msgAdmin: ''
+    };
+
+    const response = await applicantService.UpdateApplicantReminderService(request);
+
+    if (response.status === 200) {
+        toast.add({
+            severity: 'info',
+            summary: 'Recordatorio Descartados',
+            detail: 'El recordatorio ha sido descartado',
+            life: 2000
+        });
         LoadApplicant();
-    }, 2000);
+    } else {
+        toast.add({
+            severity: 'error',
+            summary: 'Eliminación Fallida',
+            detail: 'No se pudo borrar el recordatorio',
+            life: 2000
+        });
+        LoadApplicant();
+    }
 };
 
 const rejectApplicant = async () => {

@@ -2,11 +2,13 @@ export default class DogDetailService {
   // * Get para los detalles de un perro del catalogo por su id
 
   async GetDogDetailService(id) {
+    const dataUser = JSON.parse(localStorage.getItem('dataUser'))
     const response = await fetch(
       import.meta.env.VITE_API_URL + `/refugeAnimal/refugeAnimalForId?idRefAnimals=${id}`,
       {
         method: 'GET',
         headers: {
+          Authorization: `Bearer ${dataUser.token}`,
           'Content-Type': 'application/json',
         },
       },
@@ -18,10 +20,14 @@ export default class DogDetailService {
   // * Post para crear un perro en el catálogo
 
   async CreateDogService(formData) {
+    const dataUser = JSON.parse(localStorage.getItem('dataUser'))
     const response = await fetch(
       import.meta.env.VITE_API_URL + '/refugeAnimal/insertRefugeAnimals',
       {
         method: 'POST',
+        headers: {
+          Authorization: `Bearer ${dataUser.token}`,
+        },
         body: formData, // ⚠️ Importante: no agregar Content-Type manualmente
       },
     )
@@ -33,8 +39,12 @@ export default class DogDetailService {
   // * Put para actualizar un perro en el catálogo
 
   async UpdateDogService(formData) {
+    const dataUser = JSON.parse(localStorage.getItem('dataUser'))
     const response = await fetch(import.meta.env.VITE_API_URL + '/refugeAnimal/updateAnimalData', {
       method: 'PUT',
+      headers: {
+        Authorization: `Bearer ${dataUser.token}`,
+      },
       body: formData, // ⚠️ Importante: no agregar Content-Type manualmente
     })
 

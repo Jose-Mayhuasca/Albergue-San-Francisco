@@ -190,7 +190,16 @@ const clearImage = () => {
 };
 
 const createUpdateDog = async () => {
-    // * Antes debe ir una function para validar los campos
+
+    if (!ValidateFields()) {
+        toast.add({
+            severity: 'warn',
+            summary: 'Campos Incompletos',
+            detail: 'Por favor, complete todos los campos son obligatorios',
+            life: 2000,
+        });
+        return;
+    }
 
     const formData = new FormData();
 
@@ -245,8 +254,22 @@ const createUpdateDog = async () => {
     }
 };
 
+const ValidateFields = () => {
+    return !!(
+        oDog.value.animalName?.trim() &&
+        oDog.value.idAnimalGender &&
+        oDog.value.animalAge !== null &&
+        oDog.value.idAnimalSize &&
+        oDog.value.animalWeight !== null &&
+        oDog.value.isVaccinated !== null &&
+        oDog.value.isSterilized !== null &&
+        oDog.value.animalDesc?.trim() &&
+        oDog.value.animalHistory?.trim() &&
+        (oDog.value.animalImageFile || oDog.value.idAnimalImage)
+    );
+};
+
 const goBack = () => {
-    localStorage.clear();
     router.push({ path: '/admin/catalogo' });
 };
 
