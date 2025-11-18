@@ -2,11 +2,9 @@ export default class CatalogService {
   // * Get para obtener el catálogo de animales
 
   async GetCatalogService() {
-    const dataUser = JSON.parse(localStorage.getItem('dataUser'))
     const response = await fetch(import.meta.env.VITE_API_URL + `/refugeAnimal/refugeAnimals`, {
       method: 'GET',
       headers: {
-        Authorization: `Bearer ${dataUser.token}`,
         'Content-Type': 'application/json',
       },
     })
