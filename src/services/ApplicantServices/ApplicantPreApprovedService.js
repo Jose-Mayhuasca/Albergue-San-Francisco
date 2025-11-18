@@ -2,9 +2,11 @@ export default class ApplicantPreApprovedService {
   // * Get para la lista de todos los solicitantes pre-aprobados
 
   async GetApplicantPreApprovedService() {
+    const dataUser = JSON.parse(localStorage.getItem('dataUser'))
     const response = await fetch(import.meta.env.VITE_API_URL + `/userApp/userAppPreApproved`, {
       method: 'GET',
       headers: {
+        Authorization: `Bearer ${dataUser.token}`,
         'Content-Type': 'application/json',
       },
     })
@@ -15,11 +17,13 @@ export default class ApplicantPreApprovedService {
   // * Get para los detalles de un solicitante pre-aprobado por su ID
 
   async GetApplicantPreApprovedDetailService(id) {
+    const dataUser = JSON.parse(localStorage.getItem('dataUser'))
     const response = await fetch(
       import.meta.env.VITE_API_URL + `/userApp/userAppDetailPreApproved?idUserApp=${id}`,
       {
         method: 'GET',
         headers: {
+          Authorization: `Bearer ${dataUser.token}`,
           'Content-Type': 'application/json',
         },
       },
@@ -31,9 +35,11 @@ export default class ApplicantPreApprovedService {
   // * Put para cambiar de estado al solicitante pre-aprobado a rechazado, eliminándolo de la lista
 
   async UpdateDeleteApplicantPreApprovedService(request) {
+    const dataUser = JSON.parse(localStorage.getItem('dataUser'))
     const response = await fetch(import.meta.env.VITE_API_URL + `/userApp/updateStatusUserApp`, {
       method: 'PUT',
       headers: {
+        Authorization: `Bearer ${dataUser.token}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(request),

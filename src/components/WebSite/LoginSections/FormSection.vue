@@ -16,9 +16,6 @@
                     <InputText v-model="user.password" type="password" fluid />
                 </div>
                 <Button type="submit" class="p-button" label="Iniciar Sesión" @click.prevent="onSubmit" />
-                <div class="links smallSize">
-                    <a href="#">¿Olvidaste tu contraseña?</a>
-                </div>
             </Form>
         </div>
     </section>
@@ -41,17 +38,27 @@ const user = ref({
 
 async function onSubmit() {
 
+    if (!validationFields(user.value.username, user.value.password)) {
+        toast.add({
+            severity: 'warn',
+            summary: 'Campos Incompletos',
+            detail: 'Por favor, complete todos los campos',
+            life: 2000
+        });
+        return;
+    }
+
     const request = {
         userName: user.value.username,
         userRefugePassword: user.value.password
     }
 
-    console.log("Request:", request);
-
     const response = await loginService.LoginService(request);
-    console.log("Response:", response);
+    console.log(response);
+
 
     if (response.status === 200) {
+        localStorage.setItem('dataUser', JSON.stringify(response.data));
         toast.add({
             severity: 'success',
             summary: 'Login Exitoso',
@@ -72,5 +79,10 @@ async function onSubmit() {
     }
 
 }
+
+const validationFields = (username, password) => {
+    return !!(username?.trim() && password?.trim());
+};
+
 
 </script>

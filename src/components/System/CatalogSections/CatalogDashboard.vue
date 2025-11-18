@@ -230,7 +230,7 @@ const filteredDogs = computed(() => {
 })
 
 const openNewDog = () => {
-    localStorage.clear();
+    localStorage.removeItem('idDog');
     router.push(`catalogo/nuevo`)
 }
 

@@ -57,8 +57,8 @@
 
 <script setup>
 import { onMounted, ref } from 'vue'
-import CommonService from '@/services/CommonService';
 import { useRouter } from 'vue-router';
+import CommonService from '@/services/CommonService';
 
 const router = useRouter();
 const commonService = new CommonService()

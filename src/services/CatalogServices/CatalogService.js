@@ -15,11 +15,13 @@ export default class CatalogService {
   // * Put para eliminar un perro del catálogo (soft delete)
 
   async UpdateDeleteDogCatalogService(request) {
+    const dataUser = JSON.parse(localStorage.getItem('dataUser'))
     const response = await fetch(
       import.meta.env.VITE_API_URL + `/refugeAnimal/updateStatusAnimal`,
       {
         method: 'PUT',
         headers: {
+          Authorization: `Bearer ${dataUser.token}`,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(request),

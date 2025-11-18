@@ -3,7 +3,7 @@
   <div
     class="catalog-card relative border rounded-xl overflow-hidden shadow hover:shadow-lg transition transform hover:-translate-y-1 h-[550px] cursor-pointer"
     @click.stop="$emit('click')">
-    <!-- Imagen de fondo que ocupa todo el contenedor -->
+    <!-- Imagen de fondo que ocupa todo el contenedor . -->
     <img :src="pet.imagen || require('@/assets/img/dog_card.jpg')" :alt="pet.nombre"
       class="absolute inset-0 w-full h-full object-cover" />
 
@@ -21,9 +21,9 @@
         <p class="text-md text-gray-200">{{ pet.genero }}</p>
         <p class="text-md text-gray-200 px-1"> ● </p>
         <p class="text-md text-gray-200">
-          <span v-if="pet.edad < 1">1 año</span>
-          <span v-else-if="pet.edad <= 3">{{ pet.edad }} años </span>
-          <span v-else>3 años</span>
+          <span v-if="pet.edad < 1">{{ Math.max(1, Math.floor(pet.edad * 12)) }} meses</span>
+          <span v-else-if="Math.floor(pet.edad) === 1">1 año</span>
+          <span v-else>{{ Math.floor(pet.edad) }} años</span>
         </p>
       </div>
     </div>

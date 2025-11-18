@@ -4,14 +4,13 @@
             <i v-if="showBackButton" class="pi pi-chevron-left back-icon" @click="goBack"></i>
             <div v-else></div>
             <h5>{{ currentPageTitle }}</h5>
-            <img v-if="showLogoutButton" src="/icons/exit-icon.svg" alt="logout" class="icon-image"
-                @click="router.push('/login')" />
+            <img v-if="showLogoutButton" src="/icons/exit-icon.svg" alt="logout" class="icon-image" @click="logout()" />
             <div v-else></div>
         </div>
     </Section>
     <Section v-else class="sectionHeaderDesktopSystem">
         <div class="containerHeaderDesktop">
-            <i v-if="showBackButton" class="pi pi-chevron-left back-icon" @click="goBack"></i>
+            <i v-if="showBackButton" class="pi pi-chevron-left back-icon" @click="goBack()"></i>
             <div v-else></div>
             <h5>{{ currentPageTitle }}</h5>
         </div>
@@ -83,6 +82,11 @@ const goBack = () => {
         // En páginas de detalle/editar/crear, ir a la página anterior
         router.back()
     }
+}
+
+const logout = () => {
+    localStorage.clear();
+    router.push('/login');
 }
 
 // Escuchar cambios en el tamaño de la ventana

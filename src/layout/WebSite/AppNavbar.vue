@@ -14,7 +14,7 @@
             <nav class="w-full flex items-center justify-between bg-black rounded-2xl p-3 px-8">
                 <!-- Start: logo -->
                 <div class="flex items-center h-10">
-                    <img src="@/assets/icons/logo.png" alt="Logo" class="logoNavbar h-10" />
+                    <img src="@/assets/icons/logo.svg" alt="Logo" class="logoNavbar h-10" />
                 </div>
 
                 <!-- Center: menu items -->
