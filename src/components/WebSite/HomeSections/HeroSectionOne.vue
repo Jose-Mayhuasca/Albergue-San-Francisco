@@ -16,12 +16,21 @@
       <h1 class="text-xl md:text-lg">ADOPTAR CAMBIA VIDAS</h1>
       <h2 class="text-4xl font-semibold mt-2 md:text-4xl xs:text-2xl sm:text-3xl">HAZ FELIZ A UN NUEVO AMIGO</h2>
       <p class="mt-4 text-lg md:text-lg xs:text-base">Tú puedes ser su héroe y llenar tu vida de amor incondicional.</p>
-      <button class="mt-6 bg-[color:var(--color-primary)] text-gray-800 px-6 py-2 rounded-full hover:bg-amber-500 transition">
+      <button @click="goToCatalog" type="button" class="mt-6 bg-[color:var(--color-primary)] text-gray-800 px-6 py-2 rounded-full hover:bg-amber-500 transition">
         CONÓCELOS
       </button>
     </div>
   </div>
 </template>
+
+<script setup>
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+const goToCatalog = () => {
+  router.push('/catalogo')
+}
+</script>
 
 <style scoped>
 /* Opcional: sombra suave o ajustes extra */

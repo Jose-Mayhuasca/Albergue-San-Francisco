@@ -1,7 +1,7 @@
 <template>
     <div class="page bg-blue-50/80 min-h-screen flex justify-center items-start py-6 md:py-10">
         <Section class="sectionSponsorshipsPlans w-full">
-            <div class="container mx-auto max-w-5xl px-4">
+            <div class="container mx-auto max-w-6xl ">
                 <!-- HEADER -->
                 <div class="title text-center mb-8 justify-end">
                     <div class="flex items-center justify-center bg-black hover:bg-white h-8 w-8 mb-3 rounded-lg">
