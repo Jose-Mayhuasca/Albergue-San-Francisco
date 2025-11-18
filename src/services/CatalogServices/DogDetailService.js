@@ -2,13 +2,11 @@ export default class DogDetailService {
   // * Get para los detalles de un perro del catalogo por su id
 
   async GetDogDetailService(id) {
-    const dataUser = JSON.parse(localStorage.getItem('dataUser'))
     const response = await fetch(
       import.meta.env.VITE_API_URL + `/refugeAnimal/refugeAnimalForId?idRefAnimals=${id}`,
       {
         method: 'GET',
         headers: {
-          Authorization: `Bearer ${dataUser.token}`,
           'Content-Type': 'application/json',
         },
       },
