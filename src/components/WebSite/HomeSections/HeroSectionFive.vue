@@ -1,15 +1,15 @@
 <template>
-  <section class="py-14 md:py-20 font-sans full-bleed">
+  <section class="py-14 md:py-20 font-sans full-bleed bg-[#f8fafc] dark:bg-[#1b2836]">
     <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 items-start px-6">
       <!-- LEFT: hero image with big title -->
       <figure class="relative rounded-[30px] overflow-hidden lg:col-span-7 h-[300px] md:h-[400px] lg:h-[500px] shadow-md">
         <img
           src="@/assets/img/albergue7.jpg"
           alt="City skyline"
-          class="absolute inset-0 w-full h-full object-cover"
+          class="card-bg-img absolute inset-0 w-full h-full object-cover"
         />
         <!-- subtle fog/overlay to match reference -->
-        <div class="absolute inset-0 "></div>
+        <div class="absolute inset-0 bg-black/20 dark:bg-black/50"></div>
 
         <!-- Big headline centered -->
         <figcaption
@@ -27,15 +27,15 @@
       <!-- RIGHT: copy -->
       <aside class="lg:col-span-5">
         <h2 class="leading-[0.9] tracking-tight">
-          <span class="block font-extrabold text-neutral-900 text-4xl md:text-5xl">
+          <span class="block font-extrabold text-neutral-900 dark:text-white text-4xl md:text-5xl">
             Juntos podemos
           </span>
-          <span class="block font-extrabold text-neutral-500 text-4xl md:text-5xl mt-1">
+          <span class="block font-extrabold text-neutral-500 dark:text-neutral-300 text-4xl md:text-5xl mt-1">
             hacer la diferencia
           </span>
         </h2>
 
-        <p class="mt-6 text-neutral-600 text-lg md:text-xl leading-8">
+        <p class="mt-6 text-neutral-600 dark:text-neutral-300 text-lg md:text-xl leading-8">
           Para nuestras mascotas, tu ayuda significa compañía, salud y esperanza. Lo que para ti es poco, para ellos es todo. Elige ser esa luz que tanto necesitan.
         </p>
       </aside>
@@ -47,7 +47,7 @@
 export default {};
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
 .font-sans { font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
 
@@ -59,9 +59,17 @@ export default {};
   box-sizing: border-box;
 }
 
-/* Estilos generales */
-section {
-  background-color: #f8fafc;
+/* Estilos generales: moved to utility classes in template to allow Tailwind dark variants to work */
+
+:global(.dark) .card-bg-img {
+  filter: brightness(0.78) saturate(0.9) contrast(0.95);
+  transition: filter 180ms ease;
+}
+
+@media (prefers-color-scheme: dark) {
+  .card-bg-img {
+    filter: brightness(0.82) saturate(0.95) contrast(0.98);
+  }
 }
 
 h1, h2 {

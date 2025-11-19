@@ -2,19 +2,19 @@
   <section class="hero-four py-16 md:py-24">
     <div class="max-w-6xl mx-auto px-6 text-center">
       <!-- Título -->
-      <h1 class="text-md leading-[0.9] font-extrabold tracking-tight text-gray-900 md:text-3xl lg:text-4xl">
+      <h1 class="text-md leading-[0.9] font-extrabold tracking-tight text-gray-900 dark:text-white md:text-3xl lg:text-4xl">
         Programa de
       </h1>
-      <h2 class="text-md leading-[0.9] font-extrabold tracking-tight text-gray-500 md:text-3xl lg:text-4xl -mt-2">
+      <h2 class="text-md leading-[0.9] font-extrabold tracking-tight text-gray-500 dark:text-neutral-300 md:text-3xl lg:text-4xl -mt-2">
        apadrinamiento
       </h2>
 
       <!-- Tarjeta principal -->
-      <div
-        class="relative mt-12 md:mt-16 rounded-3xl bg-[#CFA9E3] p-8 md:p-12 lg:p-16 shadow-[0_20px_40px_-20px_rgba(0,0,0,0.25)] overflow-hidden"
-      >
+        <div
+          class="sponsor-card relative mt-12 md:mt-16 rounded-3xl bg-[#CFA9E3] dark:bg-slate-800 p-8 md:p-12 lg:p-16 shadow-[0_20px_40px_-20px_rgba(0,0,0,0.25)] overflow-hidden"
+        >
         <!-- Adorno de huellas -->
-        <div class="pointer-events-none absolute inset-0 opacity-15 [mask-image:radial-gradient(white,transparent_70%)]">
+          <div class="pointer-events-none absolute inset-0 opacity-15 [mask-image:radial-gradient(white,transparent_70%)] paw-decor">
           <div class="absolute -left-10 -top-8 text-7xl">🐾</div>
           <div class="absolute right-6 top-10 text-6xl rotate-12">🐾</div>
           <div class="absolute left-10 bottom-6 text-8xl -rotate-6">🐾</div>
@@ -60,10 +60,20 @@
 export default {};
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 /* Estilo base */
 .hero-four {
   font-family: 'Inter', sans-serif;
+}
+
+/* Dark adjustments for sponsor card and paw decorations */
+:global(.dark) .sponsor-card {
+  background-color: #0f172a; /* slate-900 / dark neutral */
+  box-shadow: 0 20px 40px -20px rgba(0,0,0,0.45);
+}
+
+:global(.dark) .paw-decor {
+  opacity: 0.12;
 }
 
 /* Título en dispositivos móviles */

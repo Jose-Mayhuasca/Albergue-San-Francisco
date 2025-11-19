@@ -10,7 +10,7 @@
             alt="Ciudad en escala de grises"
             class="absolute inset-0 w-full h-full object-cover"
           />
-          <div class="absolute inset-0 bg-black/25"></div>
+          <div class="absolute inset-0 bg-black/25 dark:bg-black/50"></div>
 
           <div class="absolute inset-0 flex flex-col items-center justify-center text-center">
             <h1 class="font-ariela text-white font-extrabold text-4xl md:text-6xl leading-none">
@@ -23,7 +23,7 @@
         </article>
 
   <!-- IZQUIERDA (2 columnas) -->
-  <article class="left-card relative rounded-3xl overflow-hidden md:col-span-2 shadow-lg h-72 md:h-80 bg-[#B4C5FF]">
+  <article class="left-card relative rounded-3xl overflow-hidden md:col-span-2 shadow-lg h-72 md:h-80 bg-[#B4C5FF] dark:bg-slate-800">
           <div class="absolute inset-0 p-6 md:p-8 flex items-end">
             <div>
               <p class="uppercase tracking-[.35em] text-sm text-white/80 mb-2">Donde falta un hogar,</p>
@@ -35,10 +35,10 @@
         </article>
 
   <!-- CENTRO (1 columna) -->
-  <article class="center-card relative rounded-3xl overflow-hidden shadow-lg h-72 md:h-80 bg-neutral-100">
+  <article class="center-card relative rounded-3xl overflow-hidden shadow-lg h-72 md:h-80 bg-neutral-100 dark:bg-neutral-800">
           <div class="absolute inset-0 p-6 md:p-8 flex flex-col justify-between">
-            <p class="uppercase tracking-[.35em] text-sm text-neutral-500">Donde otros pasaron</p>
-            <h3 class="text-neutral-900 font-bold text-2xl md:text-2xl leading-none">
+            <p class="uppercase tracking-[.35em] text-sm text-neutral-500 dark:text-neutral-300">Donde otros pasaron</p>
+            <h3 class="text-neutral-900 dark:text-neutral-100 font-bold text-2xl md:text-2xl leading-none">
               tú puedes detenerte y cambiarlo todo.
             </h3>
           </div>
@@ -51,6 +51,7 @@
             alt="Ciudad en escala de grises"
             class="absolute inset-0 w-full h-full object-cover"
           />
+          <div class="absolute inset-0 bg-black/20 dark:bg-black/40"></div>
           <div class="absolute inset-0 p-6 md:p-8 flex flex-col justify-between">
             <p class="uppercase tracking-[.35em] text-sm text-white">Su mirada no pide…</p>
             <p class="text-white font-bold text-5xl leading-relaxed">
@@ -67,7 +68,7 @@
 export default {};
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 @import url('https://fonts.googleapis.com/css2?family=Ariella+Sans:wght@700;900&family=Montpellier:wght@400;700&display=swap');
 
 .font-montpellier { font-family: 'Montpellier', ui-sans-serif, system-ui, sans-serif; }
@@ -138,6 +139,19 @@ h3 { text-transform: none; } /* solo el hero usa mayúsculas/parcial */
 
   .h-72, .h-80 {
     height: 320px; /* Establecer la altura para que se vean bien en pantallas grandes */
+  }
+}
+
+/* Dark-mode image and overlay adjustments */
+:global(.dark) .hero-main img,
+:global(.dark) .right-card img {
+  filter: brightness(0.8) contrast(0.95) saturate(0.9);
+}
+
+@media (prefers-color-scheme: dark) {
+  .hero-main img,
+  .right-card img {
+    filter: brightness(0.85) contrast(0.95) saturate(0.95);
   }
 }
 </style>
