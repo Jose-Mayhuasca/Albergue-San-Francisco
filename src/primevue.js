@@ -30,6 +30,7 @@ import InputNumber from 'primevue/inputnumber'
 import RadioButton from 'primevue/radiobutton'
 import RadioButtonGroup from 'primevue/radiobuttongroup'
 import ConfirmPopup from 'primevue/confirmpopup'
+import Password from 'primevue/password'
 
 export default {
   Button,
@@ -63,4 +64,5 @@ export default {
   RadioButton,
   RadioButtonGroup,
   ConfirmPopup,
+  Password,
 }

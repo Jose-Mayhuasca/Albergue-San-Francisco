@@ -33,7 +33,7 @@
                     <div class="line"></div>
                 </div>
                 <div class="evidence">
-                    <h6>Fotos Adjuntas</h6>
+                    <!-- <h6>Fotos Adjuntas</h6> -->
                     <div class="images">
                         <Skeleton class="image" fluid height="auto" border-radius="12px" />
                         <!-- <Skeleton fluid height="14rem" border-radius="12px" /> -->
@@ -76,7 +76,7 @@
                 </div>
 
                 <div v-show="!viewDesktop" class="viewPhone">
-                    <div class="evidence">
+                    <div class="evidence" v-show="oApplicant.urlImage">
                         <h6>Fotos Adjuntas</h6>
                         <div class="images">
                             <Card class="image" :style="{
@@ -102,17 +102,18 @@
                             </template>
                         </Card>
                     </div>
-                    <div class="actions">
+                    <div class="actions" v-show="idStatusApplicant == 1">
                         <Button label="Aprobar" icon="pi pi-check" iconPos="right" class="success"
-                            @click="acceptApplicant()" />
+                            @click="openApproveConfirm()" />
                         <Button label="Rechazar" icon="pi pi-times" iconPos="right" class="danger"
-                            @click="rejectApplicant()" />
+                            @click="openDeniedConfirm()" />
                     </div>
                 </div>
                 <div v-show="viewDesktop" class="viewDesktop">
-                    <div class="evidence">
+                    <div class="evidence" v-show="oApplicant.urlImage">
+                        <!-- <div class="evidence"> -->
                         <h6>Fotos Adjuntas</h6>
-                        <div class="images">
+                        <div class=" images">
                             <Card class="image" :style="{
                                 backgroundImage: `url(${oApplicant.urlImage})`
                             }" />
@@ -137,14 +138,39 @@
                                 </template>
                             </Card>
                         </div>
-                        <div class="actions">
+                        <div class="actions" v-show="idStatusApplicant == 1">
                             <Button label="Aprobar" icon="pi pi-check" iconPos="right" class="success"
-                                @click="acceptApplicant()" />
+                                @click="openApproveConfirm()" />
                             <Button label="Rechazar" icon="pi pi-times" iconPos="right" class="danger"
-                                @click="rejectApplicant()" />
+                                @click="openDeniedConfirm()" />
                         </div>
                     </div>
                 </div>
+
+                <!-- Dialog de confirmación de Aprobación -->
+                <Dialog v-model:visible="visibleApproveConfirm" modal header="Confirmar Aprobación"
+                    class="confirmDialog">
+                    <p>¿Estás segura de que deseas aprobar esta solicitud?</p>
+                    <p>Esta acción no se puede deshacer. Y descartará las otras solicitudes.</p>
+                    <!-- <div class="confirmActions"> -->
+                    <Button label="Aprobar" severity="success" @click="acceptApplicant()" icon="pi pi-check" fluid
+                        class="success" />
+                    <Button label="Cancelar" severity="secondary" text @click="visibleApproveConfirm = false"
+                        icon="pi pi-times" fluid class="secondary" />
+                    <!-- </div> -->
+                </Dialog>
+
+                <!-- Dialog de confirmación de Rechazo -->
+                <Dialog v-model:visible="visibleDeniedConfirm" modal header="Confirmar Rechazo" class="confirmDialog">
+                    <p>¿Estás segura de que deseas rechazar esta solicitud?</p>
+                    <p>Esta acción no se puede deshacer.</p>
+                    <!-- <div class="confirmActions"> -->
+                    <Button label="Rechazar" severity="danger" @click="rejectApplicant()" icon="pi pi-trash" fluid
+                        class="danger" />
+                    <Button label="Cancelar" severity="secondary" text @click="visibleDeniedConfirm = false"
+                        icon="pi pi-times" fluid class="secondary" />
+                    <!-- </div> -->
+                </Dialog>
             </div>
             <Toast />
         </Section>
@@ -162,6 +188,10 @@ const router = useRouter()
 const applicantService = new ApplicantService()
 const oApplicant = ref({})
 const bCargando = ref(false)
+
+const visibleApproveConfirm = ref(false);
+const visibleDeniedConfirm = ref(false);
+const idStatusApplicant = localStorage.getItem('idStatusApplicant');
 
 const viewDesktop = ref(false);
 
@@ -263,6 +293,14 @@ const discardUpdateReminder = async () => {
         LoadApplicant();
     }
 };
+
+const openApproveConfirm = () => {
+    visibleApproveConfirm.value = true;
+}
+
+const openDeniedConfirm = () => {
+    visibleDeniedConfirm.value = true;
+}
 
 const rejectApplicant = async () => {
     const request = {
