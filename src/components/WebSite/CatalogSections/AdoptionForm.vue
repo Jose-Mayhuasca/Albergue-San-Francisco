@@ -257,9 +257,6 @@ const sendApplication = async () => {
     formData.append('isOnApaTyC', oApplicant.value.useData);
     formData.append('isOnPdTyC', oApplicant.value.tyc);
 
-    console.log([...formData.entries()]);
-
-
     const response = await applicantService.CreateFormApplicantService(formData);
 
     if (response.status === 200) {

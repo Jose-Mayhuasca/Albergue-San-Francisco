@@ -28,7 +28,7 @@
                 </div>
                 <div class="line"></div>
                 <div class="messageWelcome">
-                    <p>Bienvenida Stephanie</p>
+                    <p>Hola, {{ userName.userName }}</p>
                 </div>
             </div>
         </div>
@@ -45,9 +45,10 @@ import { ref, onMounted, onUnmounted } from 'vue';
 import { useRouter } from 'vue-router'
 import { useToast } from 'primevue/usetoast';
 
-const router = useRouter()
+const router = useRouter();
 const toast = useToast();
 const viewPhone = ref(false);
+const userName = JSON.parse(localStorage.getItem('dataUser')) || { userName: 'Invitado' };
 
 const checkScreenSize = () => {
     viewPhone.value = window.innerWidth < 1024;

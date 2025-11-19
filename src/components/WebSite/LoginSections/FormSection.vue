@@ -13,7 +13,7 @@
                 </div>
                 <div class="inputBox">
                     <h6>Contraseña</h6>
-                    <InputText v-model="user.password" type="password" fluid />
+                    <Password v-model="user.password" toggleMask :feedback="false" fluid />
                 </div>
                 <Button type="submit" class="p-button" label="Iniciar Sesión" @click.prevent="onSubmit" />
             </Form>
@@ -54,7 +54,6 @@ async function onSubmit() {
     }
 
     const response = await loginService.LoginService(request);
-    console.log(response);
 
 
     if (response.status === 200) {

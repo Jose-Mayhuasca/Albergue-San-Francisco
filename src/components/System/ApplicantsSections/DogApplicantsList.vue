@@ -50,7 +50,7 @@
                         <div class="containerApplicants">
                             <Card v-for="applicant in oListApplicants" :key="applicant.idUserApp"
                                 :class="['cardApplicant', getStateClass(applicant.idStatusApp)]"
-                                @click="GoApplicantDetail(applicant.idUserApp)">
+                                @click="GoApplicantDetail(applicant.idUserApp, applicant.idStatusApp)">
                                 <template #title>
                                     <span class="regularSize">{{ applicant.userName + " " +
                                         applicant.userLastName }}</span>
@@ -120,6 +120,7 @@ const LoadDogData = async () => {
 
 const LoadListApplicants = async () => {
     const response = await applicantService.GetListApplicantsService(id);
+    // debugger;
     if (response.status === 200) {
         oListApplicants.value = response.data;
     }
@@ -133,8 +134,9 @@ const formatDate = (originalDate) => {
     return formatedDate;
 };
 
-const GoApplicantDetail = (idUserApp) => {
+const GoApplicantDetail = (idUserApp, idStatusApp) => {
     localStorage.setItem('idApplicant', idUserApp);
+    localStorage.setItem('idStatusApplicant', idStatusApp);
     router.push({ path: `${id}/detalle/${idUserApp}` });
 };
 

@@ -133,10 +133,22 @@
                         </div>
                         <div class="actions">
                             <Button label="Eliminar Solicitud" icon="pi pi-times" iconPos="right" class="danger"
-                                @click="deleteApplicant()" />
+                                @click="openDeleteConfirm()" />
                         </div>
                     </div>
                 </div>
+                <!-- Dialog de confirmación de eliminación -->
+                <Dialog v-model:visible="visibleDeleteConfirm" modal header="Confirmar Eliminación"
+                    class="confirmDialog">
+                    <p>¿Estás segura de que deseas eliminar esta solicitud pre-aprobada?</p>
+                    <p>Esta acción no se puede deshacer.</p>
+                    <!-- <div class="confirmActions"> -->
+                    <Button label="Eliminar" severity="danger" @click="deleteApplicant()" icon="pi pi-trash" fluid
+                        class="danger" />
+                    <Button label="Cancelar" severity="secondary" text @click="visibleDeleteConfirm = false"
+                        icon="pi pi-times" fluid class="secondary" />
+                    <!-- </div> -->
+                </Dialog>
             </div>
             <Toast />
         </Section>
@@ -156,6 +168,7 @@ const oApplicantDetails = ref({})
 const bCargando = ref(false)
 
 const viewDesktop = ref(false);
+const visibleDeleteConfirm = ref(false);
 
 const checkScreenSize = () => {
     viewDesktop.value = window.innerWidth > 480;
@@ -195,6 +208,10 @@ const formatDate = (originalDate) => {
     });
     return formattedDate;
 };
+
+const openDeleteConfirm = () => {
+    visibleDeleteConfirm.value = true;
+}
 
 const deleteApplicant = async () => {
     try {
