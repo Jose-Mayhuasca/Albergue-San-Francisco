@@ -141,7 +141,7 @@
                         <Button label="Adoptar" icon="ri-heart-2-line" @click="goFormAdoption(oPet.animalName)"
                             class="flex-1 min-w-[140px] sm:max-w-xs" />
                         <Button label="Apadrinar" icon="ri-vip-crown-line" @click="goPlans()"
-                            class="flex-1 min-w-[140px] sm:max-w-xs p-button-outlined" />
+                            class="flex-1 min-w-[140px] sm:max-w-xs p-button-outlined" :disabled="true" />
                     </div>
                 </div>
             </div>

@@ -84,7 +84,7 @@
                     <div class="line"></div>
                 </div>
                 <div v-show="!viewDesktop" class="viewPhone">
-                    <div class="evidence">
+                    <div class="evidence" v-if="oApplicantDetails.urlImage">
                         <h6>Fotos Adjuntas</h6>
                         <div class="images">
                             <Card class="image" :style="{
@@ -110,7 +110,7 @@
                     </div>
                 </div>
                 <div v-show="viewDesktop" class="viewDesktop">
-                    <div class="evidence">
+                    <div class="evidence" v-if="oApplicantDetails.urlImage">
                         <h6>Fotos Adjuntas</h6>
                         <div class="images">
                             <Card class="image" :style="{
