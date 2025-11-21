@@ -50,6 +50,7 @@ async function onSubmit() {
             detail: 'Por favor, complete todos los campos',
             life: 2000
         });
+        loading.value = false;
         return;
     }
 
