@@ -2,9 +2,6 @@
     <div class="pageSystem">
         <section class="sectionDogNew">
             <div class="container">
-                <!-- <div class="title">
-                    <h3 class="bold">Agregar Perro</h3>
-                </div> -->
                 <div class="content">
                     <div class="form">
                         <div class="name double">
@@ -61,8 +58,8 @@
                         <label class="bold">Adjuntar foto</label>
                         <FileUpload mode="advanced" :auto="false" :multiple="false" :maxFileCount="1" accept="image/*"
                             maxFileSize="5242880" :fileLimit="1" @select="enArchivoSeleccionado" @clear="clearImage"
-                            :showUploadButton="false" :showCancelButton="false" chooseLabel="Seleccionar foto"
-                            class="uploadComponent"> <template #empty>
+                            @remove="clearImage" :showUploadButton="false" :showCancelButton="false"
+                            chooseLabel="Seleccionar foto" class="uploadComponent"> <template #empty>
                                 <span>Selecciona o arrastra una foto aquí.</span>
                             </template>
                         </FileUpload>
@@ -77,9 +74,9 @@
                     </div>
                     <div class="actions">
                         <Button label="Guardar" icon="pi pi-save" iconPos="right" class="success"
-                            @click="createUpdateDog()" />
-                        <Button label="Cancelar" icon="pi pi-times" iconPos="right" class="secondary"
-                            @click="goBack()" />
+                            @click="createUpdateDog()" :loading="loading" />
+                        <Button label="Cancelar" icon="pi pi-times" iconPos="right" class="secondary" @click="goBack()"
+                            :loading="loading" />
                     </div>
                 </div>
             </div>
@@ -109,6 +106,7 @@ const oDog = ref({
     animalImageFile: null
 });
 const previewImage = ref(null);
+const loading = ref(false);
 
 onMounted(async () => {
     Initialize();
@@ -190,6 +188,7 @@ const clearImage = () => {
 };
 
 const createUpdateDog = async () => {
+    loading.value = true;
 
     if (!ValidateFields()) {
         toast.add({
@@ -198,6 +197,7 @@ const createUpdateDog = async () => {
             detail: 'Por favor, complete todos los campos son obligatorios',
             life: 2000,
         });
+        loading.value = false;
         return;
     }
 
@@ -239,9 +239,13 @@ const createUpdateDog = async () => {
                 life: 2000,
             });
 
-            setTimeout(goBack, 2000);
+            setTimeout(
+                goBack,
+                loading.value = false,
+                2000);
 
         } else {
+            loading.value = false;
             throw new Error(`Error en la operación: ${response.status}`);
         }
     } catch (error) {
@@ -251,6 +255,7 @@ const createUpdateDog = async () => {
             detail: 'Ha ocurrido un error al guardar el perro',
             life: 2000,
         });
+        loading.value = false;
     }
 };
 

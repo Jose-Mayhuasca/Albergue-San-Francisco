@@ -33,7 +33,7 @@ const router = createRouter({
           component: CatalogPage,
         },
         {
-          path: 'catalogo/detalle/:name',
+          path: 'catalogo/detalle/:id',
           component: DogDetail,
         },
         {

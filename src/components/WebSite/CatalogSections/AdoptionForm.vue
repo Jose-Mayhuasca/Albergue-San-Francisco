@@ -1,8 +1,10 @@
 <template>
-    <div class="page page-color bg-blue-50 dark:bg-slate-900 dark:text-white min-h-screen flex justify-center items-start py-6 md:py-10">
+    <div
+        class="page page-color bg-blue-50 dark:bg-slate-900 dark:text-white min-h-screen flex justify-center items-start py-6 md:py-10">
         <Section class="sectionAdoptionForm w-full">
             <Toast />
-            <div class="container mx-auto max-w-3xl w-full bg-white/95 dark:bg-slate-800/80 dark:border dark:border-slate-700 rounded-3xl shadow-lg px-4 py-6 md:px-8 md:py-8">
+            <div
+                class="container mx-auto max-w-3xl w-full bg-white/95 dark:bg-slate-800/80 dark:border dark:border-slate-700 rounded-3xl shadow-lg px-4 py-6 md:px-8 md:py-8">
                 <!-- TÍTULO -->
                 <div class="containerTitle flex items-center gap-3 mb-2">
                     <!-- <div
@@ -37,17 +39,20 @@
                     <div class="form space-y-4">
                         <div class="name field flex flex-col gap-1">
                             <label class="text-sm font-medium text-slate-700 dark:text-slate-200">Nombres</label>
-                            <InputText v-model="oApplicant.name" class="w-full dark:bg-slate-700 dark:text-white dark:border dark:border-slate-600" />
+                            <InputText v-model="oApplicant.name"
+                                class="w-full dark:bg-slate-700 dark:text-white dark:border dark:border-slate-600" />
                         </div>
 
                         <div class="lastName field flex flex-col gap-1">
                             <label class="text-sm font-medium text-slate-700 dark:text-slate-200">Apellidos</label>
-                            <InputText v-model="oApplicant.lastName" class="w-full dark:bg-slate-700 dark:text-white dark:border dark:border-slate-600" />
+                            <InputText v-model="oApplicant.lastName"
+                                class="w-full dark:bg-slate-700 dark:text-white dark:border dark:border-slate-600" />
                         </div>
 
                         <div class="occupation field flex flex-col gap-1">
                             <label class="text-sm font-medium text-slate-700 dark:text-slate-200">Ocupación</label>
-                            <InputText v-model="oApplicant.occupation" class="w-full dark:bg-slate-700 dark:text-white dark:border dark:border-slate-600" />
+                            <InputText v-model="oApplicant.occupation"
+                                class="w-full dark:bg-slate-700 dark:text-white dark:border dark:border-slate-600" />
                         </div>
 
                         <div class="sameField grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -67,7 +72,8 @@
                         <div class="phoneNumber field flex flex-col gap-1">
                             <label class="text-sm font-medium text-slate-700 dark:text-slate-200">N° de Contacto</label>
                             <InputNumber v-model="oApplicant.phoneNumber" :useGrouping="false" :min="900000000"
-                                :max="999999999" class="w-full dark:bg-slate-700 dark:text-white dark:border dark:border-slate-600" />
+                                :max="999999999"
+                                class="w-full dark:bg-slate-700 dark:text-white dark:border dark:border-slate-600" />
                             <span class="text-xs text-slate-400 dark:text-slate-400 mt-0.5">
                                 Solo números, sin guiones ni espacios.
                             </span>
@@ -88,8 +94,8 @@
 
                             <FileUpload mode="advanced" :auto="false" :multiple="false" :maxFileCount="1"
                                 accept="image/*" maxFileSize="5242880" :fileLimit="1" @select="enArchivoSeleccionado"
-                                @clear="clearImage" :showUploadButton="false" :showCancelButton="false"
-                                chooseLabel="Seleccionar foto" class="w-full">
+                                @clear="clearImage" @remove="clearImage" :showUploadButton="false"
+                                :showCancelButton="false" chooseLabel="Seleccionar foto" class="w-full">
                                 <template #empty>
                                     <div class="flex flex-col items-center justify-center gap-1 py-4">
                                         <i class="ri-image-add-line text-2xl text-slate-400"></i>
@@ -116,7 +122,8 @@
                                     <label>Uso de Datos</label>
                                     <i class="ri-error-warning-line text-lg" />
                                 </a>
-                                <div class="toggleContainer flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
+                                <div
+                                    class="toggleContainer flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
                                     <toggle-switch v-model="oApplicant.useData" />
                                     <label>Estoy de acuerdo</label>
                                 </div>
@@ -129,7 +136,8 @@
                                     <label>Ley de protección animal</label>
                                     <i class="ri-error-warning-line text-lg" />
                                 </a>
-                                <div class="toggleContainer flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
+                                <div
+                                    class="toggleContainer flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
                                     <toggle-switch v-model="oApplicant.tyc" />
                                     <label>Acepto</label>
                                 </div>
@@ -141,18 +149,33 @@
                 <!-- ACCIONES -->
                 <div class="actions mt-6 flex flex-col md:flex-row gap-3 md:justify-end">
                     <Button label="Enviar" icon="ri-mail-send-fill" iconPos="right" fluid
-                        class="primary hover:bg-amber-600 transition font-semibold md:w-40 dark:bg-amber-500 dark:text-white" @click="sendApplication()"
-                        :disabled="!oApplicant.useData || !oApplicant.tyc" />
+                        class="primary hover:bg-amber-600 transition font-semibold md:w-40 dark:bg-amber-500 dark:text-white"
+                        @click="SendConfirm()" :disabled="isDisabled" :loading="loading" />
+                    <!-- :disabled="!oApplicant.useData || !oApplicant.tyc" -->
                     <Button label="Cancelar" icon="ri-close-fill text-lg" iconPos="right" fluid
-                        class="secondary md:w-40 dark:bg-slate-700 dark:text-white" @click="goBack(idDog)" />
+                        class="secondary md:w-40 dark:bg-slate-700 dark:text-white" @click="goBack(nameDog)"
+                        :loading="loading" />
                 </div>
+
+                <!-- Dialog de confirmación de lectura -->
+                <Dialog v-model:visible="visibleSendConfirm" modal header="Confirmación de envío" class="confirmDialog">
+                    <p>Al confirmar, aceptas que tus datos sean procesados. El tiempo estimado para recibir una
+                        respuesta a tu trámite es de [X] días hábiles.</p>
+                    <p>¿Deseas continuar?</p>
+                    <!-- <div class="confirmActions"> -->
+                    <Button label="Entendido, enviar" severity="success" @click="sendApplication()" icon="pi pi-check"
+                        fluid class="success" :loading="loading" />
+                    <Button label="Revisar datos" severity="secondary" text @click="visibleSendConfirm = false"
+                        icon="pi pi-times" fluid class="secondary" :loading="loading" />
+                    <!-- </div> -->
+                </Dialog>
             </div>
         </Section>
     </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import { useToast } from 'primevue';
 import CommonService from '@/services/CommonService';
@@ -162,6 +185,7 @@ const router = useRouter();
 const toast = useToast();
 const commonService = new CommonService();
 const applicantService = new ApplicantService();
+const loading = ref(false);
 
 const oListDistricts = ref([]);
 const oApplicant = ref({
@@ -172,6 +196,8 @@ const oApplicant = ref({
 });
 const previewImage = ref(null);
 const idDog = localStorage.getItem('idDog');
+const nameDog = localStorage.getItem('nameDog');
+const visibleSendConfirm = ref(false);
 
 onMounted(() => {
     Initialize();
@@ -232,7 +258,19 @@ const clearImage = () => {
     oApplicant.value.applicantImageFile = null;
 };
 
+// Computed property para deshabilitar el botón de enviar
+const isDisabled = computed(() => {
+    return !oApplicant.value.useData || !oApplicant.value.tyc || loading.value;
+});
+
+const SendConfirm = () => {
+    visibleSendConfirm.value = true;
+}
+
 const sendApplication = async () => {
+    if (loading.value) return;
+
+    loading.value = true;
 
     if (!validationFields()) {
         toast.add({
@@ -241,6 +279,8 @@ const sendApplication = async () => {
             detail: 'Por favor, complete los campos obligatorios',
             life: 2000
         });
+        loading.value = false;
+        visibleSendConfirm.value = false;
         return;
     }
 
@@ -268,6 +308,7 @@ const sendApplication = async () => {
         });
         setTimeout(() => {
             router.push({ path: '/' });
+            loading.value = false;
         }, 2000);
     } else {
         toast.add({
@@ -276,6 +317,7 @@ const sendApplication = async () => {
             detail: 'Hubo un error al enviar la solicitud. Por favor, intente nuevamente.',
             life: 2000
         });
+        loading.value = false;
         throw new Error(`Error en la operación: ${response.status}`);
     }
 }
@@ -291,8 +333,8 @@ const validationFields = () => {
     );
 };
 
-const goBack = (id) => {
-    router.push({ path: `/catalogo/detalle/${id}` });
+const goBack = (nameDog) => {
+    router.push({ path: `/catalogo/detalle/${nameDog}` });
 }
 </script>
 
@@ -329,13 +371,16 @@ const goBack = (id) => {
      ensure page background and text adapt nicely. */
 :global(.dark) {
     .page-color {
-        background-color: #0f172a; /* slate-900 */
+        background-color: #0f172a;
+        /* slate-900 */
         color: #ffffff;
     }
 
     .sectionAdoptionForm .container {
-        background-color: rgba(15,23,42,0.8); /* dark translucent */
-        border-color: rgba(148,163,184,0.12); /* slate border subtle */
+        background-color: rgba(15, 23, 42, 0.8);
+        /* dark translucent */
+        border-color: rgba(148, 163, 184, 0.12);
+        /* slate border subtle */
     }
 }
 
@@ -347,9 +392,8 @@ const goBack = (id) => {
     }
 
     .sectionAdoptionForm .container {
-        background-color: rgba(15,23,42,0.8);
-        border-color: rgba(148,163,184,0.12);
+        background-color: rgba(15, 23, 42, 0.8);
+        border-color: rgba(148, 163, 184, 0.12);
     }
 }
-
 </style>

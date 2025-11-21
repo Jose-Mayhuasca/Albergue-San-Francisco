@@ -75,13 +75,42 @@ const showBackButton = computed(() => {
 
 // Función para retroceder
 const goBack = () => {
+    const path = route.path
+
     // Si está en una página principal del dashboard (excepto /admin), ir al home
-    if (mainDashboardPages.includes(route.path) && route.path !== '/admin') {
+    if (mainDashboardPages.includes(path) && path !== '/admin') {
         router.push('/admin')
-    } else {
-        // En páginas de detalle/editar/crear, ir a la página anterior
-        router.back()
+        return
     }
+
+    // Navegación específica para evitar volver a páginas eliminadas/rechazadas
+
+    // Desde páginas de catálogo
+    if (path === '/admin/catalogo/nuevo' || path.startsWith('/admin/catalogo/editar/')) {
+        router.push('/admin/catalogo')
+        return
+    }
+
+    // Desde detalles de solicitante -> volver a solicitudes principal
+    if (path.match(/^\/admin\/solicitudes\/\d+\/detalle\/\d+$/)) {
+        router.push('/admin/solicitudes')
+        return
+    }
+
+    // Desde perro solicitado -> volver a solicitudes principal
+    if (path.match(/^\/admin\/solicitudes\/\d+$/)) {
+        router.push('/admin/solicitudes')
+        return
+    }
+
+    // Desde detalles de solicitudes pre-aprobadas -> volver a solicitudes principal
+    if (path.match(/^\/admin\/solicitudes\/pre-aprobadas\/detalle\/\d+$/)) {
+        router.push('/admin/solicitudes')
+        return
+    }
+
+    // Fallback: usar router.back() solo si no coincide con ningún patrón conocido
+    router.back()
 }
 
 const logout = () => {

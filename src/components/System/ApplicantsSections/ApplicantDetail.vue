@@ -96,17 +96,17 @@
                             </template>
                             <template #footer>
                                 <Button label="Guardar" icon="pi pi-save" iconPos="right" class="primary"
-                                    @click="updateReminder()" />
+                                    @click="updateReminder()" :loading="loading" />
                                 <Button label="Descartar" icon="pi pi-times" iconPos="right" class="secondary"
-                                    @click="discardUpdateReminder()" />
+                                    @click="discardUpdateReminder()" :loading="loading" />
                             </template>
                         </Card>
                     </div>
                     <div class="actions" v-show="idStatusApplicant == 1">
                         <Button label="Aprobar" icon="pi pi-check" iconPos="right" class="success"
-                            @click="openApproveConfirm()" />
+                            @click="openApproveConfirm()" :loading="loading" />
                         <Button label="Rechazar" icon="pi pi-times" iconPos="right" class="danger"
-                            @click="openDeniedConfirm()" />
+                            @click="openDeniedConfirm()" :loading="loading" />
                     </div>
                 </div>
                 <div v-show="viewDesktop" class="viewDesktop">
@@ -132,17 +132,17 @@
                                 </template>
                                 <template #footer>
                                     <Button label="Guardar" icon="pi pi-save" iconPos="right" class="primary"
-                                        @click="updateReminder()" />
+                                        @click="updateReminder()" :loading="loading" />
                                     <Button label="Descartar" icon="pi pi-times" iconPos="right" class="secondary"
-                                        @click="discardUpdateReminder()" />
+                                        @click="discardUpdateReminder()" :loading="loading" />
                                 </template>
                             </Card>
                         </div>
                         <div class="actions" v-show="idStatusApplicant == 1">
                             <Button label="Aprobar" icon="pi pi-check" iconPos="right" class="success"
-                                @click="openApproveConfirm()" />
+                                @click="openApproveConfirm()" :loading="loading" />
                             <Button label="Rechazar" icon="pi pi-times" iconPos="right" class="danger"
-                                @click="openDeniedConfirm()" />
+                                @click="openDeniedConfirm()" :loading="loading" />
                         </div>
                     </div>
                 </div>
@@ -154,9 +154,9 @@
                     <p>Esta acción no se puede deshacer. Y descartará las otras solicitudes.</p>
                     <!-- <div class="confirmActions"> -->
                     <Button label="Aprobar" severity="success" @click="acceptApplicant()" icon="pi pi-check" fluid
-                        class="success" />
+                        class="success" :loading="loading" />
                     <Button label="Cancelar" severity="secondary" text @click="visibleApproveConfirm = false"
-                        icon="pi pi-times" fluid class="secondary" />
+                        icon="pi pi-times" fluid class="secondary" :loading="loading" />
                     <!-- </div> -->
                 </Dialog>
 
@@ -166,9 +166,9 @@
                     <p>Esta acción no se puede deshacer.</p>
                     <!-- <div class="confirmActions"> -->
                     <Button label="Rechazar" severity="danger" @click="rejectApplicant()" icon="pi pi-trash" fluid
-                        class="danger" />
+                        class="danger" :loading="loading" />
                     <Button label="Cancelar" severity="secondary" text @click="visibleDeniedConfirm = false"
-                        icon="pi pi-times" fluid class="secondary" />
+                        icon="pi pi-times" fluid class="secondary" :loading="loading" />
                     <!-- </div> -->
                 </Dialog>
             </div>
@@ -188,6 +188,7 @@ const router = useRouter()
 const applicantService = new ApplicantService()
 const oApplicant = ref({})
 const bCargando = ref(false)
+const loading = ref(false);
 
 const visibleApproveConfirm = ref(false);
 const visibleDeniedConfirm = ref(false);
@@ -235,6 +236,7 @@ const formatDate = (originalDate) => {
 };
 
 const updateReminder = async () => {
+    loading.value = true;
 
     const request = {
         idUserApp: oApplicant.value.idUserApp,
@@ -264,9 +266,11 @@ const updateReminder = async () => {
             LoadApplicant();
         }, 2000);
     }
+    loading.value = false;
 };
 
 const discardUpdateReminder = async () => {
+    loading.value = true;
 
     const request = {
         idUserApp: oApplicant.value.idUserApp,
@@ -292,6 +296,7 @@ const discardUpdateReminder = async () => {
         });
         LoadApplicant();
     }
+    loading.value = false;
 };
 
 const openApproveConfirm = () => {
@@ -303,6 +308,7 @@ const openDeniedConfirm = () => {
 }
 
 const rejectApplicant = async () => {
+    loading.value = true;
     const request = {
         idUserApp: oApplicant.value.idUserApp,
     }
@@ -317,6 +323,7 @@ const rejectApplicant = async () => {
             life: 2000
         });
         setTimeout(() => {
+            loading.value = false;
             router.push(`/admin/solicitudes/${id}`);
         }, 2000);
     } else {
@@ -326,11 +333,13 @@ const rejectApplicant = async () => {
             detail: 'No se pudo rechazar al solicitante',
             life: 2000
         });
+        loading.value = false;
     }
 
 }
 
 const acceptApplicant = async () => {
+    loading.value = true;
     const request = {
         idUserApp: oApplicant.value.idUserApp,
     }
@@ -344,6 +353,7 @@ const acceptApplicant = async () => {
             life: 2000
         });
         setTimeout(() => {
+            loading.value = false;
             router.push(`/admin/solicitudes`);
         }, 2000);
     } else {
@@ -353,6 +363,7 @@ const acceptApplicant = async () => {
             detail: 'No se pudo aprobar al solicitante',
             life: 2000
         });
+        loading.value = false;
     }
 
 }

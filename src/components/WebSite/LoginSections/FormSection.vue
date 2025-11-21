@@ -15,7 +15,8 @@
                     <h6>Contraseña</h6>
                     <Password v-model="user.password" toggleMask :feedback="false" fluid />
                 </div>
-                <Button type="submit" class="p-button" label="Iniciar Sesión" @click.prevent="onSubmit" />
+                <Button type="submit" class="p-button" label="Iniciar Sesión" @click.prevent="onSubmit"
+                    :loading="loading" />
             </Form>
         </div>
     </section>
@@ -31,12 +32,16 @@ const loginService = new LoginService();
 const router = useRouter();
 const toast = useToast();
 
+const loading = ref(false);
+
 const user = ref({
     username: "",
     password: ""
 })
 
 async function onSubmit() {
+
+    loading.value = true;
 
     if (!validationFields(user.value.username, user.value.password)) {
         toast.add({
@@ -66,6 +71,7 @@ async function onSubmit() {
         });
         setTimeout(() => {
             router.push("/admin");
+            loading.value = false;
         }, 2000);
     }
     else {
@@ -75,8 +81,8 @@ async function onSubmit() {
             detail: 'Usuario o contraseña incorrectos',
             life: 2000
         });
+        loading.value = false;
     }
-
 }
 
 const validationFields = (username, password) => {

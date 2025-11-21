@@ -70,7 +70,7 @@
             <div class=" containerCards" v-show="!bCargando">
                 <Card v-for="dog in filteredDogs" :key="dog.idRefAnimals" class="cardCatalog" :style="{
                     backgroundImage: `url(${dog.animalImage})`
-                }" @click="openActionsDialog(dog.idRefAnimals)">
+                }" @click="openActionsDialog(dog.idRefAnimals, dog.animalName)">
                     <template #title>
                         <p class="regularSize title">{{ dog.animalName }}</p>
                     </template>
@@ -123,6 +123,7 @@ const visibleFilters = ref(false);
 const visibleActions = ref(false);
 const visibleDeleteConfirm = ref(false);
 const selectedDogId = ref(null);
+const selectedDogName = ref(null);
 
 // Refs para los filtros
 const selectedSize = ref(null)
@@ -234,14 +235,15 @@ const openNewDog = () => {
     router.push(`catalogo/nuevo`)
 }
 
-const openActionsDialog = (id) => {
+const openActionsDialog = (id, name) => {
     selectedDogId.value = id
+    selectedDogName.value = name
     visibleActions.value = true
 }
 
 const confirmEdit = () => {
     visibleActions.value = false
-    editDog(selectedDogId.value)
+    editDog(selectedDogId.value, selectedDogName.value)
 }
 
 const openDeleteConfirm = () => {
@@ -286,9 +288,10 @@ const confirmDelete = async () => {
     }
 }
 
-const editDog = (id) => {
+const editDog = (id, name) => {
+    console.log("data:", id, name)
     localStorage.setItem('idDog', id)
-    router.push(`catalogo/editar/${id}`)
+    router.push(`catalogo/editar/${name}`)
 }
 
 const clearFilters = () => {

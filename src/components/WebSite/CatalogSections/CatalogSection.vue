@@ -49,7 +49,8 @@
                 <div class="absolute inset-0 bg-black/40" @click="showFilters = false"></div>
 
                 <!-- Panel lateral (desde la izquierda) -->
-                <div class="relative bg-white dark:bg-slate-800 w-full max-w-xs sm:max-w-sm h-full p-5 overflow-auto shadow-lg">
+                <div
+                    class="relative bg-white dark:bg-slate-800 w-full max-w-xs sm:max-w-sm h-full p-5 overflow-auto shadow-lg">
                     <div class="flex items-center justify-between mb-4">
                         <h2 class="text-lg font-semibold text-gray-700 dark:text-gray-200">Filtros</h2>
                         <button @click="showFilters = false" aria-label="Cerrar filtros"
@@ -142,10 +143,11 @@ const filteredPets = computed(() => {
     })
 })
 
-const goDetail = (id) => {
+const goDetail = (id, name) => {
     localStorage.clear();
     localStorage.setItem('idDog', id);
-    router.push({ path: `catalogo/detalle/${id}` })
+    localStorage.setItem('nameDog', name);
+    router.push({ path: `catalogo/detalle/${name}` })
 }
 
 
@@ -153,20 +155,20 @@ const goDetail = (id) => {
 
 <style lang="scss" scoped>
 .full-bleed {
-        /* Break out of a centered container and occupy the full viewport width */
-        position: relative;
-        /* left: 50%;
+    /* Break out of a centered container and occupy the full viewport width */
+    position: relative;
+    /* left: 50%;
         right: 50%; */
-        margin-left: -50vw;
-        margin-right: -50vw;
-        width: 100vw;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    width: 100vw;
 }
 
 /* Optional: ensure the hero image stretches edge-to-edge */
 .full-bleed .relative.w-full.h-64 img {
-        width: 100vw;
-        max-width: 100vw;
-        margin-left: calc(-50vw + 50%);
+    width: 100vw;
+    max-width: 100vw;
+    margin-left: calc(-50vw + 50%);
 }
 
 /* Dark-mode cover image dimming */

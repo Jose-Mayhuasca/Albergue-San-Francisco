@@ -1,5 +1,6 @@
 <template>
-    <div class="page bg-slate-50 dark:bg-slate-900 dark:text-white min-h-screen flex justify-center items-start py-6 md:py-10">
+    <div
+        class="page bg-slate-50 dark:bg-slate-900 dark:text-white min-h-screen flex justify-center items-start py-6 md:py-10">
         <Section class="sectionDogDetail w-full">
             <!-- ================== CONTENIDO PRINCIPAL ================== -->
             <div class="container mx-auto max-w-5xl px-4" v-show="!bCargando">
@@ -30,7 +31,8 @@
                     </div>
 
                     <!-- Datos -->
-                    <Card class="cardData rounded-3xl shadow-lg border border-slate-100 dark:border-slate-700 bg-white/90 dark:bg-slate-800 backdrop-blur-sm">
+                    <Card
+                        class="cardData rounded-3xl shadow-lg border border-slate-100 dark:border-slate-700 bg-white/90 dark:bg-slate-800 backdrop-blur-sm">
                         <template #title>
                             <div class="flex items-center justify-between gap-2">
                                 <h3 class="font-bold text-4xl md:text-4xl text-slate-900 dark:text-white">
@@ -44,7 +46,8 @@
                             <!-- Características -->
                             <div class="characteristicsContainer standarContainer mt-4">
                                 <div class="title mb-2">
-                                    <h6 class="font-semibold text-sm uppercase tracking-wide text-slate-500 dark:text-slate-400">
+                                    <h6
+                                        class="font-semibold text-sm uppercase tracking-wide text-slate-500 dark:text-slate-400">
                                         Características
                                     </h6>
                                 </div>
@@ -102,7 +105,8 @@
                             <!-- Historia -->
                             <div class="historyContainer standarContainer mt-6">
                                 <div class="title mb-1">
-                                    <h6 class="font-semibold text-sm uppercase tracking-wide text-slate-500 dark:text-slate-400">
+                                    <h6
+                                        class="font-semibold text-sm uppercase tracking-wide text-slate-500 dark:text-slate-400">
                                         Historia
                                     </h6>
                                 </div>
@@ -117,7 +121,8 @@
                             <!-- Descripción -->
                             <div class="descriptionContainer standarContainer mt-6">
                                 <div class="title mb-1">
-                                    <h6 class="font-semibold text-sm uppercase tracking-wide text-slate-500 dark:text-slate-400">
+                                    <h6
+                                        class="font-semibold text-sm uppercase tracking-wide text-slate-500 dark:text-slate-400">
                                         Descripción
                                     </h6>
                                 </div>
@@ -133,7 +138,7 @@
 
                     <!-- Acciones -->
                     <div class="actionsContainer flex flex-col sm:flex-row gap-3 mt-4 sm:mt-6 w-full">
-                        <Button label="Adoptar" icon="ri-heart-2-line" @click="goFormAdoption(oPet.idRefAnimals)"
+                        <Button label="Adoptar" icon="ri-heart-2-line" @click="goFormAdoption(oPet.animalName)"
                             class="flex-1 min-w-[140px] sm:max-w-xs" />
                         <Button label="Apadrinar" icon="ri-vip-crown-line" @click="goPlans()"
                             class="flex-1 min-w-[140px] sm:max-w-xs p-button-outlined" />
@@ -149,7 +154,8 @@
                             class="item rounded-3xl shadow-lg" />
                     </div>
 
-                    <Card class="cardData flex-1 rounded-3xl shadow-lg border border-slate-100 dark:border-slate-700 bg-white/90 dark:bg-slate-800">
+                    <Card
+                        class="cardData flex-1 rounded-3xl shadow-lg border border-slate-100 dark:border-slate-700 bg-white/90 dark:bg-slate-800">
                         <template #title>
                             <Skeleton fluid height="3rem" class="rounded-xl" />
                         </template>
@@ -193,7 +199,7 @@
                 </div>
 
                 <div class="actionsContainer flex flex-col sm:flex-row gap-3 mt-6 w-full">
-                    <Button label="Adoptar" icon="ri-heart-2-line" @click="goFormAdoption(oPet.idRefAnimals)"
+                    <Button label="Adoptar" icon="ri-heart-2-line" @click="goFormAdoption(oPet.animalName)"
                         class="flex-1 min-w-[140px] sm:max-w-xs" />
                     <Button label="Apadrinar" icon="ri-vip-crown-line" @click="goPlans()"
                         class="flex-1 min-w-[140px] sm:max-w-xs p-button-outlined" />
@@ -304,8 +310,8 @@ function formatAge(decimalAge) {
 }
 
 
-const goFormAdoption = (id) => {
-    router.push({ path: `/catalogo/adoptar/${id}` });
+const goFormAdoption = (name) => {
+    router.push({ path: `/catalogo/adoptar/${name}` });
 };
 
 const goPlans = () => {
@@ -375,6 +381,7 @@ const goBack = () => {
 /* ================== VISTA MÓVIL (full viewport width + 10px overlap) ================== */
 /* Hasta 639px aprox (sm en Tailwind) */
 @media (max-width: 639px) {
+
     /* Romper el contenedor centrado: usar 100vw y centrarlo con transform
        para que la imagen y el card ocupen realmente todo el ancho del viewport. */
     .detailView.is-mobile .containerPhoto,

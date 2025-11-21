@@ -106,7 +106,7 @@
                     </div>
                     <div class="actions">
                         <Button label="Eliminar Solicitud" icon="pi pi-times" iconPos="right" class="danger"
-                            @click="deleteApplicant()" />
+                            @click="openDeleteConfirm()" :loading="loading" />
                     </div>
                 </div>
                 <div v-show="viewDesktop" class="viewDesktop">
@@ -133,7 +133,7 @@
                         </div>
                         <div class="actions">
                             <Button label="Eliminar Solicitud" icon="pi pi-times" iconPos="right" class="danger"
-                                @click="openDeleteConfirm()" />
+                                @click="openDeleteConfirm()" :loading="loading" />
                         </div>
                     </div>
                 </div>
@@ -144,9 +144,9 @@
                     <p>Esta acción no se puede deshacer.</p>
                     <!-- <div class="confirmActions"> -->
                     <Button label="Eliminar" severity="danger" @click="deleteApplicant()" icon="pi pi-trash" fluid
-                        class="danger" />
+                        class="danger" :loading="loading" />
                     <Button label="Cancelar" severity="secondary" text @click="visibleDeleteConfirm = false"
-                        icon="pi pi-times" fluid class="secondary" />
+                        icon="pi pi-times" fluid class="secondary" :loading="loading" />
                     <!-- </div> -->
                 </Dialog>
             </div>
@@ -166,6 +166,7 @@ const router = useRouter()
 const applicantPreApprovedService = new ApplicantPreApprovedService()
 const oApplicantDetails = ref({})
 const bCargando = ref(false)
+const loading = ref(false)
 
 const viewDesktop = ref(false);
 const visibleDeleteConfirm = ref(false);
@@ -215,6 +216,7 @@ const openDeleteConfirm = () => {
 
 const deleteApplicant = async () => {
     try {
+        loading.value = true;
         const request = {
             idUserApp: oApplicantDetails.value.idUserApp,
         }
@@ -228,6 +230,7 @@ const deleteApplicant = async () => {
                 life: 2000
             });
             setTimeout(() => {
+                loading.value = false;
                 router.push(`/admin/solicitudes/pre-aprobadas`);
             }, 2000);
         }
@@ -238,6 +241,7 @@ const deleteApplicant = async () => {
             detail: 'No se pudo eliminar la solicitud',
             life: 2000
         });
+        loading.value = false;
     }
 
 }
