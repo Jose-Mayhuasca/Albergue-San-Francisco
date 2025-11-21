@@ -1,20 +1,20 @@
 <template>
-    <div class="page bg-blue-50/80 min-h-screen flex justify-center items-start py-6 md:py-10">
+    <div class="page bg-blue-50/80 dark:bg-slate-900 dark:text-white min-h-screen flex justify-center items-start py-6 md:py-10">
         <Section class="sectionSponsorshipsPlans w-full">
             <div class="container mx-auto max-w-6xl ">
                 <!-- HEADER -->
                 <div class="title text-center mb-8 justify-end">
-                    <div class="flex items-center justify-center bg-black hover:bg-white h-8 w-8 mb-3 rounded-lg">
+                    <div class="flex items-center justify-center bg-white dark:bg-slate-700 hover:bg-slate-100 dark:hover:bg-slate-600 h-8 w-8 mb-3 rounded-lg">
                         <button class="inline-flex items-center justify-center w-full h-full focus:outline-none"
                             @click="goBack(idDog)" aria-label="Volver">
                             <i class="ri-arrow-left-line text-amber-500 text-lg" />
                         </button>
                     </div>
-                    <h3 class="bold text-2xl md:text-3xl text-slate-900 mb-2">
+                    <h3 class="bold text-2xl md:text-3xl text-slate-900 dark:text-white mb-2">
                         Planes de Apadrinamiento
                     </h3>
                     <div class="subtitle max-w-2xl mx-auto">
-                        <p class="text-sm md:text-base text-slate-600 leading-relaxed">
+                        <p class="text-sm md:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
                             Elige un plan y ayuda a nuestros peluditos a tener una vida mejor. Tu apoyo
                             se traduce en alimento, cuidados médicos y mucho amor.
                         </p>
@@ -29,11 +29,11 @@
                     ]">
                         <template #title>
                             <div class="flex flex-col items-center gap-2 mb-2">
-                                <h6 class="bold text-center text-xl md:text-2xl text-slate-900">
+                                <h6 class="bold text-center text-xl md:text-2xl text-slate-900 dark:text-white">
                                     {{ plan.title }}
                                 </h6>
                                 <span v-if="plan.id === 2"
-                                    class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold bg-amber-100 text-amber-700">
+                                    class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold bg-amber-100 text-amber-700 dark:bg-amber-900/20 dark:text-amber-300">
                                     <i class="ri-star-smile-line text-sm" />
                                     Más popular
                                 </span>
@@ -42,21 +42,21 @@
                         <template #content>
                             <!-- PRECIO -->
                             <div class="price text-center mb-4">
-                                <h2 class="font-semibold text-2xl md:text-3xl text-slate-900">
+                                <h2 class="font-semibold text-2xl md:text-3xl text-slate-900 dark:text-white">
                                     S/.{{ plan.price.toFixed(2) }}
                                 </h2>
-                                <span class="text-sm text-slate-500">{{ plan.subtitle }}</span>
+                                <span class="text-sm text-slate-500 dark:text-slate-300">{{ plan.subtitle }}</span>
                             </div>
 
                             <!-- CTA -->
-                            <Button label="Elegir plan" fluid class="mb-4 font-semibold" @click="goPaymentOption()" />
+                            <Button label="Elegir plan" fluid class="mb-4 font-semibold dark:bg-amber-500 dark:text-white" @click="goPaymentOption()" />
 
                             <!-- thin horizontal rule -->
-                            <div class="h-px w-full bg-slate-400 my-3"></div>
+                            <div class="h-px w-full bg-slate-400 dark:bg-slate-700 my-3"></div>
 
                             <!-- BENEFICIOS -->
                             <div class="benefitsList flex flex-col gap-2 mt-3">
-                                <div class="item flex items-start gap-2 text-sm text-slate-700"
+                                <div class="item flex items-start gap-2 text-sm text-slate-700 dark:text-slate-300"
                                     v-for="(benefit, index) in plan.benefits" :key="index">
                                     <i class="ri-check-line text-lg text-emerald-500 mt-[2px]" />
                                     <label class="leading-snug">
@@ -129,10 +129,11 @@ const goPaymentOption = () => {
 const goBack = (idDog) => {
     router.push({ path: `/catalogo/detalle/${idDog}` });
 }
+
 </script>
 
-<style scoped>
-/* Quitar border/estilos base del Card (como tenías) */
+<style lang="scss" scoped>
+/* Base: keep container background transparent so Tailwind utilities control it */
 .containerFormPlans {
     border: none !important;
     background-color: transparent !important;
@@ -187,12 +188,10 @@ const goBack = (idDog) => {
         0 0 0 1px rgba(251, 191, 36, 0.35) !important;
 }
 
-/* Ajustes tipográficos */
 .price h2 {
     letter-spacing: -0.03em;
 }
 
-/* Asegurar que el contenido interno del Card se adapte bien */
 .containerFormPlans ::v-deep .p-card {
     background: transparent;
     box-shadow: none;
@@ -205,4 +204,49 @@ const goBack = (idDog) => {
         padding-top: 0.25rem;
     }
 }
+
+/* Dark mode when using class strategy */
+:global(.dark) {
+    .page {
+        background-color: #0f172a; /* slate-900 */
+        color: #fff;
+    }
+
+    .plansContainer .cardPlan.containerFormPlans {
+        background: rgba(15, 23, 42, 0.6) !important; /* dark translucent */
+        border: 1px solid rgba(148, 163, 184, 0.06);
+        box-shadow:
+            0 8px 30px rgba(2,6,23,0.6),
+            0 2px 8px rgba(2,6,23,0.5) !important;
+    }
+
+    .plansContainer .cardPlan.containerFormPlans.is-featured {
+        border-color: rgba(245, 158, 11, 0.35);
+        box-shadow:
+            0 18px 40px rgba(0,0,0,0.6),
+            0 0 0 1px rgba(245, 158, 11, 0.12) !important;
+    }
+
+    .plansContainer .cardPlan.containerFormPlans .item {
+        color: rgba(226,232,240,0.9); /* slate-200 */
+    }
+
+    .plansContainer .cardPlan.containerFormPlans .price h2 {
+        color: #ffffff;
+    }
+}
+
+/* Fallback for prefers-color-scheme */
+@media (prefers-color-scheme: dark) {
+    .page {
+        background-color: #0f172a;
+        color: #fff;
+    }
+
+    .plansContainer .cardPlan.containerFormPlans {
+        background: rgba(15, 23, 42, 0.6) !important;
+        border: 1px solid rgba(148, 163, 184, 0.06);
+    }
+}
+
 </style>

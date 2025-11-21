@@ -80,6 +80,7 @@ const router = useRouter()
 const getDogService = new GetDogService()
 const applicantService = new ApplicantService()
 const id = localStorage.getItem('idDog')
+const idNameDog = localStorage.getItem('animalName')
 const oDog = ref({})
 const oListApplicants = ref([])
 const bCargando = ref(false)
@@ -137,7 +138,7 @@ const formatDate = (originalDate) => {
 const GoApplicantDetail = (idUserApp, idStatusApp) => {
     localStorage.setItem('idApplicant', idUserApp);
     localStorage.setItem('idStatusApplicant', idStatusApp);
-    router.push({ path: `${id}/detalle/${idUserApp}` });
+    router.push({ path: `${idNameDog}/detalle/${idUserApp}` });
 };
 
 </script>

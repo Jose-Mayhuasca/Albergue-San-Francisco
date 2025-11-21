@@ -92,7 +92,7 @@
             <div class="containerCards" v-show="!bCargando">
                 <Card v-for="dog in filteredDogs" :key="dog.idRefAnimals" class="cardCatalog" :style="{
                     backgroundImage: `url(${dog.animalImage})`
-                }" @click="GoListApplicants(dog.idRefAnimals)">
+                }" @click="GoListApplicants(dog.idRefAnimals, dog.animalName)">
                     <template #header>
                         <Badge :value="dog.countApplicants" size="xlarge" severity="danger" />
                     </template>
@@ -242,9 +242,11 @@ const clearFilters = () => {
     selectedAge.value = null
 }
 
-const GoListApplicants = (idRefAnimals) => {
+const GoListApplicants = (idRefAnimals, animalName) => {
     localStorage.setItem('idDog', idRefAnimals);
-    router.push({ path: `solicitudes/${idRefAnimals}` });
+    localStorage.setItem('animalName', animalName);
+    router.push({ path: `solicitudes/${animalName}` });
+    console.log(idRefAnimals);
 };
 
 </script>

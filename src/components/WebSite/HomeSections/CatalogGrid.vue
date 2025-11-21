@@ -7,7 +7,8 @@
     <div v-else>
       <!-- Grid de cards (paginadas) -->
       <div class="catalog-grid grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <CatalogCard v-for="pet in pagedPets" :key="pet.id" :pet="pet" @click="emit('petSelected', pet.id)" />
+        <CatalogCard v-for="pet in pagedPets" :key="pet.id" :pet="pet"
+          @click="emit('petSelected', pet.id, pet.nombre)" />
       </div>
 
       <!-- Paginación numérica -->

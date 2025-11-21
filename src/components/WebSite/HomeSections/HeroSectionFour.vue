@@ -3,16 +3,16 @@
     <div class="mx-auto px-10 w-[80vw] grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch h-[500px] md:h-[600px]">
       <!-- IZQUIERDA -->
       <div class="flex flex-col justify-center px-6 md:px-8 order-1 md:order-1 lg:order-none">
-        <h1 class="text-5xl md:text-6xl font-extrabold leading-none text-neutral-900">Historias</h1>
-        <h2 class="text-5xl md:text-6xl font-extrabold leading-none text-neutral-500 mt-1">de éxito</h2>
+        <h1 class="text-5xl md:text-6xl font-extrabold leading-none text-neutral-900 dark:text-white">Historias</h1>
+        <h2 class="text-5xl md:text-6xl font-extrabold leading-none text-neutral-500 dark:text-neutral-300 mt-1">de éxito</h2>
       </div>
       
       <!-- TARJETA A -->
       <div class="relative rounded-3xl overflow-hidden shadow-lg flex flex-col justify-between text-white order-2 md:order-2 lg:order-none">
         <!-- Imagen de fondo -->
-        <img :src="img1" alt="Ciudad en escala de grises" class="absolute inset-0 w-full h-full object-cover" />
+        <img :src="img1" alt="Ciudad en escala de grises" class="card-bg-img absolute inset-0 w-full h-full object-cover" />
         <!-- Overlay -->
-        <div class="absolute inset-0"></div>
+        <div class="absolute inset-0 bg-black/30 dark:bg-black/60"></div>
         <!-- Historia 1 -->
         <div class="relative p-8 md:p-12 flex flex-col justify-between h-full">
           <p class="text-xl md:text-3xl font-bold leading-tight tracking-tight">Momentos reales<br />que muestran<br />cómo el amor<br />cambia destinos.</p>
@@ -22,9 +22,9 @@
       <!-- TARJETA B -->
       <div class="relative rounded-3xl overflow-hidden shadow-lg flex flex-col justify-end text-white order-3 md:order-3 lg:order-none">
         <!-- Imagen de fondo -->
-        <img :src="img2" alt="Fondo suave" class="absolute inset-0 w-full h-full object-cover" />
+        <img :src="img2" alt="Fondo suave" class="card-bg-img absolute inset-0 w-full h-full object-cover" />
         <!-- Overlay -->
-        <div class="absolute inset-0"></div>
+        <div class="absolute inset-0 bg-black/25 dark:bg-black/50"></div>
         <!-- Historia 2 -->
         <div class="relative p-8 md:p-12">
           <p class="text-xl md:text-4xl font-semibold leading-tight tracking-tight">Pequeños actos,<br />grandes comienzos.<br />el afecto abre<br />caminos inesperados.</p>
@@ -47,7 +47,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
 
 .font-sans { font-family: 'Inter', sans-serif; }
@@ -154,4 +154,6 @@ export default {
     font-size: 4rem; /* Ajuste de texto */
   }
 }
+
+
 </style>

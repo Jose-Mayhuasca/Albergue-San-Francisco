@@ -41,17 +41,30 @@ import homeIcon from '@/assets/icons/home-icon-out.svg'
 import catalogIcon from '@/assets/icons/catalog-icon-out.svg'
 import applicantsIcon from '@/assets/icons/applicants-icon.svg'
 import exitIcon from '@/assets/icons/exit-icon-out.svg'
-import { ref, onMounted, onUnmounted } from 'vue';
-import { useRouter } from 'vue-router'
+import { ref, onMounted, onUnmounted, watch } from 'vue';
+import { useRouter, useRoute } from 'vue-router'
 import { useToast } from 'primevue/usetoast';
 
 const router = useRouter();
+const route = useRoute();
 const toast = useToast();
 const viewPhone = ref(false);
 const userName = JSON.parse(localStorage.getItem('dataUser')) || { userName: 'Invitado' };
 
 const checkScreenSize = () => {
     viewPhone.value = window.innerWidth < 1024;
+}
+
+// Función para determinar qué opción debe estar activa según la ruta
+const getActiveOptionByRoute = (path) => {
+    if (path === '/admin' || path === '/admin/') {
+        return 1 // Inicio
+    } else if (path.startsWith('/admin/catalogo')) {
+        return 2 // Catálogo
+    } else if (path.startsWith('/admin/solicitudes')) {
+        return 3 // Solicitudes
+    }
+    return null
 }
 
 const logOut = () => {
@@ -71,11 +84,18 @@ const logOut = () => {
 onMounted(() => {
     checkScreenSize(); // Verificar tamaño inicial
     window.addEventListener('resize', checkScreenSize);
+    // Establecer la opción activa según la ruta actual al montar
+    active.value = getActiveOptionByRoute(route.path);
 })
 
 // Limpiar el event listener cuando el componente se desmonte
 onUnmounted(() => {
     window.removeEventListener('resize', checkScreenSize);
+})
+
+// Observar cambios en la ruta para actualizar la opción activa
+watch(() => route.path, (newPath) => {
+    active.value = getActiveOptionByRoute(newPath);
 })
 
 // Items para el navbar

@@ -1,9 +1,10 @@
 <template>
-    <div class="catalog-page full-bleed bg-white min-h-screen">
+    <div class="catalog-page full-bleed bg-white dark:bg-slate-900 dark:text-white min-h-screen">
         <!-- Imagen de portada -->
         <div class="relative w-full h-64 mb-6">
             <img src="@/assets/img/albergue6.jpg" alt="Albergue San Francisco"
-                class="w-full h-full object-cover shadow-md" />
+                class="w-full h-full object-cover shadow-md cover-img" />
+            <div class="absolute inset-0 bg-black/25 dark:bg-black/50"></div>
             <div class="absolute inset-0 flex items-center justify-center">
                 <h1 class="text-white text-3xl tracking-wide md:text-4xl font-bold drop-shadow-lg">
                     <br />
@@ -16,7 +17,7 @@
         <!-- Botón hamburguesa fijo (visible en tablet y móvil). En pantallas grandes el aside se muestra fijo. -->
         <div class="lg:hidden">
             <button @click="showFilters = true" aria-label="Abrir filtros"
-                class="fixed right-4 z-50 inline-flex items-center gap-2 px-4 py-3 rounded-xl bg-amber-500 text-white hover:bg-amber-600 shadow-lg transition"
+                class="fixed right-4 z-50 inline-flex items-center gap-2 px-4 py-3 rounded-xl bg-amber-500 dark:bg-amber-600 text-white hover:bg-amber-600 dark:hover:bg-amber-700 shadow-lg transition"
                 style="top:300px;">
                 <!-- simple icono hamburguesa -->
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
@@ -30,8 +31,8 @@
             <!-- 🔹 Filtros: oculto en pantallas < lg, visible como panel en lg+ -->
             <!-- Se usa sticky en lg+ para que el panel siga el scroll con top:20px -->
             <aside
-                class="hidden lg:block w-full lg:w-1/4 bg-white rounded-xl shadow-md p-5 h-fit lg:sticky lg:top-24 lg:self-start">
-                <h2 class="text-lg font-semibold mb-4 text-gray-700">Filtros</h2>
+                class="hidden lg:block w-full lg:w-1/4 bg-white dark:bg-slate-800 rounded-xl shadow-md p-5 h-fit lg:sticky lg:top-24 lg:self-start">
+                <h2 class="text-lg font-semibold mb-4 text-gray-700 dark:text-gray-200">Filtros</h2>
                 <CatalogFilter :filters="filters" @updateFilters="updateFilters" />
             </aside>
 
@@ -48,11 +49,12 @@
                 <div class="absolute inset-0 bg-black/40" @click="showFilters = false"></div>
 
                 <!-- Panel lateral (desde la izquierda) -->
-                <div class="relative bg-white w-full max-w-xs sm:max-w-sm h-full p-5 overflow-auto shadow-lg">
+                <div
+                    class="relative bg-white dark:bg-slate-800 w-full max-w-xs sm:max-w-sm h-full p-5 overflow-auto shadow-lg">
                     <div class="flex items-center justify-between mb-4">
-                        <h2 class="text-lg font-semibold text-gray-700">Filtros</h2>
+                        <h2 class="text-lg font-semibold text-gray-700 dark:text-gray-200">Filtros</h2>
                         <button @click="showFilters = false" aria-label="Cerrar filtros"
-                            class="p-2 rounded-md text-gray-600 hover:bg-gray-100">
+                            class="p-2 rounded-md text-gray-600 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-slate-700">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
                                 fill="currentColor">
                                 <path fill-rule="evenodd"
@@ -141,21 +143,22 @@ const filteredPets = computed(() => {
     })
 })
 
-const goDetail = (id) => {
+const goDetail = (id, name) => {
     localStorage.clear();
     localStorage.setItem('idDog', id);
-    router.push({ path: `catalogo/detalle/${id}` })
+    localStorage.setItem('nameDog', name);
+    router.push({ path: `catalogo/detalle/${name}` })
 }
 
 
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .full-bleed {
     /* Break out of a centered container and occupy the full viewport width */
     position: relative;
     /* left: 50%;
-    right: 50%; */
+        right: 50%; */
     margin-left: -50vw;
     margin-right: -50vw;
     width: 100vw;
@@ -166,5 +169,17 @@ const goDetail = (id) => {
     width: 100vw;
     max-width: 100vw;
     margin-left: calc(-50vw + 50%);
+}
+
+/* Dark-mode cover image dimming */
+:global(.dark) .cover-img {
+    filter: brightness(0.78) saturate(0.9) contrast(0.95);
+    transition: filter 180ms ease;
+}
+
+@media (prefers-color-scheme: dark) {
+    .cover-img {
+        filter: brightness(0.82) saturate(0.95) contrast(0.98);
+    }
 }
 </style>

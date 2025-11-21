@@ -1,5 +1,6 @@
 <template>
-    <div class="page bg-slate-50 min-h-screen flex justify-center items-start py-6 md:py-10">
+    <div
+        class="page bg-slate-50 dark:bg-slate-900 dark:text-white min-h-screen flex justify-center items-start py-6 md:py-10">
         <Section class="sectionDogDetail w-full">
             <!-- ================== CONTENIDO PRINCIPAL ================== -->
             <div class="container mx-auto max-w-5xl px-4" v-show="!bCargando">
@@ -16,9 +17,9 @@
                             <template #title>
                                 <div class="buttonBack absolute top-4 left-4 z-10">
                                     <button
-                                        class="inline-flex items-center justify-center rounded-lg bg-white/50 hover:bg-white shadow-md w-10 h-10 transition"
+                                        class="inline-flex items-center justify-center rounded-lg bg-white/50 dark:bg-slate-700/60 hover:bg-white dark:hover:bg-slate-700 shadow-md w-10 h-10 transition"
                                         @click="goBack()">
-                                        <i class="ri-arrow-left-line text-slate-700 text-lg"></i>
+                                        <i class="ri-arrow-left-line text-slate-700 dark:text-white text-lg"></i>
                                     </button>
                                 </div>
                                 <!-- Overlay suave arriba para mejorar contraste -->
@@ -30,10 +31,11 @@
                     </div>
 
                     <!-- Datos -->
-                    <Card class="cardData rounded-3xl shadow-lg border border-slate-100 bg-white/90 backdrop-blur-sm">
+                    <Card
+                        class="cardData rounded-3xl shadow-lg border border-slate-100 dark:border-slate-700 bg-white/90 dark:bg-slate-800 backdrop-blur-sm">
                         <template #title>
                             <div class="flex items-center justify-between gap-2">
-                                <h3 class="font-bold text-4xl md:text-4xl text-slate-900">
+                                <h3 class="font-bold text-4xl md:text-4xl text-slate-900 dark:text-white">
                                     {{ oPet.animalName }}
                                 </h3>
 
@@ -44,55 +46,56 @@
                             <!-- Características -->
                             <div class="characteristicsContainer standarContainer mt-4">
                                 <div class="title mb-2">
-                                    <h6 class="font-semibold text-sm uppercase tracking-wide text-slate-500">
+                                    <h6
+                                        class="font-semibold text-sm uppercase tracking-wide text-slate-500 dark:text-slate-400">
                                         Características
                                     </h6>
                                 </div>
                                 <div class="containerItems flex flex-wrap gap-3 items-start">
                                     <div
-                                        class="item flex items-center gap-2 px-3 py-2 rounded-xl bg-cyan-50 min-w-0">
-                                        <i class="ri-calendar-event-fill text-cyan-600 text-lg"></i>
-                                        <label class="text-sm text-cyan-600">
+                                        class="item flex items-center gap-2 px-3 py-2 rounded-xl bg-cyan-50 dark:bg-cyan-900/10 min-w-0">
+                                        <i class="ri-calendar-event-fill text-cyan-600 dark:text-cyan-200 text-lg"></i>
+                                        <label class="text-sm text-cyan-600 dark:text-cyan-200">
                                             {{ formatAge(oPet.animalAge) }}
                                         </label>
                                     </div>
 
                                     <div
-                                        class="item flex items-center gap-2 px-3 py-2 rounded-xl bg-cyan-50 min-w-0">
-                                        <i class="text-cyan-600 text-lg"
+                                        class="item flex items-center gap-2 px-3 py-2 rounded-xl bg-cyan-50 dark:bg-cyan-900/10 min-w-0">
+                                        <i class="text-cyan-600 dark:text-cyan-200 text-lg"
                                             :class="oPet.idAnimalGender == 1 ? 'ri-men-line' : 'ri-women-line'"></i>
-                                        <label class="text-sm text-cyan-600">
+                                        <label class="text-sm text-cyan-600 dark:text-cyan-200">
                                             {{ oPet.genderDesc }}
                                         </label>
                                     </div>
 
                                     <div
-                                        class="item flex items-center gap-2 px-3 py-2 rounded-xl bg-cyan-50 min-w-0">
-                                        <i class="ri-ruler-line text-cyan-600 text-lg"></i>
-                                        <label class="text-sm text-cyan-600">
+                                        class="item flex items-center gap-2 px-3 py-2 rounded-xl bg-cyan-50 dark:bg-cyan-900/10 min-w-0">
+                                        <i class="ri-ruler-line text-cyan-600 dark:text-cyan-200 text-lg"></i>
+                                        <label class="text-sm text-cyan-600 dark:text-cyan-200">
                                             {{ oPet.sizeDesc }}
                                         </label>
                                     </div>
 
                                     <div
-                                        class="item flex items-center gap-2 px-3 py-2 rounded-xl bg-cyan-50 min-w-0">
-                                        <i class="ri-scales-2-line text-cyan-600 text-lg"></i>
-                                        <label class="text-sm text-cyan-600">
+                                        class="item flex items-center gap-2 px-3 py-2 rounded-xl bg-cyan-50 dark:bg-cyan-900/10 min-w-0">
+                                        <i class="ri-scales-2-line text-cyan-600 dark:text-cyan-200 text-lg"></i>
+                                        <label class="text-sm text-cyan-600 dark:text-cyan-200">
                                             {{ oPet.animalWeight }} kg
                                         </label>
                                     </div>
-                                    <div class="item flex items-center gap-2 px-3 py-2 rounded-xl bg-cyan-50 min-w-0"
+                                    <div class="item flex items-center gap-2 px-3 py-2 rounded-xl bg-cyan-50 dark:bg-cyan-900/10 min-w-0"
                                         v-show="oPet.isVaccinated">
-                                        <i class="ri-syringe-line text-cyan-600 text-lg"></i>
-                                        <label class="text-sm text-cyan-600">
+                                        <i class="ri-syringe-line text-cyan-600 dark:text-cyan-200 text-lg"></i>
+                                        <label class="text-sm text-cyan-600 dark:text-cyan-200">
                                             {{ oPet.isVaccinated ? 'Vacunado' : 'Sin vacunar' }}
                                         </label>
                                     </div>
 
-                                    <div class="item flex items-center gap-2 px-3 py-2 rounded-xl bg-cyan-50 min-w-0"
+                                    <div class="item flex items-center gap-2 px-3 py-2 rounded-xl bg-cyan-50 dark:bg-cyan-900/10 min-w-0"
                                         v-show="oPet.isSterilized">
-                                        <i class="ri-quill-pen-line text-cyan-600 text-lg"></i>
-                                        <label class="text-sm text-cyan-600">
+                                        <i class="ri-quill-pen-line text-cyan-600 dark:text-cyan-200 text-lg"></i>
+                                        <label class="text-sm text-cyan-600 dark:text-cyan-200">
                                             {{ oPet.isSterilized ? 'Esterilizado' : 'Sin esterilizar' }}
                                         </label>
                                     </div>
@@ -102,13 +105,14 @@
                             <!-- Historia -->
                             <div class="historyContainer standarContainer mt-6">
                                 <div class="title mb-1">
-                                    <h6 class="font-semibold text-sm uppercase tracking-wide text-slate-500">
+                                    <h6
+                                        class="font-semibold text-sm uppercase tracking-wide text-slate-500 dark:text-slate-400">
                                         Historia
                                     </h6>
                                 </div>
                                 <div class="content">
                                     <p
-                                        class="text-sm md:text-base leading-relaxed text-slate-700 bg-slate-50/80 rounded-2xl px-4 py-3">
+                                        class="text-sm md:text-base leading-relaxed text-slate-700 dark:text-slate-200 bg-slate-50/80 dark:bg-slate-800/60 rounded-2xl px-4 py-3">
                                         {{ oPet.animalHistory }}
                                     </p>
                                 </div>
@@ -117,13 +121,14 @@
                             <!-- Descripción -->
                             <div class="descriptionContainer standarContainer mt-6">
                                 <div class="title mb-1">
-                                    <h6 class="font-semibold text-sm uppercase tracking-wide text-slate-500">
+                                    <h6
+                                        class="font-semibold text-sm uppercase tracking-wide text-slate-500 dark:text-slate-400">
                                         Descripción
                                     </h6>
                                 </div>
                                 <div class="content">
                                     <p
-                                        class="text-sm md:text-base leading-relaxed text-slate-700 bg-slate-50/80 rounded-2xl px-4 py-3">
+                                        class="text-sm md:text-base leading-relaxed text-slate-700 dark:text-slate-200 bg-slate-50/80 dark:bg-slate-800/60 rounded-2xl px-4 py-3">
                                         {{ oPet.animalDesc }}
                                     </p>
                                 </div>
@@ -133,7 +138,7 @@
 
                     <!-- Acciones -->
                     <div class="actionsContainer flex flex-col sm:flex-row gap-3 mt-4 sm:mt-6 w-full">
-                        <Button label="Adoptar" icon="ri-heart-2-line" @click="goFormAdoption(oPet.idRefAnimals)"
+                        <Button label="Adoptar" icon="ri-heart-2-line" @click="goFormAdoption(oPet.animalName)"
                             class="flex-1 min-w-[140px] sm:max-w-xs" />
                         <Button label="Apadrinar" icon="ri-vip-crown-line" @click="goPlans()"
                             class="flex-1 min-w-[140px] sm:max-w-xs p-button-outlined" />
@@ -149,7 +154,8 @@
                             class="item rounded-3xl shadow-lg" />
                     </div>
 
-                    <Card class="cardData flex-1 rounded-3xl shadow-lg border border-slate-100 bg-white/90">
+                    <Card
+                        class="cardData flex-1 rounded-3xl shadow-lg border border-slate-100 dark:border-slate-700 bg-white/90 dark:bg-slate-800">
                         <template #title>
                             <Skeleton fluid height="3rem" class="rounded-xl" />
                         </template>
@@ -193,7 +199,7 @@
                 </div>
 
                 <div class="actionsContainer flex flex-col sm:flex-row gap-3 mt-6 w-full">
-                    <Button label="Adoptar" icon="ri-heart-2-line" @click="goFormAdoption(oPet.idRefAnimals)"
+                    <Button label="Adoptar" icon="ri-heart-2-line" @click="goFormAdoption(oPet.animalName)"
                         class="flex-1 min-w-[140px] sm:max-w-xs" />
                     <Button label="Apadrinar" icon="ri-vip-crown-line" @click="goPlans()"
                         class="flex-1 min-w-[140px] sm:max-w-xs p-button-outlined" />
@@ -304,8 +310,8 @@ function formatAge(decimalAge) {
 }
 
 
-const goFormAdoption = (id) => {
-    router.push({ path: `/catalogo/adoptar/${id}` });
+const goFormAdoption = (name) => {
+    router.push({ path: `/catalogo/adoptar/${name}` });
 };
 
 const goPlans = () => {
@@ -317,7 +323,7 @@ const goBack = () => {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 /* ---------- Layout base ---------- */
 .detailView {
     display: flex;
@@ -375,11 +381,6 @@ const goBack = () => {
 /* ================== VISTA MÓVIL (full viewport width + 10px overlap) ================== */
 /* Hasta 639px aprox (sm en Tailwind) */
 @media (max-width: 639px) {
-
-    /* En móvil queremos fondo blanco para esta vista */
-    .page {
-        background-color: #FFFFFF !important;
-    }
 
     /* Romper el contenedor centrado: usar 100vw y centrarlo con transform
        para que la imagen y el card ocupen realmente todo el ancho del viewport. */

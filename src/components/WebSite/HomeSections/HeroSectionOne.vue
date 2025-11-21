@@ -12,11 +12,11 @@
     </div>
 
     <!-- Contenido de texto -->
-  <div class="relative text-black w-full lg:w-1/2 lg:ml-40 lg:pr-40 lg:text-left sm:text-left xs:text-left mt-10 lg:mt-0">
+  <div class="relative text-black dark:text-white w-full lg:w-1/2 lg:ml-40 lg:pr-40 lg:text-left sm:text-left xs:text-left mt-10 lg:mt-0">
       <h1 class="text-xl md:text-lg">ADOPTAR CAMBIA VIDAS</h1>
       <h2 class="text-4xl font-semibold mt-2 md:text-4xl xs:text-2xl sm:text-3xl">HAZ FELIZ A UN NUEVO AMIGO</h2>
       <p class="mt-4 text-lg md:text-lg xs:text-base">Tú puedes ser su héroe y llenar tu vida de amor incondicional.</p>
-      <button @click="goToCatalog" type="button" class="mt-6 bg-[color:var(--color-primary)] text-gray-800 px-6 py-2 rounded-full hover:bg-amber-500 transition">
+      <button @click="goToCatalog" type="button" class="mt-6 bg-[color:var(--color-primary)] dark:bg-amber-700 text-gray-800 dark:text-gray-100 px-6 py-2 rounded-full hover:bg-amber-500 dark:hover:bg-amber-600 transition">
         CONÓCELOS
       </button>
     </div>
@@ -32,7 +32,7 @@ const goToCatalog = () => {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 /* Opcional: sombra suave o ajustes extra */
 .container {
   max-width: 1200px;
@@ -59,12 +59,42 @@ const goToCatalog = () => {
   background-position: center;
   background-repeat: no-repeat;
   z-index: -1;
+  /* ensure content sits above the background image */
+}
+
+/* Dark mode: when parent `html` or `body` has `.dark` class (Tailwind class strategy) */
+:global(.dark) .hero::before {
+  /* add a dark overlay on top of the existing background image */
+  background-image: linear-gradient(rgba(6,6,23,0.6), rgba(6,6,23,0.6)), url('@/assets/img/fondo_dog.png');
+  background-blend-mode: overlay;
+  filter: brightness(0.75) contrast(0.95);
+}
+
+/* Respect user's system preference if Tailwind is set to `media` or for users without toggles */
+@media (prefers-color-scheme: dark) {
+  .hero::before {
+    background-image: linear-gradient(rgba(6,6,23,0.6), rgba(6,6,23,0.6)), url('@/assets/img/fondo_dog.png');
+    background-blend-mode: overlay;
+    filter: brightness(0.75) contrast(0.95);
+  }
 }
 
 /* Ajustes de tamaño de la imagen del perro y ajustes móviles */
 .hero-dog-img {
   height: 600px;
   max-width: 100%;
+  transition: filter 200ms ease, transform 200ms ease;
+}
+
+/* Dark adjustments for the hero image */
+:global(.dark) .hero-dog-img {
+  filter: brightness(0.95) saturate(0.9);
+}
+
+@media (prefers-color-scheme: dark) {
+  .hero-dog-img {
+    filter: brightness(0.95) saturate(0.9);
+  }
 }
 
 @media (max-width: 1024px) {
