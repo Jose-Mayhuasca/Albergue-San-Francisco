@@ -91,7 +91,13 @@ const goBack = () => {
         return
     }
 
-    // Desde detalles de solicitante -> volver a solicitudes principal
+    // Desde detalles de solicitante de solicitudes pre-aprobadas -> volver a solicitudes principal
+    if (path.match(/^\/admin\/solicitudes\/pre-aprobadas\/detalle\/\d+$/)) {
+        router.push('/admin/solicitudes')
+        return
+    }
+
+    // Desde detalles de solicitante de solicitudes normales -> volver a solicitudes principal
     if (path.match(/^\/admin\/solicitudes\/\d+\/detalle\/\d+$/)) {
         router.push('/admin/solicitudes')
         return
@@ -103,14 +109,14 @@ const goBack = () => {
         return
     }
 
-    // Desde detalles de solicitudes pre-aprobadas -> volver a solicitudes principal
-    if (path.match(/^\/admin\/solicitudes\/pre-aprobadas\/detalle\/\d+$/)) {
+    // Desde página de solicitudes pre-aprobadas -> volver a solicitudes principal
+    if (path === '/admin/solicitudes/pre-aprobadas') {
         router.push('/admin/solicitudes')
         return
     }
 
-    // Fallback: usar router.back() solo si no coincide con ningún patrón conocido
-    router.back()
+    // Fallback: siempre ir al dashboard principal si no coincide con ningún patrón
+    router.push('/admin')
 }
 
 const logout = () => {
