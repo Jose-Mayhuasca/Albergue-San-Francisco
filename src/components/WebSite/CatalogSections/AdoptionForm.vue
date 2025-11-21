@@ -160,7 +160,7 @@
                 <!-- Dialog de confirmación de lectura -->
                 <Dialog v-model:visible="visibleSendConfirm" modal header="Confirmación de envío" class="confirmDialog">
                     <p>Al confirmar, aceptas que tus datos sean procesados. El tiempo estimado para recibir una
-                        respuesta a tu trámite es de [X] días hábiles.</p>
+                        respuesta a tu trámite es de 7 días hábiles.</p>
                     <p>¿Deseas continuar?</p>
                     <!-- <div class="confirmActions"> -->
                     <Button label="Entendido, enviar" severity="success" @click="sendApplication()" icon="pi pi-check"
