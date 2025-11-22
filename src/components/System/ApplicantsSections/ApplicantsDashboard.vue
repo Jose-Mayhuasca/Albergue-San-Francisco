@@ -246,7 +246,6 @@ const GoListApplicants = (idRefAnimals, animalName) => {
     localStorage.setItem('idDog', idRefAnimals);
     localStorage.setItem('animalName', animalName);
     router.push({ path: `solicitudes/${animalName}` });
-    console.log(idRefAnimals);
 };
 
 </script>

@@ -289,7 +289,6 @@ const confirmDelete = async () => {
 }
 
 const editDog = (id, name) => {
-    console.log("data:", id, name)
     localStorage.setItem('idDog', id)
     router.push(`catalogo/editar/${name}`)
 }
