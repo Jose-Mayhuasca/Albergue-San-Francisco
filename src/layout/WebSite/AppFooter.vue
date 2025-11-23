@@ -16,8 +16,8 @@
       <!-- Columna 2 - Contacto -->
       <div>
         <h2 class="text-xl font-semibold mb-3">Contáctanos</h2>
-        <ul class="space-y-2 text-gray-300 text-sm">
-          <li><i class="ri-whatsapp-fill mr-2"></i> +51 922 266 310</li>
+        <ul class="space-y-2 text-gray-300 text-md flex content-center">
+          <li><i class="ri-whatsapp-fill mr-2 text-2xl"></i> +51 922 266 310</li>
         </ul>
       </div>
 

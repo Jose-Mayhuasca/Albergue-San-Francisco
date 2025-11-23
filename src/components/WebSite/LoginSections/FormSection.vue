@@ -55,7 +55,7 @@ async function onSubmit() {
     }
 
     const request = {
-        userName: user.value.username,
+        userRefugeAccount: user.value.username,
         userRefugePassword: user.value.password
     }
 

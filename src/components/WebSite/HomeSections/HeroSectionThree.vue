@@ -5,27 +5,34 @@
     <!-- Contenedor A -->
     <div class="relative text-black dark:text-white w-full md:w-1/2 ml-40 pr-40">
       <!-- Contenido de contenedor A -->
-       <div class="container-a-content">
-        
-       </div>
+      <div class="container-a-content">
+
+      </div>
     </div>
 
     <!-- Contenedor B derecho: tarjeta de donación mejorada -->
     <div class="relative w-full md:w-1/2 flex items-center justify-center pr-10">
       <aside class="max-w-3xl w-full py-8 rounded-2xl   text-black dark:text-white" aria-labelledby="donation-title">
 
-        <h3 id="donation-title" class="text-3xl md:text-4xl font-extrabold text-gray-900 dark:text-gray-100 leading-tight">Dona comida para mascotas</h3>
+        <h3 id="donation-title"
+          class="text-3xl md:text-4xl font-extrabold text-gray-900 dark:text-gray-100 leading-tight">Dona comida para
+          mascotas</h3>
 
         <p class="mt-3 text-xl font-semibold text-gray-800 dark:text-gray-200">Alimenta una vida hoy</p>
 
-        <p class="mt-4 text-lg text-gray-700 dark:text-gray-300">Cada paquete de comida que dones ayuda a un animal a tener una segunda oportunidad. Rápido, seguro y directo al refugio.</p>
+        <p class="mt-4 text-lg text-gray-700 dark:text-gray-300">Cada paquete de comida que dones ayuda a un animal a
+          tener una segunda oportunidad. Rápido, seguro y directo al refugio.</p>
 
         <div class="mt-6 flex flex-col sm:flex-row gap-3">
-          <router-link to="/catalogo/apadrinar" class="inline-flex items-center justify-center px-6 py-3 rounded-full font-semibold text-white bg-gradient-to-r from-amber-500/90 to-amber-500 hover:bg-gradient-to-r hover:from-amber-500/90 hover:to-amber-500/90 dark:from-amber-600 dark:to-amber-600" aria-label="Apadrinar">
+          <router-link to="/catalogo/apadrinar"
+            class="inline-flex items-center justify-center px-6 py-3 rounded-full font-semibold text-white bg-gradient-to-r from-amber-500/90 to-amber-500 hover:bg-gradient-to-r hover:from-amber-500/90 hover:to-amber-500/90 dark:from-amber-600 dark:to-amber-600"
+            aria-label="Apadrinar">
             Dona ahora
           </router-link>
 
-          <a :href="whatsappLink" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-6 py-3 rounded-full font-medium text-green-700 bg-emerald-50 hover:bg-emerald-100 transition dark:bg-emerald-900 dark:text-emerald-200 dark:hover:bg-emerald-800" aria-label="Contacto">
+          <a :href="whatsappLink" target="_blank" rel="noopener noreferrer"
+            class="inline-flex items-center justify-center px-6 py-3 rounded-full font-medium text-green-700 bg-emerald-50 hover:bg-emerald-100 transition dark:bg-emerald-900 dark:text-emerald-200 dark:hover:bg-emerald-800"
+            aria-label="Contacto">
             Contacto
           </a>
         </div>
@@ -40,7 +47,7 @@ export default {
   data() {
     return {
       // Numero de WhatsApp al que se enviarán los mensajes. Debe incluir el código de país sin el '+'.
-      whatsappNumber: '51951703662',
+      whatsappNumber: '51922266310',
       // Mensaje inicial que aparecerá en la conversación. Puedes personalizarlo.
       whatsappMessage: 'Hola, quiero más información sobre donaciones'
     }
@@ -56,15 +63,25 @@ export default {
 <style lang="scss" scoped>
 @import url('https://fonts.googleapis.com/css2?family=Ariella+Sans:wght@700;900&family=Montpellier:wght@400;700&display=swap');
 
-.font-montpellier { font-family: 'Montpellier', ui-sans-serif, system-ui, sans-serif; }
-.font-ariela { font-family: 'Ariella Sans', ui-sans-serif, system-ui, sans-serif; }
+.font-montpellier {
+  font-family: 'Montpellier', ui-sans-serif, system-ui, sans-serif;
+}
+
+.font-ariela {
+  font-family: 'Ariella Sans', ui-sans-serif, system-ui, sans-serif;
+}
 
 /* Títulos en mayúsculas según la guía */
-h3 { text-transform: none; } /* solo el hero usa mayúsculas/parcial */
+h3 {
+  text-transform: none;
+}
+
+/* solo el hero usa mayúsculas/parcial */
 
 /* Ajustes generales para la imagen de fondo */
 .hero {
-  position: relative; /* establece el contexto de apilamiento para el pseudo-elemento */
+  position: relative;
+  /* establece el contexto de apilamiento para el pseudo-elemento */
   /* En móvil y por defecto evitamos que contenidos se salgan y solapen con secciones siguientes */
   overflow: hidden;
   /* Variables para controlar la posición del fondo (se pueden ajustar para trasladar la imagen en X/Y) */
@@ -79,7 +96,8 @@ h3 { text-transform: none; } /* solo el hero usa mayúsculas/parcial */
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 100vw; /* abarca todo el ancho del viewport */
+  width: 100vw;
+  /* abarca todo el ancho del viewport */
   /* Queremos que el fondo cubra la ventana gráfica pero no dependa de la altura del contenedor
      (así evita que el pseudo-elemento se extienda fuera del viewport en móviles y provoque solapes) */
   height: 100vh;
@@ -89,19 +107,20 @@ h3 { text-transform: none; } /* solo el hero usa mayúsculas/parcial */
   background-position: var(--bg-pos-x) var(--bg-pos-y);
   background-repeat: no-repeat;
   z-index: -1;
-  pointer-events: none; /* evitar que el pseudo-elemento capture eventos y cause problemas de interacción */
+  pointer-events: none;
+  /* evitar que el pseudo-elemento capture eventos y cause problemas de interacción */
 }
 
 /* Dark mode overlay for hero background (Tailwind `class` strategy and system preference) */
 :global(.dark) .hero::before {
-  background-image: linear-gradient(rgba(18, 10, 3, 0.6), rgba(3,7,18,0.6)), url('@/assets/img/dog_food.png');
+  background-image: linear-gradient(rgba(18, 10, 3, 0.6), rgba(3, 7, 18, 0.6)), url('@/assets/img/dog_food.png');
   background-blend-mode: overlay;
   filter: brightness(0.75) contrast(0.95);
 }
 
 @media (prefers-color-scheme: dark) {
   .hero::before {
-    background-image: linear-gradient(rgba(3,7,18,0.55), rgba(18, 16, 3, 0.55)), url('@/assets/img/dog_food.png');
+    background-image: linear-gradient(rgba(3, 7, 18, 0.55), rgba(18, 16, 3, 0.55)), url('@/assets/img/dog_food.png');
     background-blend-mode: overlay;
     filter: brightness(0.78) contrast(0.95);
   }
@@ -121,23 +140,23 @@ h3 { text-transform: none; } /* solo el hero usa mayúsculas/parcial */
   }
 
   /* Ajuste para los contenedores */
-  .hero > .relative {
+  .hero>.relative {
     width: 100%;
     margin-left: 0;
     padding-right: 0;
   }
 
-  .hero > .relative.text-black.w-1\/2.ml-40.pr-40 {
+  .hero>.relative.text-black.w-1\/2.ml-40.pr-40 {
     width: 100%;
     margin-left: 0;
   }
 
   /* Cambio de orden: el contenedor A se coloca arriba del contenedor B */
-  .hero > .relative.text-black {
+  .hero>.relative.text-black {
     order: 1;
   }
 
-  .hero > .relative.w-full.md\:w-1\/2 {
+  .hero>.relative.w-full.md\:w-1\/2 {
     order: 2;
   }
 }
@@ -158,7 +177,7 @@ h3 { text-transform: none; } /* solo el hero usa mayúsculas/parcial */
   }
 
   /* Los contenedores deben seguir el mismo orden: el contenedor A encima del contenedor B */
-  .hero > .relative.text-black {
+  .hero>.relative.text-black {
     /* Contenedor A (texto) primero */
     order: 0;
     width: 100%;
@@ -166,7 +185,7 @@ h3 { text-transform: none; } /* solo el hero usa mayúsculas/parcial */
     padding-right: 0;
   }
 
-  .hero > .relative.w-full.md\:w-1\/2 {
+  .hero>.relative.w-full.md\:w-1\/2 {
     /* Contenedor B (tarjeta) después */
     order: 1;
     width: 100%;
@@ -179,14 +198,18 @@ h3 { text-transform: none; } /* solo el hero usa mayúsculas/parcial */
 
 /* Ajustes para PC (más de 1024px) */
 @media (min-width: 1024px) {
+
   /* En escritorio permitimos que el pseudo-elemento pueda salirse visualmente si es necesario */
-  .hero { overflow: visible; }
+  .hero {
+    overflow: visible;
+  }
+
   /* Aquí no hacemos cambios significativos en la disposición, ya que está correcto. Solo aseguramos que no se vean afectados por los cambios de las otras vistas */
-  .hero > .relative.text-black {
+  .hero>.relative.text-black {
     order: 0;
   }
 
-  .hero > .relative.w-full.md\:w-1\/2 {
+  .hero>.relative.w-full.md\:w-1\/2 {
     order: 1;
   }
 }
@@ -198,6 +221,7 @@ h3 { text-transform: none; } /* solo el hero usa mayúsculas/parcial */
 }
 
 @media (max-width: 768px) {
+
   /* En móvil: aumentamos a 700px */
   .container-a-content {
     height: 700px;
@@ -205,6 +229,7 @@ h3 { text-transform: none; } /* solo el hero usa mayúsculas/parcial */
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
+
   /* En tablet: aumentamos a 800px */
   .container-a-content {
     height: 800px;
