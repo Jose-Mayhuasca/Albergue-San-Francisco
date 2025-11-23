@@ -9,11 +9,18 @@
             <Form class="form" @submit="onSubmit">
                 <div class="inputBox">
                     <h6>Usuario</h6>
-                    <InputText v-model="user.username" fluid />
+                    <IconField>
+                        <InputIcon class="pi pi-user" />
+                        <InputText v-model="user.username" fluid />
+                    </IconField>
+
                 </div>
                 <div class="inputBox">
                     <h6>Contraseña</h6>
-                    <Password v-model="user.password" toggleMask :feedback="false" fluid />
+                    <IconField>
+                        <InputIcon class="pi pi-lock" />
+                        <Password v-model="user.password" toggleMask :feedback="false" fluid />
+                    </IconField>
                 </div>
                 <Button type="submit" class="p-button" label="Iniciar Sesión" @click.prevent="onSubmit"
                     :loading="loading" />
