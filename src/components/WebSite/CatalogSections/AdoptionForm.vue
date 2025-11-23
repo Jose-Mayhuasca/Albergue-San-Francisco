@@ -118,7 +118,7 @@
                             <div
                                 class="useData standarContainer flex items-start justify-between gap-3 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-4 py-3">
                                 <a class="title flex items-center gap-2 text-sm font-semibold text-slate-800 dark:text-slate-200 hover:text-cyan-700"
-                                    href="/src/assets/pdf/29733.pdf" target="_blank" rel="noopener" as="a">
+                                    :href="pdf29733" target="_blank" rel="noopener" as="a">
                                     <label>Uso de Datos</label>
                                     <i class="ri-error-warning-line text-lg" />
                                 </a>
@@ -132,7 +132,7 @@
                             <div
                                 class="tyc standarContainer flex items-start justify-between gap-3 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-4 py-3">
                                 <a class="title flex items-center gap-2 text-sm font-semibold text-slate-800 dark:text-slate-200 hover:text-cyan-700"
-                                    href="/src/assets/pdf/30407.pdf" target="_blank" rel="noopener" as="a">
+                                    :href="pdf30407" target="_blank" rel="noopener" as="a">
                                     <label>Ley de protección animal</label>
                                     <i class="ri-error-warning-line text-lg" />
                                 </a>
@@ -178,6 +178,8 @@
 import { ref, onMounted, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import { useToast } from 'primevue';
+import pdf29733 from '@/assets/pdf/29733.pdf';
+import pdf30407 from '@/assets/pdf/30407.pdf';
 import CommonService from '@/services/CommonService';
 import ApplicantService from '@/services/ApplicantServices/ApplicantService';
 
