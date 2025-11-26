@@ -140,8 +140,8 @@
                     <div class="actionsContainer flex flex-col sm:flex-row gap-3 mt-4 sm:mt-6 w-full">
                         <Button label="Adoptar" icon="ri-heart-2-line" @click="goFormAdoption(oPet.animalName)"
                             class="flex-1 min-w-[140px] sm:max-w-xs" />
-                        <Button label="Apadrinar" icon="ri-vip-crown-line" @click="goPlans()"
-                            class="flex-1 min-w-[140px] sm:max-w-xs p-button-outlined" :disabled="true" />
+                        <!-- <Button label="Apadrinar" icon="ri-vip-crown-line" @click="goPlans()"
+                            class="flex-1 min-w-[140px] sm:max-w-xs p-button-outlined" :disabled="true" /> -->
                     </div>
                 </div>
             </div>
@@ -201,8 +201,8 @@
                 <div class="actionsContainer flex flex-col sm:flex-row gap-3 mt-6 w-full">
                     <Button label="Adoptar" icon="ri-heart-2-line" @click="goFormAdoption(oPet.animalName)"
                         class="flex-1 min-w-[140px] sm:max-w-xs" />
-                    <Button label="Apadrinar" icon="ri-vip-crown-line" @click="goPlans()"
-                        class="flex-1 min-w-[140px] sm:max-w-xs p-button-outlined" />
+                    <!-- <Button label="Apadrinar" icon="ri-vip-crown-line" @click="goPlans()"
+                        class="flex-1 min-w-[140px] sm:max-w-xs p-button-outlined" /> -->
                 </div>
             </div>
         </Section>
