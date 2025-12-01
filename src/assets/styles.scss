@@ -277,6 +277,16 @@ h6 {
   }
 }
 
+.paginatorContainer {
+  width: 100%;
+  height: auto;
+
+  .p-paginator-page-selected {
+    background-color: #f9b42f !important;
+    color: #fff !important;
+  }
+}
+
 .primary {
   background-color: var(--color-primary) !important;
   color: white !important;
@@ -968,7 +978,7 @@ h6 {
       display: flex;
       gap: 0.5rem;
 
-      @media (min-width: $bp-tablet) {
+      @media (min-width: $bp-mobile) {
         .p-iconfield {
           width: 100%;
         }

@@ -31,6 +31,7 @@ import RadioButton from 'primevue/radiobutton'
 import RadioButtonGroup from 'primevue/radiobuttongroup'
 import ConfirmPopup from 'primevue/confirmpopup'
 import Password from 'primevue/password'
+import Paginator from 'primevue/paginator'
 
 export default {
   Button,
@@ -65,4 +66,5 @@ export default {
   RadioButtonGroup,
   ConfirmPopup,
   Password,
+  Paginator,
 }

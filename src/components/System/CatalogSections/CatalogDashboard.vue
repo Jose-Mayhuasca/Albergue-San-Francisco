@@ -68,13 +68,23 @@
                 </Dialog>
             </div>
             <div class=" containerCards" v-show="!bCargando">
-                <Card v-for="dog in filteredDogs" :key="dog.idRefAnimals" class="cardCatalog" :style="{
+                <Card v-for="dog in paginatedDogs" :key="dog.idRefAnimals" class="cardCatalog" :style="{
                     backgroundImage: `url(${dog.animalImage})`
                 }" @click="openActionsDialog(dog.idRefAnimals, dog.animalName)">
                     <template #title>
                         <p class="regularSize title">{{ dog.animalName }}</p>
                     </template>
                 </Card>
+            </div>
+
+            <!-- Paginador -->
+            <div v-show="!bCargando && totalRecords > 0" class="paginatorContainer">
+                <Paginator :template="{
+                    '480px': 'FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink',
+                    '1023px': 'FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink',
+                    default: 'FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown'
+                }" @page="onPageChange" :rows="rowsPerPage" :totalRecords="totalRecords"
+                    :rowsPerPageOptions="[8, 16, 24, 32]" />
             </div>
             <div class="containerCards" v-show="bCargando">
                 <Skeleton v-for="index in 10" :key="index" fluid height="auto" border-radius="12px"
@@ -107,7 +117,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed } from 'vue'
+import { ref, onMounted, computed, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { useToast } from 'primevue'
 import CatalogService from '@/services/CatalogServices/CatalogService'
@@ -129,6 +139,10 @@ const selectedDogName = ref(null);
 const selectedSize = ref(null)
 const selectedGender = ref(null)
 const selectedAge = ref(null)
+
+// Refs para paginación
+const currentPage = ref(0) // Paginator usa índice base 0
+const rowsPerPage = ref(8)
 
 
 // Computed property para obtener el icono según el estado de ordenamiento
@@ -159,6 +173,11 @@ const toggleSort = () => {
 onMounted(async () => {
     await Initialize();
 });
+
+// Watcher para resetear la página cuando cambien los filtros o búsqueda
+watch([searchQuery, selectedSize, selectedGender, selectedAge, sortOrder], () => {
+    currentPage.value = 0
+})
 
 async function Initialize() {
     LoadCatalog();
@@ -230,6 +249,22 @@ const filteredDogs = computed(() => {
     return result
 })
 
+// Computed property para obtener el total de registros filtrados
+const totalRecords = computed(() => filteredDogs.value.length)
+
+// Computed property para obtener solo los perros de la página actual
+const paginatedDogs = computed(() => {
+    const start = currentPage.value * rowsPerPage.value
+    const end = start + rowsPerPage.value
+    return filteredDogs.value.slice(start, end)
+})
+
+// Función para manejar el cambio de página
+const onPageChange = (event) => {
+    currentPage.value = event.page
+    rowsPerPage.value = event.rows
+}
+
 const openNewDog = () => {
     localStorage.removeItem('idDog');
     router.push(`catalogo/nuevo`)
@@ -297,6 +332,8 @@ const clearFilters = () => {
     selectedSize.value = null
     selectedGender.value = null
     selectedAge.value = null
+    // Resetear a la primera página cuando se limpian filtros
+    currentPage.value = 0
 }
 
 </script>
