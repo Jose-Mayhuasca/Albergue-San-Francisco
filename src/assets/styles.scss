@@ -166,6 +166,10 @@ h6 {
   gap: 1rem;
   padding: 1rem;
 
+  @media (min-width: $bp-mobile) {
+    width: 40%;
+  }
+
   .p-dialog-header {
     padding: 0;
     .p-dialog-close-button {
